@@ -1,24 +1,36 @@
-showGridOnHoverDot()
+moveInfoItems()
+setInterval(() => {
+  moveInfoItems()
+}, 5000)
 
-function showGridOnHoverDot() {
-  const grid = document.querySelector('.setka')
-  const article = document.querySelector('article')
-  const dots = document.querySelectorAll('.dots')
+function moveInfoItems() {
+  const items = document.querySelectorAll('.move')
+  const section = document.querySelector('.all')
 
-  dots.forEach((dot) => {
-    dot.addEventListener('mouseover', () => {
-      grid.style.opacity = '1'
-      dots.forEach((i) => {
-        i.style.opacity = '0'
-      })
-      dot.style.opacity = '1'
-    })
+  for (let i = 0; i < items.length; i++) {
+    const item = items[i]
+    const { width, height } = item.getBoundingClientRect()
 
-    dot.addEventListener('mouseout', () => {
-      grid.style.opacity = '0'
-      dots.forEach((i) => {
-        i.style.opacity = '1'
-      })
-    })
+    const sectionWidth = section.getBoundingClientRect().width
+    const sectionHeight = section.getBoundingClientRect().height
+
+    item.style.top = `${getRandomArbitrary(0, sectionHeight - height)}px`
+
+    item.style.left = `${getRandomArbitrary(0, sectionWidth - width)}px`
+  }
+}
+
+function getRandomArbitrary(min, max) {
+  return Math.random() * (max - min) + min
+}
+hover()
+function hover() {
+  const items = document.querySelectorAll('.item')
+  const all = document.querySelector('.all')
+  const section1 = document.querySelector('.section1')
+
+  all.querySelector('.move1 div').addEventListener('click', () => {
+    all.style.display = 'none'
+    section1.style.display = 'block'
   })
 }
