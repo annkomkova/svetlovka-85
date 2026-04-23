@@ -32,15 +32,10 @@
       </a>
     </nav>
 
-    <!-- =============================================
-     СТРАНИЦА (интро + футер как единый поток)
-     ============================================= -->
     <div id="page-wrapper">
-      <!-- ИНТРО-ЭКРАН (фиксированный, z-index 10) -->
       <section id="intro" aria-label="Главный экран">
         <h1 class="sr-only">40-е — интерактивная страница памяти</h1>
 
-        <!-- Декоративные углы -->
         <span class="intro-corner tl" aria-hidden="true"
           >МОСКВА<br />1940—1949</span
         >
@@ -56,22 +51,15 @@
           >ПАМЯТЬ · КУЛЬТУРА · ИСТОРИЯ</span
         >
 
-        <!-- Подсказка -->
         <div class="intro-hint" aria-hidden="true">выбрать раздел</div>
 
-        <!-- Контейнер тайлов (заполняется из JS) -->
         <div id="tiles-container" role="list" aria-label="Разделы"></div>
       </section>
 
-      <!-- СПЕЙСЕР — чтобы футер появился при скролле -->
       <div style="height: 100vh; pointer-events: none" aria-hidden="true"></div>
 
-      <!-- =============================================
-       ФУТЕР
-       ============================================= -->
-      <footer id="site-footer" aria-label="Подвал сайта">
+      <!-- <footer id="site-footer" aria-label="Подвал сайта">
         <div class="footer-grid">
-          <!-- Логотипы партнёров/организаций -->
           <div class="footer-logos">
             <a
               href="https://svetlov-library.ru"
@@ -80,44 +68,6 @@
               rel="noopener noreferrer"
               aria-label="ЦГМБ им. М.А. Светлова — перейти на сайт"
             >
-              <!-- SVG логотип 1: горизонтальный текст-логотип -->
-              <svg
-                class="footer-logo-svg"
-                viewBox="0 0 220 32"
-                xmlns="http://www.w3.org/2000/svg"
-                aria-hidden="true"
-              >
-                <text
-                  x="0"
-                  y="22"
-                  font-family="'Courier Prime', monospace"
-                  font-size="10"
-                  letter-spacing="2"
-                  fill="currentColor"
-                  text-anchor="start"
-                >
-                  ЦГМБ
-                </text>
-                <line
-                  x1="46"
-                  y1="16"
-                  x2="50"
-                  y2="16"
-                  stroke="currentColor"
-                  stroke-width="0.8"
-                  opacity="0.5"
-                />
-                <text
-                  x="54"
-                  y="22"
-                  font-family="'Playfair Display', serif"
-                  font-size="12"
-                  fill="currentColor"
-                  font-style="italic"
-                >
-                  им. М.А. Светлова
-                </text>
-              </svg>
             </a>
 
             <div class="footer-logo-sep" aria-hidden="true"></div>
@@ -129,110 +79,18 @@
               rel="noopener noreferrer"
               aria-label="Культура Москвы — перейти на сайт"
             >
-              <!-- SVG логотип 2 -->
-              <svg
-                class="footer-logo-svg"
-                viewBox="0 0 180 32"
-                xmlns="http://www.w3.org/2000/svg"
-                aria-hidden="true"
-              >
-                <rect
-                  x="0"
-                  y="8"
-                  width="16"
-                  height="16"
-                  fill="none"
-                  stroke="currentColor"
-                  stroke-width="0.8"
-                />
-                <rect
-                  x="4"
-                  y="12"
-                  width="8"
-                  height="8"
-                  fill="currentColor"
-                  opacity="0.4"
-                />
-                <text
-                  x="24"
-                  y="22"
-                  font-family="'Courier Prime', monospace"
-                  font-size="10"
-                  letter-spacing="1.5"
-                  fill="currentColor"
-                >
-                  КУЛЬТУРА МОСКВЫ
-                </text>
-              </svg>
             </a>
           </div>
 
-          <!-- Автор -->
+
           <div class="footer-author">
             <div class="footer-author-label">Автор проекта</div>
             <div class="footer-author-name">Имя Фамилия</div>
           </div>
-
-          <!-- Соцсети -->
-          <div class="footer-social">
-            <a
-              href="https://t.me/"
-              class="footer-social-link"
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="Telegram — перейти на страницу"
-            >
-              <!-- Иконка Telegram (SVG, без библиотек) -->
-              <svg
-                class="footer-social-icon"
-                viewBox="0 0 24 24"
-                xmlns="http://www.w3.org/2000/svg"
-                aria-hidden="true"
-              >
-                <path
-                  d="M12 2C6.477 2 2 6.477 2 12s4.477 10 10 10 10-4.477 10-10S17.523 2 12 2zm4.93 6.686l-1.688 7.954c-.127.566-.462.703-.937.437l-2.593-1.91-1.252 1.205c-.138.138-.255.255-.522.255l.186-2.647 4.822-4.356c.21-.186-.046-.29-.322-.104L8.27 13.994l-2.558-.8c-.556-.174-.567-.556.116-.822l9.99-3.852c.462-.174.869.104.712.826-.001 0-.001 0 0 0z"
-                />
-              </svg>
-              Telegram
-            </a>
-
-            <a
-              href="https://vk.com/"
-              class="footer-social-link"
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="ВКонтакте — перейти на страницу"
-            >
-              <!-- Иконка VK -->
-              <svg
-                class="footer-social-icon"
-                viewBox="0 0 24 24"
-                xmlns="http://www.w3.org/2000/svg"
-                aria-hidden="true"
-              >
-                <path
-                  d="M21.547 7h-3.29a.743.743 0 0 0-.655.392s-1.312 2.416-1.734 3.23C14.734 12.813 14 12.126 14 11.11V7.603A1.104 1.104 0 0 0 12.896 6.5h-2.474a1.982 1.982 0 0 0-1.75.813s1.255-.204 1.255 1.49c0 .42.022 1.626.04 2.64a.73.73 0 0 1-1.272.503 21.54 21.54 0 0 1-2.498-4.543.693.693 0 0 0-.63-.403h-2.99a.508.508 0 0 0-.48.685C3.005 10.175 6.918 18 11.38 18h1.878a.742.742 0 0 0 .742-.742v-1.135a.73.73 0 0 1 1.23-.53l2.247 2.112a1.09 1.09 0 0 0 .746.295h2.953c1.424 0 1.424-.988.647-1.753-.546-.538-2.518-2.617-2.518-2.617a1.02 1.02 0 0 1-.078-1.323c.637-.84 1.68-2.212 2.122-2.8.603-.804 1.697-2.507.197-2.507z"
-                />
-              </svg>
-              ВКонтакте
-            </a>
-          </div>
         </div>
-
-        <!-- Нижняя строка -->
-        <div class="footer-bottom">
-          <span class="footer-copy"
-            >© 2024 · Проект создан в рамках изучения истории библиотеки</span
-          >
-          <span class="footer-decade-mark">40-е</span>
-        </div>
-      </footer>
+      </footer> -->
     </div>
-    <!-- /page-wrapper -->
 
-    <!-- =============================================
-     ПАНЕЛЬ КОНТЕНТА (фиксированная, z-index 30)
-     ============================================= -->
     <div id="content-panel" role="region" aria-label="Содержимое раздела">
       <header id="panel-header">
         <div>
@@ -248,9 +106,6 @@
       <div id="panel-body" role="main"></div>
     </div>
 
-    <!-- =============================================
-     LIGHTBOX (z-index 100)
-     ============================================= -->
     <div
       id="lightbox"
       role="dialog"
