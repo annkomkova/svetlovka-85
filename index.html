@@ -3,26 +3,91 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Светловка. Сквозь десятилетия</title>
+    <title>40-е</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Courier+Prime:ital@0;1&display=swap"
+      rel="stylesheet"
+    />
     <link rel="stylesheet" href="stylesheets/style.css" />
     <script defer src="javascripts/scripts.js"></script>
   </head>
   <body>
-    <section class="all">
-      <div class="move move1">
-        <img src="images/items/item-11.png" alt="" class="item item1" />
-        <div></div>
+    <!-- Фоновые элементы -->
+    <div id="grid-bg" aria-hidden="true"></div>
+    <div id="grain" aria-hidden="true"></div>
+
+    <!-- =============================================
+     ИНТРО-ЭКРАН
+     ============================================= -->
+    <section id="intro" aria-label="Главный экран">
+      <h1 class="sr-only">40-е — интерактивная страница памяти</h1>
+
+      <!-- Большой фоновый заголовок -->
+      <div id="intro-title" aria-hidden="true">
+        40<span style="font-style: italic">-е</span>
       </div>
-      <img src="images/items/item-2.png" alt="" class="item move" />
-      <img src="images/items/item-3.png" alt="" class="item move" />
-      <img src="images/items/item-4.png" alt="" class="item move" />
-      <img src="images/items/item-5.png" alt="" class="item move" />
-      <img src="images/items/item-6.png" alt="" class="item move" />
+
+      <!-- Декоративные углы -->
+      <span class="intro-corner tl" aria-hidden="true"
+        >МОСКВА<br />1940—1949</span
+      >
+      <span class="intro-corner tr" aria-hidden="true">АРХИВ<br />ПАМЯТИ</span>
+      <span class="intro-corner bl" aria-hidden="true">I</span>
+      <span class="intro-corner br" aria-hidden="true">V</span>
+      <span class="intro-year-text" aria-hidden="true"
+        >ДЕСЯТИЛЕТИЕ СТОЙКОСТИ</span
+      >
+      <span class="intro-year-text-left" aria-hidden="true"
+        >ПАМЯТЬ · КУЛЬТУРА · ИСТОРИЯ</span
+      >
+
+      <!-- Подсказка -->
+      <div class="intro-hint" aria-hidden="true">выбрать раздел</div>
+
+      <!-- Контейнер тайлов (заполняется из JS) -->
+      <div id="tiles-container" role="list" aria-label="Разделы"></div>
     </section>
-    <section class="section1"></section>
-    <footer>
-      <img src="images/items/logo_s.png" alt="" />
-      <img src="images/items/logo_hse.png" alt="" />
-    </footer>
+
+    <!-- =============================================
+     ПАНЕЛЬ КОНТЕНТА
+     ============================================= -->
+    <div id="content-panel" role="region" aria-label="Содержимое раздела">
+      <header id="panel-header">
+        <div>
+          <div id="panel-breadcrumb">
+            40-е / <span id="breadcrumb-section">—</span>
+          </div>
+          <div id="panel-title-el">—</div>
+        </div>
+        <button id="back-btn" aria-label="Вернуться на главный экран">
+          ← назад
+        </button>
+      </header>
+      <div id="panel-body" role="main"></div>
+    </div>
+
+    <!-- =============================================
+     LIGHTBOX
+     ============================================= -->
+    <div
+      id="lightbox"
+      role="dialog"
+      aria-modal="true"
+      aria-label="Просмотр изображения"
+    >
+      <button id="lightbox-close" aria-label="Закрыть">✕ ЗАКРЫТЬ</button>
+      <img id="lightbox-img" src="" alt="" />
+      <div id="lightbox-caption"></div>
+      <div id="lightbox-nav" aria-label="Навигация по изображениям">
+        <button class="lb-nav-btn" id="lb-prev" aria-label="Предыдущее">
+          ← пред.
+        </button>
+        <button class="lb-nav-btn" id="lb-next" aria-label="Следующее">
+          след. →
+        </button>
+      </div>
+    </div>
   </body>
 </html>

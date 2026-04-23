@@ -1,0 +1,1136 @@
+const pages = [
+  {
+    title: '40-е',
+    event:
+      'В 1942 году в Колонном зале Дома Союзов состоялась московская премьера Седьмой («Ленинградской») симфонии Дмитрия Шостаковича, ставшая символом стойкости.',
+    fact: 'В апреле 1941 года состоялось открытие «Городской юношеской библиотеки № 3» (будущей Центральной городской молодежной библиотеки им. М.А. Светлова). Новый формат работы — «громкие читки». Библиотекари читали вслух, проводили беседы о боевых эпизодах войны, рассказывали о новых книгах, читали главы из них.',
+    books: {
+      book1: {
+        author: 'А. Твардовский,',
+        name: '«Василий Теркин»',
+        cite: 'Переправа, переправа!<br>Берег левый, берег правый,<br>Снег шершавый, кромка льда…<br>Кому память, кому слава,<br>Кому темная вода, —<br>Ни приметы, ни следа.'
+      },
+      book2: {
+        author: 'М. Светлов,',
+        name: '«Гренада»',
+        cite: 'Мы ехали шагом, Мы мчались в боях<br> И «Яблочко»-песню<br> Держали в зубах.<br> Ах, песенку эту<br> Доныне хранит<br> Трава молодая —<br> Степной малахит.'
+      }
+    },
+    films: [
+      {
+        frame: 'images/40s/film-1.png',
+        info: 'Афиша к к/ф «Два бойца» (1943), реж. Л. Луков, кинокомпания «Ташкентская киностудия», худ. А., Н. Клементьевы'
+      },
+      {
+        frame: 'images/40s/film-2.png',
+        info: 'Афиша к к/ф «Свинарка и пастух» (1941), реж. И. Пырьев, киностудия «Мосфильм», худ. Б. Зеленский'
+      }
+    ],
+    images: [
+      {
+        image: ['images/40s/image-1.png', 'images/40s/image-2.png'],
+        info: 'Источ. Заимствования: https://leningradstories.ru/blokada-art/simphoniya7 автор неизвестен'
+      },
+      {
+        image: ['images/40s/image-3.png'],
+        info: 'Архив ГБУК г. Москвы «ЦГМБ им. М.А. Светлова», автор неизвестен.'
+      },
+      {
+        image: ['images/40s/image-4.png'],
+        info: 'Источ. Заимствования: https://mosday.ru/photos/?1_565 автор неизвестен'
+      },
+      {
+        image: ['images/40s/image-5.png', 'images/40s/image-6.png'],
+        info: 'Источ. Заимствования: https://kulturamgo.ru/press-tsentr/news/16686-17-iyunya-1903-goda-rodilsya-mikhail-svetlov-poet-uchastnik-grazhdanskoj-i-velikoj-otechestvennoj-vojny-2 автор неизвестен'
+      }
+    ]
+  },
+  {
+    title: '50-е',
+    event:
+      'В 1957 году прошел VI Всемирный фестиваль молодежи и студентов. Светловка участвовала под лозунгом «За мир и дружбу между народами».',
+    fact: 'Светловка становится самой популярной библиотекой среди московской молодежи и одновременно методическим центром для юношеских библиотек по всему СССР.',
+    books: {
+      book1: {
+        author: 'В. Лифшиц',
+        name: '«Песенка о Москве»',
+        cite: 'Если улицы Москвы вытянуть в одну, <br>То по ней пройдете вы через всю страну, <br>Если лестницы Москвы все сложить в одну, <br>То по ней взберетесь вы прямо на Луну. <br>Вот она какая  —  большая-пребольшая, <br>Приветлива со всеми, во всех сердцах жива, <br>Любимая, родная красавица Москва.'
+      }
+    },
+    films: [
+      {
+        frame: '',
+        info: 'Кадр из к/ф «"Сто грамм" для храбрости» (1976), реж. Борис Бушмелёв, Анатолий Маркелов, Георгий (Егор) Щукин, киностудия «Мосфильм»'
+      },
+      {
+        frame: '',
+        info: 'Кадр из к/ф «Железный занавес» (1995), реж. Савва Кулиш, киностудия «Роскомкино», Фонд Ролана Быкова'
+      },
+      {
+        frame: '',
+        info: 'Кадры из к/ф «Летят журавли» (1957), реж. М.Калатозов, киностудия «Мосфильм»'
+      },
+      {
+        frame: '',
+        info: 'Кадр из к/ф «Карнавальная ночь» (1956), реж. Э.Рязанов, киностудия «Мосфильм»'
+      },
+      {
+        frame: '',
+        info: 'Кадр из к/ф «Судьба человека фильм (1959), реж. С.Бондарчук, киностудия «Мосфильм»»'
+      }
+    ],
+    images: [
+      {
+        image: '',
+        info: 'Источ. заимствования: https://pastvu.com/p/618201 автор неизвестен'
+      },
+      {
+        image: '',
+        info: 'Источ. заимстования: https://pastvu.com/p/961856 автор С. В. Кошелев'
+      },
+      {
+        image: '',
+        info: 'Архив ГБУК г. Москвы «ЦГМБ им. М.А. Светлова», автор неизвестен.'
+      },
+      {
+        image: '',
+        info: 'Источ. заимстования: https://pastvu.com/p1252747  автор И. Акуленко'
+      },
+      {
+        image: '',
+        info: 'Источ. Заимстования: https://pastvu.com/p/1631649 автор Дмитрий Сорокин'
+      }
+    ]
+  },
+  {
+    title: '60-е',
+    event:
+      'В 1969 году Сергей Бондарчук получил премию «Оскар» за фильм «Война и мир» в номинации «Лучший фильм на иностранном языке».',
+    fact: '5 октября 1965 года Постановлением Совета министров РСФСР «Городской юношеской библиотеке № 3» присвоили имя поэта Михаила Светлова.',
+    books: {
+      book1: {
+        author: '',
+        name: '',
+        cite: ''
+      }
+    },
+    films: [
+      {
+        frame: '',
+        info: 'Кадр из к/ф «Я шагаю по Москве» (1964), реж. Н. Михалков, киностудия «Мосфильм»'
+      },
+      {
+        frame: '',
+        info: 'Кадр из к/ф «Война и мир» (1967), реж. С. Бондарчук, киностудия «Мосфильм»'
+      },
+      {
+        frame: '',
+        info: 'Кадр из к/ф «Иваново детство» (1962), реж. А. Тарковский, киностудия «Мосфильм»'
+      },
+      {
+        frame: '',
+        info: 'Кадр из к/ф «Надзор за безопасностью движения» (1955), реж. неизвестен, киностудия «Центрнаучфильм»'
+      },
+      {
+        frame: '',
+        info: 'Афиша к к/ф «Война и мир» (1967),  реж. С. Бондарчук, киностудия «Мосфильм» худ. неизвестен, источ. заимствования https://ru.wikipedia.org/wiki/%D0%92%D0%BE%D0%B9%D0%BD%D0%B0_%D0%B8_%D0%BC%D0%B8%D1%80_(%D1%84%D0%B8%D0%BB%D1%8C%D0%BC,_1967)#/media/%D0%A4%D0%B0%D0%B9%D0%BB:%D0%92%D0%BE%D0%B9%D0%BD%D0%B0_%D0%B8_%D0%BC%D0%B8%D1%80_1965.jpg '
+      }
+    ],
+    images: [
+      {
+        image: '',
+        info: 'Источ. Заимствования: https://www.kino-teatr.ru/kino/history/y1967/162/foto/239/ автор неизвестен'
+      },
+      {
+        image: '',
+        info: 'Переплёт второго издания повести «Страна багровых туч» (Детгиз, 1960). Рисунок на обложке И. Ильинского'
+      },
+      {
+        image: '',
+        info: 'Переплёт первого издания повести «Один день Ивана Денисовича» (Советский писатель, 1963)'
+      },
+      { image: '', info: 'Переплёт повести «Студенты»' },
+      {
+        image: '',
+        info: 'Источ. Заимствования: https://www.net-film.ru/photo-176030/ автор Николай Рахманов'
+      },
+      {
+        image: '',
+        info: 'Источ. Заимстования: https://pastvu.com/p/1933253 автор Сергей Александрович Антонов'
+      },
+      {
+        image: '',
+        info: 'Источ. Заимствования: https://pastvu.com/p/105871   автор В.В. Андреев'
+      },
+      {
+        image: '',
+        info: 'Источ. Заимствования: журнал «Архитектура и строительство Москвы» (1957) Выпуск №6'
+      }
+    ]
+  },
+  {
+    title: '70-е',
+    event:
+      'Александр Солженицын получил Нобелевскую премию по литературе 8 октября 1970 года «за нравственную силу, с которой он следовал непреложным традициям русской литературы».',
+    fact: 'В 1970-е годы Центральная городская молодежная библиотека имени М.А. Светлова стала ключевым профориентационным центром, активно участвовала в создании Университетов культуры и лекториев, проводила музыкальные вечера в Колонном зале Дома Союзов.',
+    books: {
+      book1: {
+        author: 'В. Ерофеев',
+        name: '«Москва — Петушки»',
+        cite: 'Наше завтра светлее, чем наше вчера и наше сегодня. Но кто поручится, что наше послезавтра не будет хуже нашего позавчера?'
+      }
+    },
+    films: [
+      {
+        frame: '',
+        info: 'Кадр из к/ф «Ирония судьбы или с легким паром» (1975), реж. Э.Рязанов, киностудия «Мосфильм»'
+      },
+      {
+        frame: '',
+        info: 'Кадр из телефильма «Семнадцать мгновений весны» (1973), реж. Т.Лиознова, киностудия «Киностудия имени М. Горького»'
+      },
+      {
+        frame: '',
+        info: 'Афиша к к/ф «Иван Васильевич меняет профессию» (1973), реж. Л.Гайдай, киностудия «Мосфильм», худож. А. Евсеев и П. Золотаревский'
+      }
+    ],
+    images: [
+      {
+        image: '',
+        info: 'Источ. Заимстования: Журнал «Городское хозяйство Москвы» (1963) Выпуск №10'
+      },
+      {
+        image: '',
+        info: 'Источ. Заимстования: https://pastvu.com/p/358230  автор неизвестен'
+      },
+      {
+        image: '',
+        info: 'Источ. Заимстования: https://pastvu.com/p/263429  автор В.В. Андреев'
+      },
+      {
+        image: '',
+        info: 'Источ. Заимстования: https://pastvu.com/p/1184734 автор Andrea Luppi, Otto Pohl'
+      }
+    ]
+  },
+  {
+    title: '80-е',
+    event:
+      'В 1980 году в Москве прошли XXII Олимпийские игры — первые в истории, проведенные на территории Восточной Европы.',
+    fact: 'В 1981 году Светловка стала лауреатом премии Московского комсомола в области литературы и искусства.',
+    books: {
+      book1: {
+        author: 'А. Рыбаков',
+        name: '«Дети Арбата»',
+        cite: 'Дети революции, они искренне считали, что отвлечение на личное — это предательство общественного.'
+      },
+      book2: {
+        author: 'К. Булычев',
+        name: '«Сто лет тому вперед»',
+        cite: 'Человеку всегда хочется поделиться тайной. И чем тайна удивительнее и заветней, тем больше хочется…'
+      }
+    },
+    films: [
+      {
+        frame: '',
+        info: 'Кадр из к/ф «Гонки по вертикали» (1982), реж. А. Муратов, «Киностудия имени Довженко», Творческое объединение «Луч»'
+      },
+      {
+        frame: '',
+        info: 'Кадр из к/ф «Любовь и голуби» (1984), реж. В. Меньшов, киностудия «Мосфильм»'
+      },
+      {
+        frame: '',
+        info: 'Кадр из к/ф «Покровские ворота» (1982), реж. М. Козаков, киностудия «Мосфильм»'
+      }
+    ],
+    images: [
+      {
+        image: '',
+        info: 'Архив ГБУК г. Москвы «ЦГМБ им. М.А. Светлова», автор неизвестен.'
+      },
+      {
+        image: '',
+        info: 'Источ. Заимстования: https://lv.baltnews.com/authors/20200722/1024039843/Vokrug-Olimpiady-80-kipeli-politicheskie-strasti-vsesoyuznogo-urovnyV.html  автор Валерий Шустов'
+      },
+      {
+        image: '',
+        info: 'Источ. Заимстования: https://amgabiblioteka.ru/?p=11468   автор неизвестен'
+      }
+    ]
+  },
+  {
+    title: '90-е',
+    event:
+      'В 1993 году союзом театральных деятелей учреждена национальная театральная премия «Золотая Маска» как профессиональная награда за лучшие работы сезона.',
+    fact: 'В 1990-е Светловка переживала эпоху перемен вместе со всей страной. Из тихого убежища книг она постепенно превратилась в многофункциональный центр для молодежи. Эти изменения были бы немыслимы без появления в стенах библиотеки компьютерной техники и доступа в Интернет.',
+    books: {
+      book1: {
+        author: 'В. Пелевин',
+        name: '«Generation “П”»',
+        cite: 'Мнения автора могут не совпадать с его точкой зрения.'
+      },
+      book2: {
+        author: 'Л. Юзефович',
+        name: '«Журавли и карлики»',
+        cite: 'Люди больше похожи на свое время, чем на своих родителей.'
+      }
+    },
+    films: [
+      {
+        frame: '',
+        info: 'Кадр из к/ф «Окно в Париж» (1993), реж. Ю.Мамин, кинокомпании: «Films du Bouloi» «Фонтан», «La Sept Cinema», «Троицкий мост»'
+      },
+      {
+        frame: '',
+        info: 'Кадр из к/ф «Счастливые дни» (1991), реж. А. Балабанов, кинокомпания «Ленфильм»'
+      },
+      {
+        frame: '',
+        info: 'Кадр из к/ф «Брат» (1997), реж. А. Балабанов, кинокомпания «СТВ»'
+      },
+      {
+        frame: '',
+        info: 'Кадр из к/ф «Особенности национальной охоты» (1995), реж. А. Рогожкин, кинокомпания «Ленфильм»'
+      },
+      {
+        frame: '',
+        info: 'Кадр из к/ф «Утомленные солнцем» (1994), реж. Н.Михалков, кинокомпании: «Студия ТРИТЭ», «Госкино России», «Русский клуб», «Camera One», «Canal+»'
+      }
+    ],
+    images: [
+      {
+        image: '',
+        info: 'Архив ГБУК г. Москвы «ЦГМБ им. М.А. Светлова», автор неизвестен.'
+      },
+      {
+        image: '',
+        info: 'Источ. Заимстования: https://pastvu.com/p/751119  автор А. Новиков'
+      }
+    ]
+  },
+  {
+    title: '00-е',
+    event:
+      'В 2005 году в Москве проходит 1-ая биеналле современного искусства, где демонстрируется свыше 250 работ более 50 групп и отдельных художников.',
+    fact: 'Благодаря электронным каталогам библиотека перестала быть закрытой системой и смогла расширить свои возможности. К концу 2000-х у Светловки появился собственный сайт в Интернете.',
+    books: {
+      book1: {
+        author: 'В. Маканин',
+        name: '«Асан»',
+        cite: 'Он умел скромничать. Как все люди с безграничным тщеславием.'
+      },
+      book2: {
+        author: 'Т. Толстая',
+        name: '«Кысь»',
+        cite: 'Нет худшего врага, чем равнодушие! С молчаливого согласия равнодушных как раз и творятся все злодейства.'
+      }
+    },
+    films: [
+      {
+        frame: '',
+        info: 'Кадр из к/ф «Питер FM» (2006), реж. О. Бычков, кинокомпания «ПРОФИТ»'
+      },
+      {
+        frame: '',
+        info: 'Кадр из к/ф «Стиляги» (2008), реж. В. Тодоровский, киностудия «Беларусьфильм»'
+      },
+      {
+        frame: '',
+        info: 'Кадр из к/ф «Сестры» (2001), реж. С. Бодров-младший, кинокомпания «СТВ»'
+      },
+      {
+        frame: '',
+        info: 'Кадр из к/ф «Дневной дозор» (2005), реж. Т. Бекмамбетов, киностудии «Базелевс Продакшн» и «Таббак»'
+      }
+    ],
+    images: [
+      {
+        image: '',
+        info: 'Источ. Заимстования: http://www.artinfo.ru/ru/news/main/photo-moscow-biennale2005-2.htm  автор неизвестен'
+      },
+      {
+        image: '',
+        info: 'Источ. Заимстования: https://dkphoto.livejournal.com/125282.html   автор неизвестен'
+      },
+      {
+        image: '',
+        info: 'Источ. Заимстования: https://rajon-pride.livejournal.com/139323.html автор неизвестен'
+      },
+      {
+        image: '',
+        info: 'Источ. Заимстования: https://moscowchronology.ru/photo_2000s.html автор неизвестен'
+      }
+    ]
+  },
+  {
+    title: '10-е',
+    event:
+      'В 2011 году открылась после масштабной реконструкции историческая сцена Большого театра. Театр вернулся в главное здание, где были восстановлены исторические интерьеры, улучшена акустика и расширено закулисное пространство. ',
+    fact: 'В 2019 году в Светловке состоялась первая фейл-конференция московских библиотек — нестандартный формат методического мероприятия, в рамках которого участники делятся неудачным опытом для профессионального роста.',
+    books: {
+      book1: {
+        author: 'М. Степанова',
+        name: '«Памяти памяти»',
+        cite: 'Потребность в фиксации, стоящая за селфи (этим предельным воплощением веры в непостоянство), убеждена, что лицо сегодняшнего и завтрашнего дня бесконечно различны — и что развитие сводится к кинематографической дорожке, выложенной из тысяч моментальных отпечатков.'
+      }
+    },
+    films: [
+      {
+        frame: '',
+        info: 'Кадр из к/ф «Дурак» (2014), реж. Ю. Быков, кинокомпания «ТПО „Рок“»'
+      },
+      {
+        frame: '',
+        info: 'Кадр из к/ф «Дылда» (2019), реж. К. Балагов, кинокомпания «Нон-стоп продакшн» '
+      }
+    ]
+  },
+  {
+    title: '20-е',
+    event:
+      'В 2023 году на ВДНХ открылась выставка-форум «Россия», объединившая экспозиции 89 регионов, федеральных ведомств и корпораций на площади 266 тысяч квадратных метров. За время работы событие посетили более 18,5 миллионов человек. В рамках форума состоялись сотни концертов, деловых мероприятий и фестивалей.',
+    fact: 'Почти 10 лет Светловка является куратором и участником крупных московских проектов в сфере культуры, таких как «Красная площадь» и «Московская международная книжная ярмарка». А в 2025 году библиотека впервые провела свою программу на фестивале «Книга в городе» в рамках масштабного проекта «Лето в Москве» Департамента культуры г. Москвы.',
+    books: {
+      book1: {
+        author: 'Н. Реньжина',
+        name: '«Бабушка сказала сидеть тихо»',
+        cite: 'Вот так живешь себе живешь, копишь-копишь, покупаешь-покупаешь, а потом всю свою жизнь в узелок в один собираешь.'
+      },
+      book2: {
+        author: 'Э. Веркин',
+        name: '«Сорока на виселице»,',
+        cite: 'Задача литературы – запутать читателя, сообщить ему иллюзию причастности, обвести вокруг пальца. Для этого она и была придумана.'
+      }
+    },
+    films: [
+      {
+        frame: '',
+        info: 'Кадр из к/ф «Разжимая кулаки» (2021), реж. К. Коваленко, кинокомпания «Нон-стоп продакшн»'
+      },
+      {
+        frame: '',
+        info: 'Кадр из к/ф «Пророк. История Александра Пушкина» (2024), реж. Ф. Умаров, кинокомпания «Централ Партнершип»'
+      },
+      {
+        frame: '',
+        info: 'Кадр из к/ф «Мастер и Маргарита» (2024), реж. М. Локшин, кинокомпания «Марс Медиа», «Амедиа Продакшн», «Профит»'
+      }
+    ],
+    images: [
+      {
+        image: '',
+        info: 'Источ. Заимстования: https://gazetargub.ru/?p=4961 автор неизвестен'
+      },
+      {
+        image: '',
+        info: 'Источ. Заимстования: https://ru.wikipedia.org/wiki/История_театра_в_России  автор неизвестен'
+      },
+      {
+        image: '',
+        info: 'Источ. Заимстования: https://drugoi.livejournal.com/3639615.html  автор РИА НОВОСТИ/Владимир Родионов'
+      },
+      {
+        image: '',
+        info: 'Источ. Заимстования: https://mperspektiva.ru/topics/my-zdes-zhili-chem-zapomnitsya-moskva-desyatykh/  автор Сергей Киселев/АГН Москва'
+      },
+      {
+        image: '',
+        info: 'Источ. Заимстования: https://mperspektiva.ru/topics/my-zdes-zhili-chem-zapomnitsya-moskva-desyatykh/  автор Андрей Никеричев/АГН Москва'
+      },
+      {
+        image: '',
+        info: 'https://mperspektiva.ru/topics/my-zdes-zhili-chem-zapomnitsya-moskva-desyatykh/  автор Андрей Никеричев/АГН Москва'
+      }
+    ]
+  }
+]
+
+/* =============================================
+     RESOLVE PAGE DATA
+     Читает первые 2 символа из #hero-text-inner
+     (например "40") и ищет совпадение по title в pages[].
+     Если совпадение не найдено — берёт первый элемент.
+
+     Как использовать на других страницах десятилетий:
+     Просто измени содержимое #hero-text-inner в HTML:
+       <span id="hero-text-inner">50<i>-е</i></span>
+     — скрипт сам найдёт нужный объект данных.
+     ============================================= */
+function resolvePageData() {
+  const heroEl = document.getElementById('hero-text-inner')
+  if (!heroEl) return pages[0]
+
+  // Берём только текстовые узлы (без дочерних тегов вроде <i>)
+  // чтобы получить "40", "50", "60" и т.д.
+  const rawText = Array.from(heroEl.childNodes)
+    .filter((n) => n.nodeType === Node.TEXT_NODE)
+    .map((n) => n.textContent.trim())
+    .join('')
+
+  // rawText = "40", ищем title, начинающийся с этих цифр
+  const match = pages.find((p) => p.title.startsWith(rawText))
+  return match || pages[0]
+}
+
+// DATA — единственная переменная, которую используют все рендеры.
+// Менять её вручную не нужно: она разрешается автоматически из DOM.
+const DATA = resolvePageData()
+
+/* =============================================
+     КОНФИГУРАЦИЯ ТАЙЛОВ
+     Метки и позиции для каждого ключа данных
+     ============================================= */
+const TILE_CONFIG = {
+  event: { label: 'Событие', sub: 'событие', num: '01' },
+  fact: { label: 'Факт', sub: 'история', num: '02' },
+  books: { label: 'Книги', sub: 'литература', num: '03' },
+  films: { label: 'Фильмы', sub: 'кинематограф', num: '04' },
+  images: { label: 'Образы', sub: 'фотография', num: '05' }
+}
+
+/* =============================================
+     ПОЗИЦИОНИРОВАНИЕ ТАЙЛОВ
+     Процентные позиции (адаптируются к экрану)
+     ============================================= */
+const TILE_POSITIONS = [
+  { left: '8%', top: '12%' },
+  { left: '58%', top: '8%' },
+  { left: '28%', top: '42%' },
+  { left: '6%', top: '58%' },
+  { left: '62%', top: '52%' }
+]
+
+/* =============================================
+     СОСТОЯНИЕ ПРИЛОЖЕНИЯ
+     ============================================= */
+const state = {
+  currentSection: null,
+  lightboxImages: [],
+  lightboxIdx: 0,
+  isTransitioning: false
+}
+
+/* =============================================
+     ИНИЦИАЛИЗАЦИЯ ТАЙЛОВ
+     ============================================= */
+function initTiles() {
+  const container = document.getElementById('tiles-container')
+  const keys = Object.keys(TILE_CONFIG)
+
+  keys.forEach((key, i) => {
+    const cfg = TILE_CONFIG[key]
+    const pos = TILE_POSITIONS[i]
+
+    const tile = document.createElement('div')
+    tile.className = 'tile'
+    tile.setAttribute('data-key', key)
+    tile.setAttribute('role', 'listitem')
+    tile.setAttribute('tabindex', '0')
+    tile.setAttribute('aria-label', `Раздел: ${cfg.label}`)
+    tile.style.left = pos.left
+    tile.style.top = pos.top
+
+    tile.innerHTML = `
+        <span class="tile-number" aria-hidden="true">${cfg.num}</span>
+        <div class="tile-label">${cfg.label}</div>
+        <div class="tile-sub" aria-hidden="true">${cfg.sub}</div>
+      `
+
+    tile.addEventListener('click', () => onTileClick(key, tile))
+    tile.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault()
+        onTileClick(key, tile)
+      }
+    })
+
+    container.appendChild(tile)
+  })
+}
+
+/* =============================================
+     ОБРАБОТЧИК КЛИКА НА ТАЙЛ
+     ============================================= */
+function onTileClick(key, clickedTile) {
+  if (state.isTransitioning) return
+  state.isTransitioning = true
+
+  const allTiles = document.querySelectorAll('.tile')
+
+  // Скрываем остальные тайлы с задержкой stagger
+  allTiles.forEach((tile, i) => {
+    if (tile !== clickedTile) {
+      setTimeout(() => tile.classList.add('fade-out'), i * 60)
+    }
+  })
+
+  // Выделяем выбранный тайл
+  clickedTile.classList.add('selected')
+  clickedTile.style.transform = 'translateX(-20px) scale(0.92)'
+  clickedTile.style.opacity = '0.6'
+
+  // Открываем панель через небольшую паузу
+  setTimeout(() => {
+    openPanel(key)
+    // Полностью скрываем выбранный тайл
+    setTimeout(() => {
+      clickedTile.style.opacity = '0'
+    }, 100)
+  }, 380)
+}
+
+/* =============================================
+     ОТКРЫТИЕ ПАНЕЛИ КОНТЕНТА
+     ============================================= */
+function openPanel(key) {
+  state.currentSection = key
+  const cfg = TILE_CONFIG[key]
+
+  // Обновляем заголовки — breadcrumb берёт десятилетие из DATA.title
+  document.getElementById('breadcrumb-section').textContent = cfg.label
+  document.getElementById('panel-title-el').textContent = cfg.label
+  // Обновляем первую часть breadcrumb, если шаблон это поддерживает
+  const bcPrefix = document.querySelector('#panel-breadcrumb')
+  if (bcPrefix) bcPrefix.childNodes[0].textContent = `${DATA.title} / `
+
+  // Скрываем герой-текст
+  document.getElementById('hero-text').classList.add('panel-open')
+
+  // Блокируем скролл body
+  document.body.classList.add('no-scroll')
+
+  // Рендерим контент
+  const body = document.getElementById('panel-body')
+  body.innerHTML = ''
+  renderContent(key, body)
+
+  // Показываем панель
+  const panel = document.getElementById('content-panel')
+  panel.classList.add('visible')
+
+  // Запускаем анимации контента
+  requestAnimationFrame(() => {
+    setTimeout(() => animateContent(key), 100)
+    state.isTransitioning = false
+  })
+}
+
+/* =============================================
+     ЗАКРЫТИЕ ПАНЕЛИ / ВОЗВРАТ
+     ============================================= */
+function closePanel() {
+  if (state.isTransitioning) return
+  state.isTransitioning = true
+
+  const panel = document.getElementById('content-panel')
+  panel.classList.remove('visible')
+
+  const allTiles = document.querySelectorAll('.tile')
+
+  setTimeout(() => {
+    // Восстанавливаем все тайлы
+    allTiles.forEach((tile, i) => {
+      setTimeout(() => {
+        tile.classList.remove('fade-out', 'selected', 'hidden')
+        tile.style.transform = ''
+        tile.style.opacity = ''
+      }, i * 60)
+    })
+
+    document.body.classList.remove('no-scroll')
+    // Возвращаем герой-текст
+    document.getElementById('hero-text').classList.remove('panel-open')
+    state.currentSection = null
+
+    setTimeout(() => {
+      state.isTransitioning = false
+    }, 400)
+  }, 300)
+}
+
+/* =============================================
+     РЕНДЕР КОНТЕНТА ПО ТИПУ
+     ============================================= */
+function renderContent(key, container) {
+  switch (key) {
+    case 'event':
+    case 'fact':
+      renderText(DATA[key], container)
+      break
+    case 'books':
+      renderBooks(DATA.books, container)
+      break
+    case 'films':
+      renderFilms(DATA.films, container)
+      break
+    case 'images':
+      renderImages(DATA.images, container)
+      break
+  }
+}
+
+/* ===== РЕНДЕР: TEXT ===== */
+function renderText(text, container) {
+  const wrap = document.createElement('div')
+  wrap.className = 'text-content'
+
+  // Декоративная кавычка
+  const deco = document.createElement('div')
+  deco.className = 'text-decoration'
+  deco.setAttribute('aria-hidden', 'true')
+  deco.textContent = '«'
+  wrap.appendChild(deco)
+
+  // Разбиваем на предложения/части по ». « и . для stagger
+  const parts = splitTextIntoParts(text)
+  parts.forEach((part) => {
+    const lineWrap = document.createElement('div')
+    lineWrap.className = 'text-line'
+    const inner = document.createElement('span')
+    inner.className = 'text-line-inner'
+    inner.textContent = part
+    lineWrap.appendChild(inner)
+    wrap.appendChild(lineWrap)
+  })
+
+  container.appendChild(wrap)
+}
+
+/* Разбивка текста на смысловые части для stagger */
+function splitTextIntoParts(text) {
+  // Делим по знакам препинания с разумной длиной
+  const parts = []
+  let current = ''
+  const words = text.split(' ')
+  words.forEach((word) => {
+    current += (current ? ' ' : '') + word
+    if (current.length > 55 && /[.,—\-»]/.test(word.slice(-1))) {
+      parts.push(current.trim())
+      current = ''
+    }
+  })
+  if (current) parts.push(current.trim())
+  return parts.length > 0 ? parts : [text]
+}
+
+/* ===== РЕНДЕР: BOOKS ===== */
+function renderBooks(books, container) {
+  const grid = document.createElement('div')
+  grid.className = 'books-grid'
+
+  // Фильтруем пустые записи (у некоторых десятилетий книг нет)
+  const validBooks = Object.values(books).filter((b) => b.name && b.name.trim())
+
+  if (validBooks.length === 0) {
+    const empty = document.createElement('p')
+    empty.style.cssText =
+      'font-family:"Courier Prime",monospace;font-size:12px;color:var(--gray-light);letter-spacing:0.2em;'
+    empty.textContent = 'данные в разработке'
+    container.appendChild(empty)
+    return
+  }
+
+  validBooks.forEach((book) => {
+    const card = document.createElement('article')
+    card.className = 'book-card'
+    card.setAttribute('aria-label', `Книга: ${book.name} — ${book.author}`)
+
+    card.innerHTML = `
+        <div class="book-author">${book.author}</div>
+        <div class="book-name">${book.name}</div>
+        <div class="book-cite" aria-label="Цитата">${book.cite}</div>
+      `
+
+    grid.appendChild(card)
+  })
+
+  container.appendChild(grid)
+}
+
+/* ===== РЕНДЕР: FILMS ===== */
+function renderFilms(films, container) {
+  const grid = document.createElement('div')
+  grid.className = 'films-grid'
+
+  films.forEach((film, i) => {
+    const card = document.createElement('figure')
+    card.className = 'film-card'
+    card.setAttribute('tabindex', '0')
+    card.setAttribute('role', 'img')
+    card.setAttribute('aria-label', film.info)
+
+    // Если frame пустой — сразу рисуем заглушку, не пытаемся грузить img
+    if (film.frame && film.frame.trim()) {
+      const imgEl = document.createElement('img')
+      imgEl.src = film.frame
+      imgEl.alt = film.info
+      imgEl.className = 'film-img'
+      imgEl.onerror = function () {
+        this.style.display = 'none'
+        const ph = document.createElement('div')
+        ph.className = 'film-placeholder'
+        ph.innerHTML = `<span class="film-placeholder-icon">КАДР ${String(i + 1).padStart(2, '0')}</span>`
+        card.prepend(ph)
+      }
+      card.appendChild(imgEl)
+    } else {
+      const ph = document.createElement('div')
+      ph.className = 'film-placeholder'
+      ph.innerHTML = `<span class="film-placeholder-icon">КАДР ${String(i + 1).padStart(2, '0')}</span>`
+      card.appendChild(ph)
+    }
+
+    const overlay = document.createElement('div')
+    overlay.className = 'film-overlay'
+    overlay.setAttribute('aria-hidden', 'true')
+
+    const info = document.createElement('figcaption')
+    info.className = 'film-info'
+    info.textContent = film.info
+    overlay.appendChild(info)
+
+    card.appendChild(overlay)
+    grid.appendChild(card)
+  })
+
+  container.appendChild(grid)
+}
+
+/* ===== РЕНДЕР: IMAGES ===== */
+function renderImages(images, container) {
+  const grid = document.createElement('div')
+  grid.className = 'images-grid'
+
+  images.forEach((group, gi) => {
+    const groupEl = document.createElement('div')
+    groupEl.className = 'image-group'
+
+    const inner = document.createElement('div')
+    inner.className = 'image-group-inner'
+
+    // Нормализуем поле image: может быть строкой '' или массивом ['a.png', 'b.png']
+    const rawImg = group.image
+    const srcs = Array.isArray(rawImg)
+      ? rawImg.filter((s) => s && s.trim()) // массив — фильтруем пустые
+      : rawImg && rawImg.trim()
+        ? [rawImg]
+        : [] // строка — оборачиваем или пустой массив
+
+    if (srcs.length === 0) {
+      // Нет изображений — показываем placeholder-карточку с подписью
+      const wrap = document.createElement('div')
+      wrap.className = 'gallery-img-wrap'
+      const ph = document.createElement('div')
+      ph.className = 'gallery-img-placeholder'
+      ph.innerHTML = `<span class="film-placeholder-icon">ФОТО ${gi + 1}</span>`
+      wrap.appendChild(ph)
+      inner.appendChild(wrap)
+    } else {
+      srcs.forEach((src, ii) => {
+        const wrap = document.createElement('div')
+        wrap.className = 'gallery-img-wrap'
+        wrap.setAttribute('tabindex', '0')
+        wrap.setAttribute('role', 'button')
+        wrap.setAttribute('aria-label', `Открыть изображение: ${group.info}`)
+
+        const img = document.createElement('img')
+        img.src = src
+        img.alt = group.info
+        img.className = 'gallery-img'
+        img.onerror = function () {
+          this.style.display = 'none'
+          const ph = document.createElement('div')
+          ph.className = 'gallery-img-placeholder'
+          ph.innerHTML = `<span class="film-placeholder-icon">ФОТО ${gi + 1}.${ii + 1}</span>`
+          wrap.prepend(ph)
+        }
+
+        const hoverIcon = document.createElement('div')
+        hoverIcon.className = 'gallery-hover-icon'
+        hoverIcon.setAttribute('aria-hidden', 'true')
+        hoverIcon.textContent = '↗ ОТКРЫТЬ'
+
+        wrap.appendChild(img)
+        wrap.appendChild(hoverIcon)
+
+        wrap.addEventListener('click', () => openLightbox(srcs, ii, group.info))
+        wrap.addEventListener('keydown', (e) => {
+          if (e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault()
+            openLightbox(srcs, ii, group.info)
+          }
+        })
+
+        inner.appendChild(wrap)
+      })
+    }
+
+    // Подпись к группе
+    const caption = document.createElement('p')
+    caption.className = 'image-caption'
+    caption.textContent = group.info
+
+    groupEl.appendChild(inner)
+    groupEl.appendChild(caption)
+    grid.appendChild(groupEl)
+  })
+
+  container.appendChild(grid)
+}
+
+/* =============================================
+     АНИМАЦИИ КОНТЕНТА (после рендера)
+     ============================================= */
+function animateContent(key) {
+  switch (key) {
+    case 'event':
+    case 'fact':
+      animateTextLines()
+      break
+    case 'books':
+      animateBooks()
+      break
+    case 'films':
+      animateFilms()
+      break
+    case 'images':
+      animateImages()
+      break
+  }
+}
+
+/* Stagger-анимация строк текста */
+function animateTextLines() {
+  const lines = document.querySelectorAll('.text-line-inner')
+  lines.forEach((line, i) => {
+    setTimeout(() => line.classList.add('revealed'), 120 + i * 130)
+  })
+}
+
+/* Книги появляются с задержкой + эффект печатной машинки для цитат */
+function animateBooks() {
+  const cards = document.querySelectorAll('.book-card')
+  cards.forEach((card, i) => {
+    setTimeout(
+      () => {
+        card.classList.add('revealed')
+        // Запускаем typewriter для цитаты через паузу
+        setTimeout(() => {
+          const cite = card.querySelector('.book-cite')
+          if (cite) typewriterEffect(cite)
+        }, 400)
+      },
+      200 + i * 250
+    )
+  })
+}
+
+/* Эффект печатной машинки */
+function typewriterEffect(el) {
+  const html = el.innerHTML
+  // Сохраняем теги br
+  const parts = html.split(/(<br\s*\/?>)/gi)
+  el.innerHTML = ''
+
+  let delay = 0
+  parts.forEach((part) => {
+    if (/^<br/i.test(part)) {
+      // Вставляем br с задержкой
+      setTimeout(() => {
+        const br = document.createElement('br')
+        el.appendChild(br)
+      }, delay)
+      delay += 40
+    } else {
+      // Посимвольная вставка
+      ;[...part].forEach((char) => {
+        setTimeout(() => {
+          const span = document.createElement('span')
+          span.className = 'typewriter-char'
+          span.textContent = char
+          span.style.animationDelay = '0ms'
+          el.appendChild(span)
+          requestAnimationFrame(() => (span.style.opacity = '1'))
+        }, delay)
+        // Переменная скорость: медленнее на знаках препинания
+        delay += /[.,!?—]/.test(char) ? 60 : /\s/.test(char) ? 20 : 28
+      })
+    }
+  })
+}
+
+/* Фильмы появляются с задержкой */
+function animateFilms() {
+  const cards = document.querySelectorAll('.film-card')
+  cards.forEach((card, i) => {
+    setTimeout(() => card.classList.add('revealed'), 150 + i * 200)
+  })
+}
+
+/* Группы изображений появляются */
+function animateImages() {
+  const groups = document.querySelectorAll('.image-group')
+  groups.forEach((g, i) => {
+    setTimeout(() => g.classList.add('revealed'), 100 + i * 150)
+  })
+}
+
+/* =============================================
+     LIGHTBOX
+     ============================================= */
+function openLightbox(images, startIdx, caption) {
+  state.lightboxImages = images
+  state.lightboxIdx = startIdx
+
+  document.body.classList.add('no-scroll')
+  updateLightboxImage()
+
+  document.getElementById('lightbox-caption').textContent = caption
+  document.getElementById('lightbox').classList.add('open')
+  document.getElementById('lightbox-close').focus()
+}
+
+function closeLightbox() {
+  document.getElementById('lightbox').classList.remove('open')
+  // панель контента всё ещё открыта, скролл остаётся заблокированным
+}
+
+function updateLightboxImage() {
+  const img = document.getElementById('lightbox-img')
+  const images = state.lightboxImages
+  const idx = state.lightboxIdx
+
+  img.src = images[idx]
+  img.alt = `Изображение ${idx + 1} из ${images.length}`
+
+  document.getElementById('lb-prev').disabled = idx === 0
+  document.getElementById('lb-next').disabled = idx === images.length - 1
+}
+
+document
+  .getElementById('lightbox-close')
+  .addEventListener('click', closeLightbox)
+
+document.getElementById('lb-prev').addEventListener('click', () => {
+  if (state.lightboxIdx > 0) {
+    state.lightboxIdx--
+    updateLightboxImage()
+  }
+})
+
+document.getElementById('lb-next').addEventListener('click', () => {
+  if (state.lightboxIdx < state.lightboxImages.length - 1) {
+    state.lightboxIdx++
+    updateLightboxImage()
+  }
+})
+
+// Закрытие по клику на фон
+document.getElementById('lightbox').addEventListener('click', (e) => {
+  if (e.target === document.getElementById('lightbox')) closeLightbox()
+})
+
+// Закрытие по Escape
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape') {
+    if (document.getElementById('lightbox').classList.contains('open')) {
+      closeLightbox()
+    } else if (state.currentSection) {
+      closePanel()
+    }
+  }
+  // Навигация в lightbox стрелками
+  if (document.getElementById('lightbox').classList.contains('open')) {
+    if (e.key === 'ArrowLeft') document.getElementById('lb-prev').click()
+    if (e.key === 'ArrowRight') document.getElementById('lb-next').click()
+  }
+})
+
+/* Кнопка "назад" */
+document.getElementById('back-btn').addEventListener('click', closePanel)
+
+/* =============================================
+     ПАРАЛЛАКС ГЕРОЙ-ТЕКСТА
+     Медленнее и в противофазе к тайлам
+     ============================================= */
+function applyHeroParallax(dx, dy) {
+  if (state.currentSection) return
+  const hero = document.getElementById('hero-text')
+  // Лёгкое смещение в обратную сторону — эффект глубины
+  hero.style.transform = `translate(calc(-50% + ${dx * -18}px), calc(-50% + ${dy * -10}px))`
+}
+
+/* =============================================
+     ПАРАЛЛАКС — лёгкое смещение тайлов при движении мыши/тача
+     ============================================= */
+let mouseX = 0,
+  mouseY = 0
+let rafId = null
+
+function applyParallax() {
+  const tiles = document.querySelectorAll('.tile:not(.fade-out):not(.selected)')
+  const centerX = window.innerWidth / 2
+  const centerY = window.innerHeight / 2
+  const dx = (mouseX - centerX) / centerX
+  const dy = (mouseY - centerY) / centerY
+
+  tiles.forEach((tile, i) => {
+    const depth = 0.4 + (i % 3) * 0.2
+    tile.style.marginLeft = `calc(${dx * depth * 8}px)`
+    tile.style.marginTop = `calc(${dy * depth * 6}px)`
+  })
+
+  applyHeroParallax(dx, dy)
+  rafId = null
+}
+
+document.addEventListener('mousemove', (e) => {
+  mouseX = e.clientX
+  mouseY = e.clientY
+  if (!rafId && !state.currentSection) {
+    rafId = requestAnimationFrame(applyParallax)
+  }
+})
+
+document.addEventListener(
+  'touchmove',
+  (e) => {
+    if (e.touches.length > 0) {
+      mouseX = e.touches[0].clientX
+      mouseY = e.touches[0].clientY
+      if (!rafId && !state.currentSection) {
+        rafId = requestAnimationFrame(applyParallax)
+      }
+    }
+  },
+  { passive: true }
+)
+
+/* =============================================
+     ФУТЕР — появление при скролле (Intersection Observer)
+     ============================================= */
+function initFooterObserver() {
+  const footer = document.getElementById('site-footer')
+  if (!footer) return
+
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          footer.classList.add('visible')
+          observer.unobserve(footer) // срабатывает один раз
+        }
+      })
+    },
+    { threshold: 0.1 }
+  )
+
+  observer.observe(footer)
+}
+
+/* =============================================
+     ЗАПУСК
+     ============================================= */
+initTiles()
+initFooterObserver()
