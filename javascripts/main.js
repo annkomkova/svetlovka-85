@@ -50,22 +50,20 @@ const pages = [
     title: '50-е',
     event: {
       text: 'В 1957 году прошел VI Всемирный фестиваль молодежи и студентов. Светловка участвовала под лозунгом «За мир и дружбу между народами».',
-      images: [
-        {
-          image: [
-            'images/50s/image-1.png',
-            'images/50s/image-2.png',
-            'images/50s/image-3.png',
-            'images/50s/image-4.png',
-            'images/50s/image-5.png'
-          ],
-          info: 'Архив ГБУК г. Москвы «ЦГМБ им. М.А. Светлова», автор неизвестен.'
-        },
-        {
-          image: ['images/50s/image-6.png'],
-          info: 'Источ. заимствования: https://pastvu.com/p/618201 автор неизвестен'
-        }
-      ]
+      images: {
+        image: [
+          'images/50s/image-1.png',
+          'images/50s/image-2.png',
+          'images/50s/image-3.png',
+          'images/50s/image-4.png',
+          'images/50s/image-5.png'
+        ],
+        info: 'Архив ГБУК г. Москвы «ЦГМБ им. М.А. Светлова», автор неизвестен.'
+      }
+      // {
+      //   image: ['images/50s/image-6.png'],
+      //   info: 'Источ. заимствования: https://pastvu.com/p/618201 автор неизвестен'
+      // }
     },
     fact: 'Светловка становится самой популярной библиотекой среди московской молодежи и одновременно методическим центром для юношеских библиотек по всему СССР.',
     books: {
@@ -179,20 +177,21 @@ const pages = [
         info: 'Переплёт первого издания повести «Один день Ивана Денисовича» (Советский писатель, 1963)'
       },
       { image: 'images/60s/book-3.png', info: 'Переплёт повести «Студенты»' },
-      {
-        image: 'images/60s/image1.png',
-        info: 'Источ. Заимствования: https://www.net-film.ru/photo-176030/ автор Николай Рахманов'
-      },
+
       {
         image: 'images/60s/image2.png',
         info: 'Источ. Заимстования: https://pastvu.com/p/1933253 автор Сергей Александрович Антонов'
       },
       {
-        image: 'images/60s/image3.png',
+        image: 'images/60s/image1.png',
+        info: 'Источ. Заимствования: https://www.net-film.ru/photo-176030/ автор Николай Рахманов'
+      },
+      {
+        image: 'images/60s/image-3.png',
         info: 'Источ. Заимствования: https://pastvu.com/p/105871   автор В.В. Андреев'
       },
       {
-        image: 'images/60s/image4.png',
+        image: 'images/60s/image-4.png',
         info: 'Источ. Заимствования: журнал «Архитектура и строительство Москвы» (1957) Выпуск №6'
       }
     ]
@@ -202,8 +201,8 @@ const pages = [
     event: {
       text: 'Александр Солженицын получил Нобелевскую премию по литературе 8 октября 1970 года «за нравственную силу, с которой он следовал непреложным традициям русской литературы».',
       images: {
-        image: '',
-        info: ''
+        image: 'https://historyrussia.org/images/18022021_1.jpg',
+        info: 'Источ. заимствования: https://historyrussia.org/sobytiya/slovo-pravdy-k-50-letiyu-prisuzhdeniya-nobelevskoj-premii-aleksandru-solzhenitsynu.html автор неизвестен'
       }
     },
     fact: 'В 1970-е годы Центральная городская молодежная библиотека имени М.А. Светлова стала ключевым профориентационным центром, активно участвовала в создании Университетов культуры и лекториев, проводила музыкальные вечера в Колонном зале Дома Союзов.',
@@ -344,10 +343,10 @@ const pages = [
       {
         image: [
           'images/90s/image-1.png',
-          'images/90s/image-2.png',
           'images/90s/image-3.png',
-          'images/90s/image-4.png',
-          'images/90s/image-6.png'
+          'images/90s/image-6.png',
+          'images/90s/image-2.png',
+          'images/90s/image-4.png'
         ],
         info: 'Архив ГБУК г. Москвы «ЦГМБ им. М.А. Светлова», автор неизвестен.'
       },
@@ -388,19 +387,19 @@ const pages = [
     },
     films: [
       {
-        frame: 'images/00s/film-1.png',
+        frame: 'images/00s/film1.png',
         info: 'Кадр из к/ф «Питер FM» (2006), реж. О. Бычков, кинокомпания «ПРОФИТ»'
       },
       {
-        frame: 'images/00s/film-2.png',
+        frame: 'images/00s/film2.png',
         info: 'Кадр из к/ф «Стиляги» (2008), реж. В. Тодоровский, киностудия «Беларусьфильм»'
       },
       {
-        frame: 'images/00s/film-3.png',
+        frame: 'images/00s/film3.png',
         info: 'Кадр из к/ф «Сестры» (2001), реж. С. Бодров-младший, кинокомпания «СТВ»'
       },
       {
-        frame: 'images/00s/film-4.png',
+        frame: 'images/00s/film4.png',
         info: 'Кадр из к/ф «Дневной дозор» (2005), реж. Т. Бекмамбетов, киностудии «Базелевс Продакшн» и «Таббак»'
       }
     ],
@@ -410,11 +409,23 @@ const pages = [
         info: 'Источ. Заимстования: https://dkphoto.livejournal.com/125282.html   автор неизвестен'
       },
       {
-        image: [''],
+        image: [
+          'images/00s/image-1.png',
+          'images/00s/image-2.png',
+          'images/00s/image-3.png',
+          'images/00s/image-4.png',
+          'images/00s/image-9.png',
+          'images/00s/image-10.png',
+          'images/00s/image-5.png'
+        ],
         info: 'Источ. Заимстования: https://rajon-pride.livejournal.com/139323.html автор неизвестен'
       },
       {
-        image: '',
+        image: [
+          'images/00s/image-7.png',
+          'images/00s/image-8.png',
+          'images/00s/image-6.png'
+        ],
         info: 'Источ. Заимстования: https://moscowchronology.ru/photo_2000s.html автор неизвестен'
       }
     ]
@@ -423,10 +434,16 @@ const pages = [
     title: '10-е',
     event: {
       text: 'В 2011 году открылась после масштабной реконструкции историческая сцена Большого театра. Театр вернулся в главное здание, где были восстановлены исторические интерьеры, улучшена акустика и расширено закулисное пространство. ',
-      images: {
-        image: '',
-        info: ''
-      }
+      images: [
+        {
+          image: 'images/10s/image-2.png',
+          info: 'Источ. Заимстования: https://drugoi.livejournal.com/3639615.html  автор РИА НОВОСТИ/Владимир Родионов'
+        },
+        {
+          image: 'images/10s/image-1.png',
+          info: 'Источ. Заимстования: https://ru.wikipedia.org/wiki/История_театра_в_России  автор неизвестен'
+        }
+      ]
     },
     fact: 'В 2019 году в Светловке состоялась первая фейл-конференция московских библиотек — нестандартный формат методического мероприятия, в рамках которого участники делятся неудачным опытом для профессионального роста.',
     books: {
@@ -438,12 +455,30 @@ const pages = [
     },
     films: [
       {
-        frame: '',
+        frame: 'images/10s/film-1.png',
         info: 'Кадр из к/ф «Дурак» (2014), реж. Ю. Быков, кинокомпания «ТПО „Рок“»'
       },
       {
-        frame: '',
+        frame: 'images/10s/film-2.png',
         info: 'Кадр из к/ф «Дылда» (2019), реж. К. Балагов, кинокомпания «Нон-стоп продакшн» '
+      }
+    ],
+    images: [
+      {
+        image: 'images/10s/image-7.png',
+        info: 'Источ. Заимстования: https://mperspektiva.ru/topics/my-zdes-zhili-chem-zapomnitsya-moskva-desyatykh/  автор Сергей Киселев/АГН Москва '
+      },
+      {
+        image: [
+          'images/10s/image-4.png',
+          'images/10s/image-8.png',
+          'images/10s/image-3.png'
+        ],
+        info: 'Источ. Заимстования: https://gazetargub.ru/?p=4961 автор неизвестен'
+      },
+      {
+        image: ['images/10s/image-5.png', 'images/10s/image-6.png'],
+        info: 'Источ. Заимстования: https://mperspektiva.ru/topics/my-zdes-zhili-chem-zapomnitsya-moskva-desyatykh/  автор Андрей Никеричев/АГН Москв'
       }
     ]
   },
@@ -452,8 +487,8 @@ const pages = [
     event: {
       text: 'В 2023 году на ВДНХ открылась выставка-форум «Россия», объединившая экспозиции 89 регионов, федеральных ведомств и корпораций на площади 266 тысяч квадратных метров. За время работы событие посетили более 18,5 миллионов человек. В рамках форума состоялись сотни концертов, деловых мероприятий и фестивалей.',
       images: {
-        image: '',
-        info: ''
+        image: 'images/20s/image-0.png',
+        info: 'Источ. заимствования: https://ru.wikipedia.org/wiki/Россия_(выставка-форум) автор неизвестен'
       }
     },
     fact: 'Почти 10 лет Светловка является куратором и участником крупных московских проектов в сфере культуры, таких как «Красная площадь» и «Московская международная книжная ярмарка». А в 2025 году библиотека впервые провела свою программу на фестивале «Книга в городе» в рамках масштабного проекта «Лето в Москве» Департамента культуры г. Москвы.',
@@ -471,42 +506,30 @@ const pages = [
     },
     films: [
       {
-        frame: '',
+        frame: 'images/20s/film-3.png',
         info: 'Кадр из к/ф «Разжимая кулаки» (2021), реж. К. Коваленко, кинокомпания «Нон-стоп продакшн»'
       },
       {
-        frame: '',
+        frame: 'images/20s/film-1.png',
         info: 'Кадр из к/ф «Пророк. История Александра Пушкина» (2024), реж. Ф. Умаров, кинокомпания «Централ Партнершип»'
       },
       {
-        frame: '',
+        frame: 'images/20s/film-2.png',
         info: 'Кадр из к/ф «Мастер и Маргарита» (2024), реж. М. Локшин, кинокомпания «Марс Медиа», «Амедиа Продакшн», «Профит»'
       }
     ],
     images: [
       {
-        image: '',
-        info: 'Источ. Заимстования: https://gazetargub.ru/?p=4961 автор неизвестен'
+        image: ['images/20s/image-4.png', 'images/20s/image-5.png'],
+        info: 'Архив ГБУК г. Москвы «ЦГМБ им. М.А. Светлова», автор неизвестен.'
       },
       {
-        image: '',
-        info: 'Источ. Заимстования: https://ru.wikipedia.org/wiki/История_театра_в_России  автор неизвестен'
-      },
-      {
-        image: '',
-        info: 'Источ. Заимстования: https://drugoi.livejournal.com/3639615.html  автор РИА НОВОСТИ/Владимир Родионов'
-      },
-      {
-        image: '',
-        info: 'Источ. Заимстования: https://mperspektiva.ru/topics/my-zdes-zhili-chem-zapomnitsya-moskva-desyatykh/  автор Сергей Киселев/АГН Москва'
-      },
-      {
-        image: '',
-        info: 'Источ. Заимстования: https://mperspektiva.ru/topics/my-zdes-zhili-chem-zapomnitsya-moskva-desyatykh/  автор Андрей Никеричев/АГН Москва'
-      },
-      {
-        image: '',
-        info: 'https://mperspektiva.ru/topics/my-zdes-zhili-chem-zapomnitsya-moskva-desyatykh/  автор Андрей Никеричев/АГН Москва'
+        image: [
+          'images/20s/image-1.png',
+          'images/20s/image-2.png',
+          'images/20s/image-3.png'
+        ],
+        info: 'Источ. Заимстования: https://ges-2.org/about-house-of-culture  автор Глеб Леонов'
       }
     ]
   }
@@ -548,8 +571,8 @@ const DATA = resolvePageData()
      Метки и позиции для каждого ключа данных
      ============================================= */
 const TILE_CONFIG = {
-  event: { label: 'Событие', sub: 'событие', num: '01' },
-  fact: { label: 'Факт', sub: 'история', num: '02' },
+  event: { label: 'Событие', sub: 'история', num: '01' },
+  fact: { label: 'Факт', sub: 'о светловке', num: '02' },
   books: { label: 'Книги', sub: 'литература', num: '03' },
   films: { label: 'Фильмы', sub: 'кинематограф', num: '04' },
   images: { label: 'Образы', sub: 'фотография', num: '05' }
@@ -738,60 +761,149 @@ function renderContent(key, container) {
   }
 }
 
-function renderEvent(event, container) {
-  // Если event — строка (старый формат) — рендерим как текст
-  // if (typeof event === 'string') {
-  //   renderText(event, container)
-  //   return
-  // }
+// function renderEvent(event, container) {
+//   // Если event — строка (старый формат) — рендерим как текст
+//   // if (typeof event === 'string') {
+//   //   renderText(event, container)
+//   //   return
+//   // }
 
-  // Новый формат: { text, images }
+//   // Новый формат: { text, images }
+//   renderText(event.text, container)
+
+//   // Блок изображений (если есть)
+//   const imgData = event.images
+//   // if (!imgData) return
+
+//   const rawImg = imgData.image
+//   const srcs = Array.isArray(rawImg)
+//     ? rawImg.filter((s) => s && s.trim())
+//     : rawImg && rawImg.trim()
+//       ? [rawImg]
+//       : []
+
+//   if (srcs.length === 0 && !imgData.info) return
+
+//   const block = document.createElement('div')
+//   block.className = 'event-images'
+
+//   const label = document.createElement('div')
+//   label.className = 'event-images-label'
+//   label.textContent = 'Иллюстрации'
+//   label.setAttribute('aria-hidden', 'true')
+//   block.appendChild(label)
+
+//   const row = document.createElement('div')
+//   row.className = 'event-images-row'
+
+//   if (srcs.length === 0) {
+//     if (imgData.info) {
+//       const cap = document.createElement('p')
+//       cap.style.cssText =
+//         'font-family:"Courier Prime",monospace;font-size:10px;color:var(--gray-light);letter-spacing:0.05em;'
+//       cap.textContent = imgData.info
+//       block.appendChild(cap)
+//     }
+//   } else {
+//     srcs.forEach((src, ii) => {
+//       const wrap = document.createElement('div')
+//       wrap.className = 'event-img-wrap'
+//       wrap.setAttribute('tabindex', '0')
+//       wrap.setAttribute('role', 'button')
+//       wrap.setAttribute('aria-label', `Открыть: ${imgData.info}`)
+
+//       const img = document.createElement('img')
+//       img.src = src
+//       img.alt = imgData.info
+//       img.onerror = function () {
+//         this.style.display = 'none'
+//         const ph = document.createElement('div')
+//         ph.className = 'event-img-placeholder'
+//         ph.innerHTML = `<span class="film-placeholder-icon">ФОТО ${ii + 1}</span>`
+//         wrap.prepend(ph)
+//       }
+
+//       const cap = document.createElement('div')
+//       cap.className = 'event-img-caption'
+//       cap.textContent = imgData.info
+
+//       wrap.appendChild(img)
+//       wrap.appendChild(cap)
+
+//       wrap.addEventListener('click', () => openLightbox(srcs, ii, imgData.info))
+//       wrap.addEventListener('keydown', (e) => {
+//         if (e.key === 'Enter' || e.key === ' ') {
+//           e.preventDefault()
+//           openLightbox(srcs, ii, imgData.info)
+//         }
+//       })
+
+//       row.appendChild(wrap)
+//     })
+
+//     block.appendChild(row)
+//   }
+
+//   container.appendChild(block)
+
+//   requestAnimationFrame(() => {
+//     setTimeout(() => {
+//       block.classList.add('revealed')
+//       block.querySelectorAll('.event-img-wrap').forEach((w, i) => {
+//         setTimeout(() => w.classList.add('revealed'), 100 + i * 120)
+//       })
+//     }, 600)
+//   })
+// }
+
+function renderEvent(event, container) {
+  if (typeof event === 'string') {
+    renderText(event, container)
+    return
+  }
+
   renderText(event.text, container)
 
-  // Блок изображений (если есть)
-  const imgData = event.images
-  // if (!imgData) return
+  const raw = event.images
+  if (!raw) return
 
-  const rawImg = imgData.image
-  const srcs = Array.isArray(rawImg)
-    ? rawImg.filter((s) => s && s.trim())
-    : rawImg && rawImg.trim()
-      ? [rawImg]
-      : []
-
-  if (srcs.length === 0 && !imgData.info) return
+  const groups = normalizeEventImages(raw)
+  if (!groups.length) return
 
   const block = document.createElement('div')
   block.className = 'event-images'
 
-  const label = document.createElement('div')
-  label.className = 'event-images-label'
-  label.textContent = 'Иллюстрации'
-  label.setAttribute('aria-hidden', 'true')
-  block.appendChild(label)
+  const labelEl = document.createElement('div')
+  labelEl.className = 'event-images-label'
+  labelEl.textContent = 'Иллюстрации'
+  labelEl.setAttribute('aria-hidden', 'true')
+  block.appendChild(labelEl)
 
   const row = document.createElement('div')
   row.className = 'event-images-row'
 
-  if (srcs.length === 0) {
-    if (imgData.info) {
-      const cap = document.createElement('p')
-      cap.style.cssText =
-        'font-family:"Courier Prime",monospace;font-size:10px;color:var(--gray-light);letter-spacing:0.05em;'
-      cap.textContent = imgData.info
-      block.appendChild(cap)
+  groups.forEach(({ srcs, info }) => {
+    if (srcs.length === 0) {
+      if (info) {
+        const cap = document.createElement('p')
+        cap.style.cssText =
+          'font-family:"Courier Prime",monospace;font-size:10px;color:var(--gray-light);letter-spacing:0.05em;margin-top:8px;'
+        cap.textContent = info
+        block.appendChild(cap)
+      }
+      return
     }
-  } else {
+
     srcs.forEach((src, ii) => {
       const wrap = document.createElement('div')
       wrap.className = 'event-img-wrap'
       wrap.setAttribute('tabindex', '0')
       wrap.setAttribute('role', 'button')
-      wrap.setAttribute('aria-label', `Открыть: ${imgData.info}`)
+      wrap.setAttribute('aria-label', `Открыть: ${info}`)
 
       const img = document.createElement('img')
       img.src = src
-      img.alt = imgData.info
+      img.alt = info
       img.onerror = function () {
         this.style.display = 'none'
         const ph = document.createElement('div')
@@ -802,25 +914,24 @@ function renderEvent(event, container) {
 
       const cap = document.createElement('div')
       cap.className = 'event-img-caption'
-      cap.textContent = imgData.info
+      cap.textContent = info
 
       wrap.appendChild(img)
       wrap.appendChild(cap)
 
-      wrap.addEventListener('click', () => openLightbox(srcs, ii, imgData.info))
+      wrap.addEventListener('click', () => openLightbox(srcs, ii, info))
       wrap.addEventListener('keydown', (e) => {
         if (e.key === 'Enter' || e.key === ' ') {
           e.preventDefault()
-          openLightbox(srcs, ii, imgData.info)
+          openLightbox(srcs, ii, info)
         }
       })
 
       row.appendChild(wrap)
     })
+  })
 
-    block.appendChild(row)
-  }
-
+  block.appendChild(row)
   container.appendChild(block)
 
   requestAnimationFrame(() => {
@@ -831,6 +942,29 @@ function renderEvent(event, container) {
       })
     }, 600)
   })
+}
+
+/* Нормализует event.images в массив групп { srcs, info }
+ *
+ * Вход:  объект { image, info }  ИЛИ  массив [ { image, info }, … ]
+ * image внутри каждого объекта может быть строкой, массивом или пустым.
+ * Выход: [ { srcs: string[], info: string }, … ]
+ */
+function normalizeEventImages(raw) {
+  const list = Array.isArray(raw) ? raw : [raw]
+
+  return list
+    .map((item) => {
+      const ri = item.image
+      const srcs = Array.isArray(ri)
+        ? ri.filter((s) => s && s.trim())
+        : ri && ri.trim()
+          ? [ri]
+          : []
+
+      return { srcs, info: item.info || '' }
+    })
+    .filter(({ srcs, info }) => srcs.length > 0 || info)
 }
 
 function renderText(text, container) {
@@ -913,55 +1047,6 @@ function renderBooks(books, container) {
   container.appendChild(grid)
 }
 
-/* ===== РЕНДЕР: FILMS ===== */
-// function renderFilms(films, container) {
-//   const grid = document.createElement('div')
-//   grid.className = 'films-grid'
-
-//   films.forEach((film, i) => {
-//     const card = document.createElement('figure')
-//     card.className = 'film-card'
-//     card.setAttribute('tabindex', '0')
-//     card.setAttribute('role', 'img')
-//     card.setAttribute('aria-label', film.info)
-
-//     // Если frame пустой — сразу рисуем заглушку, не пытаемся грузить img
-//     if (film.frame && film.frame.trim()) {
-//       const imgEl = document.createElement('img')
-//       imgEl.src = film.frame
-//       imgEl.alt = film.info
-//       imgEl.className = 'film-img'
-//       imgEl.onerror = function () {
-//         this.style.display = 'none'
-//         const ph = document.createElement('div')
-//         ph.className = 'film-placeholder'
-//         ph.innerHTML = `<span class="film-placeholder-icon">КАДР ${String(i + 1).padStart(2, '0')}</span>`
-//         card.prepend(ph)
-//       }
-//       card.appendChild(imgEl)
-//     } else {
-//       const ph = document.createElement('div')
-//       ph.className = 'film-placeholder'
-//       ph.innerHTML = `<span class="film-placeholder-icon">КАДР ${String(i + 1).padStart(2, '0')}</span>`
-//       card.appendChild(ph)
-//     }
-
-//     const overlay = document.createElement('div')
-//     overlay.className = 'film-overlay'
-//     overlay.setAttribute('aria-hidden', 'true')
-
-//     const info = document.createElement('figcaption')
-//     info.className = 'film-info'
-//     info.textContent = film.info
-//     overlay.appendChild(info)
-
-//     card.appendChild(overlay)
-//     grid.appendChild(card)
-//   })
-
-//   container.appendChild(grid)
-// }
-
 function renderFilms(films, container) {
   const grid = document.createElement('div')
   grid.className = 'films-grid'
@@ -972,6 +1057,11 @@ function renderFilms(films, container) {
     card.setAttribute('tabindex', '0')
     card.setAttribute('role', 'img')
     card.setAttribute('aria-label', film.info)
+
+    const textInfo = document.createElement('div')
+    textInfo.className = 'intro-hint'
+    textInfo.setAttribute('aria-hidden', 'true')
+    textInfo.innerText = 'нажмите на кадр, чтобы узнать больше'
 
     if (film.frame && film.frame.trim()) {
       const imgEl = document.createElement('img')
@@ -1002,6 +1092,7 @@ function renderFilms(films, container) {
     overlay.appendChild(info)
 
     card.appendChild(overlay)
+    grid.appendChild(textInfo)
     grid.appendChild(card)
   })
 
