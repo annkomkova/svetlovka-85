@@ -1,0 +1,663 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Светловка: сквозь десятилетия</title>
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Martian+Mono:wght@300;400&display=swap');
+
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      :root {
+        --bg: #f5f2ed;
+        --ink: #1a1814;
+        --accent: #c8311a;
+        --muted: #8a8278;
+        --rule: rgba(26, 24, 20, 0.15);
+      }
+
+      html,
+      body {
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+        background: var(--bg);
+        color: var(--ink);
+        font-family: 'Cormorant Garamond', Georgia, serif;
+      }
+
+      /* ── SLIDE ENGINE ── */
+      .deck {
+        position: relative;
+        width: 100vw;
+        height: 100vh;
+      }
+
+      .slide {
+        position: absolute;
+        inset: 0;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        padding: clamp(3rem, 7vw, 7rem) clamp(3rem, 9vw, 10rem);
+        opacity: 0;
+        pointer-events: none;
+        transition:
+          opacity 0.55s cubic-bezier(0.4, 0, 0.2, 1),
+          transform 0.55s cubic-bezier(0.4, 0, 0.2, 1);
+        transform: translateY(24px);
+        overflow: hidden;
+      }
+
+      .slide.active {
+        opacity: 1;
+        pointer-events: auto;
+        transform: translateY(0);
+      }
+
+      .slide.exit {
+        opacity: 0;
+        transform: translateY(-24px);
+        transition:
+          opacity 0.35s ease,
+          transform 0.35s ease;
+      }
+
+      /* ── DECORATIVE LAYER ── */
+      .slide::before {
+        content: attr(data-num);
+        position: absolute;
+        bottom: -0.15em;
+        right: clamp(2rem, 5vw, 5rem);
+        font-family: 'Martian Mono', monospace;
+        font-size: clamp(18vw, 26vw, 34vw);
+        font-weight: 300;
+        color: rgba(26, 24, 20, 0.045);
+        line-height: 1;
+        pointer-events: none;
+        user-select: none;
+        letter-spacing: -0.04em;
+      }
+
+      /* ── TYPOGRAPHY ── */
+      .label {
+        font-family: 'Martian Mono', monospace;
+        font-size: clamp(0.6rem, 1vw, 0.75rem);
+        font-weight: 300;
+        letter-spacing: 0.2em;
+        text-transform: uppercase;
+        color: var(--muted);
+        margin-bottom: 2rem;
+      }
+
+      h1 {
+        font-size: clamp(2.4rem, 6vw, 5.5rem);
+        font-weight: 300;
+        line-height: 1.1;
+        letter-spacing: -0.02em;
+        margin-bottom: 1.5rem;
+      }
+
+      h1 em {
+        font-style: italic;
+        color: var(--accent);
+      }
+
+      h2 {
+        font-size: clamp(1.8rem, 4vw, 3.6rem);
+        font-weight: 300;
+        line-height: 1.15;
+        letter-spacing: -0.02em;
+        margin-bottom: 1.5rem;
+      }
+
+      h2 em {
+        font-style: italic;
+      }
+
+      .body-text {
+        font-size: clamp(1.05rem, 1.8vw, 1.4rem);
+        font-weight: 300;
+        line-height: 1.7;
+        max-width: 58ch;
+        color: var(--ink);
+      }
+
+      .body-text + .body-text {
+        margin-top: 1rem;
+      }
+
+      .accent-line {
+        width: 3rem;
+        height: 1px;
+        background: var(--accent);
+        margin: 1.5rem 0;
+      }
+
+      /* ── TЕЗИСЫ ── */
+      .theses {
+        list-style: none;
+        margin-top: 1.5rem;
+      }
+
+      .theses li {
+        font-size: clamp(1rem, 1.6vw, 1.25rem);
+        font-weight: 300;
+        line-height: 1.5;
+        padding: 0.5rem 0;
+        border-bottom: 1px solid var(--rule);
+        display: flex;
+        gap: 1rem;
+        align-items: baseline;
+      }
+
+      .theses li::before {
+        content: '—';
+        color: var(--accent);
+        flex-shrink: 0;
+        font-family: 'Martian Mono', monospace;
+        font-size: 0.8em;
+      }
+
+      /* ── DECADE GRID ── */
+      .decade-grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 1.5rem 2rem;
+        margin-top: 2rem;
+      }
+
+      .decade-item {
+        border-top: 1px solid var(--rule);
+        padding-top: 0.75rem;
+      }
+
+      .decade-num {
+        font-family: 'Martian Mono', monospace;
+        font-size: clamp(1.4rem, 2.5vw, 2rem);
+        font-weight: 300;
+        color: var(--accent);
+        line-height: 1;
+        margin-bottom: 0.3rem;
+      }
+
+      .decade-word {
+        font-size: clamp(0.9rem, 1.4vw, 1.1rem);
+        font-weight: 300;
+        font-style: italic;
+        color: var(--muted);
+      }
+
+      /* ── TWO-COLUMN ── */
+      .two-col {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 4rem;
+        align-items: start;
+        margin-top: 1.5rem;
+      }
+
+      .col-label {
+        font-family: 'Martian Mono', monospace;
+        font-size: 0.65rem;
+        letter-spacing: 0.2em;
+        text-transform: uppercase;
+        color: var(--muted);
+        margin-bottom: 0.75rem;
+      }
+
+      .col-body {
+        font-size: clamp(1rem, 1.5vw, 1.2rem);
+        font-weight: 300;
+        line-height: 1.65;
+      }
+
+      /* ── FINAL OPTIONS ── */
+      .final-options {
+        display: flex;
+        flex-direction: column;
+        gap: 1.5rem;
+        margin-top: 2rem;
+      }
+
+      .final-option {
+        border-left: 2px solid var(--rule);
+        padding-left: 1.5rem;
+        font-size: clamp(1.1rem, 1.8vw, 1.4rem);
+        font-weight: 300;
+        font-style: italic;
+        line-height: 1.5;
+        transition: border-color 0.3s;
+      }
+
+      .final-option:hover {
+        border-color: var(--accent);
+      }
+
+      /* ── TITLE SLIDE ── */
+      #slide-1 {
+        background: var(--ink);
+        color: var(--bg);
+      }
+      #slide-1 .label {
+        color: rgba(245, 242, 237, 0.45);
+      }
+      #slide-1 h1 {
+        color: var(--bg);
+      }
+      #slide-1 .body-text {
+        color: rgba(245, 242, 237, 0.7);
+      }
+      #slide-1 .accent-line {
+        background: var(--bg);
+        opacity: 0.3;
+      }
+      #slide-1::before {
+        color: rgba(245, 242, 237, 0.04);
+      }
+
+      /* ── NAV ── */
+      nav {
+        position: fixed;
+        bottom: 2.5rem;
+        right: clamp(2rem, 5vw, 5rem);
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        z-index: 100;
+      }
+
+      .nav-btn {
+        width: 2.5rem;
+        height: 2.5rem;
+        border: 1px solid var(--rule);
+        background: transparent;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition:
+          border-color 0.2s,
+          background 0.2s;
+        border-radius: 0;
+      }
+
+      .nav-btn:hover {
+        border-color: var(--ink);
+        background: var(--ink);
+      }
+      .nav-btn:hover svg {
+        stroke: var(--bg);
+      }
+      .nav-btn svg {
+        stroke: var(--ink);
+        fill: none;
+        stroke-width: 1.5;
+        transition: stroke 0.2s;
+      }
+
+      #slide-1 ~ nav .nav-btn {
+        border-color: rgba(245, 242, 237, 0.3);
+      }
+      #slide-1 ~ nav .nav-btn svg {
+        stroke: var(--bg);
+      }
+
+      .progress {
+        font-family: 'Martian Mono', monospace;
+        font-size: 0.65rem;
+        letter-spacing: 0.12em;
+        color: var(--muted);
+      }
+
+      /* ── PROGRESS BAR ── */
+      .progress-bar {
+        position: fixed;
+        top: 0;
+        left: 0;
+        height: 2px;
+        background: var(--accent);
+        transition: width 0.4s ease;
+        z-index: 200;
+      }
+
+      /* ── SLIDE COUNTER (top left) ── */
+      .counter {
+        position: fixed;
+        top: 2.5rem;
+        left: clamp(2rem, 5vw, 5rem);
+        font-family: 'Martian Mono', monospace;
+        font-size: 0.65rem;
+        letter-spacing: 0.2em;
+        color: var(--muted);
+        z-index: 100;
+      }
+
+      /* ── URL CHIP ── */
+      .url-chip {
+        display: inline-block;
+        font-family: 'Martian Mono', monospace;
+        font-size: clamp(0.7rem, 1vw, 0.85rem);
+        color: var(--accent);
+        border-bottom: 1px solid var(--accent);
+        margin-top: 1.5rem;
+        padding-bottom: 0.1rem;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="progress-bar" id="pbar"></div>
+    <div class="counter" id="counter">01 / 13</div>
+
+    <div class="deck" id="deck">
+      <!-- 1. TITLE -->
+      <section class="slide active" id="slide-1" data-num="1">
+        <div class="label">
+          Центральная городская молодёжная библиотека им. М.А. Светлова · 85 лет
+        </div>
+        <h1>
+          Светловка:<br /><em>сквозь<br />десятилетия</em>
+        </h1>
+        <div class="accent-line"></div>
+        <p class="body-text">
+          Выставочный проект · 2026<br />Автор: Анна Комкова
+        </p>
+      </section>
+
+      <!-- 2. ВСТУПЛЕНИЕ -->
+      <section class="slide" data-num="2">
+        <div class="label">Вступление</div>
+        <h2>Я хочу начать<br />не с концепции.</h2>
+        <div class="accent-line"></div>
+        <p class="body-text">
+          Я хочу начать с момента, когда я впервые зашла сюда и поняла, что
+          библиотека — это не хранилище книг. Это хранилище времён. Каждый зал
+          здесь пахнет чуть иначе. И я подумала: а что если это можно увидеть?
+        </p>
+        <p class="body-text" style="margin-top: 1rem; color: var(--muted)">
+          Так начался этот проект.
+        </p>
+      </section>
+
+      <!-- 3. ИДЕЯ -->
+      <section class="slide" data-num="3">
+        <div class="label">Идея проекта</div>
+        <h2>Девять эпох.<br />Одно место.</h2>
+        <div class="accent-line"></div>
+        <p class="body-text">
+          Светловка существует с 1941 года. Она пережила войну, оттепель,
+          застой, перестройку, девяностые — всё. И каждое десятилетие оставило
+          здесь что-то своё: в фондах, в людях, в атмосфере.
+        </p>
+        <ul class="theses">
+          <li>История через образы, а не через даты</li>
+          <li>Книги, фильмы, события как язык эпохи</li>
+          <li>Библиотека как зеркало времени</li>
+        </ul>
+      </section>
+
+      <!-- 4. БИБЛИОТЕКА КАК ПРОСТРАНСТВО -->
+      <section class="slide" data-num="4">
+        <div class="label">Пространство времени</div>
+        <h2>Библиотека не<br />стоит на месте.</h2>
+        <div class="accent-line"></div>
+        <p class="body-text">
+          Мы привыкли думать о библиотеках как о тихих, статичных местах. Но
+          Светловка всегда была живой — она реагировала на то, что происходило
+          снаружи. Запрещала и разрешала. Открывала и закрывала. Именно это
+          сделало её документом эпохи.
+        </p>
+        <p class="body-text" style="margin-top: 1rem">
+          Этот проект — попытка прочитать библиотеку как текст.
+        </p>
+      </section>
+
+      <!-- 5. ДВА СОСТОЯНИЯ -->
+      <section class="slide" data-num="5">
+        <div class="label">Концепция</div>
+        <h2>Каждая работа<br />существует <em>дважды.</em></h2>
+        <div class="accent-line"></div>
+        <div class="two-col">
+          <div>
+            <div class="col-label">Физическое</div>
+            <p class="col-body">
+              Печатный плакат на стене. Осязаемый, молчаливый, присутствующий.
+              Он принадлежит эпохе, которую изображает.
+            </p>
+          </div>
+          <div>
+            <div class="col-label">Цифровое</div>
+            <p class="col-body">
+              QR-код ведёт в интерактивную среду, где изображение оживает. Время
+              становится нелинейным. Вы можете войти в него.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- 6. ЗРИТЕЛЬ КАК СОАВТОР -->
+      <section class="slide" data-num="6">
+        <div class="label">Роль зрителя</div>
+        <h2>Вы — не зритель.<br />Вы — <em>соавтор.</em></h2>
+        <div class="accent-line"></div>
+        <p class="body-text">
+          В цифровой части проекта повествование не задано заранее. Вы влияете
+          на то, как разворачивается история. Это не выставка, которую смотрят.
+          Это выставка, в которой участвуют.
+        </p>
+        <ul class="theses">
+          <li>Ваш выбор меняет структуру нарратива</li>
+          <li>Каждый проход — уникальный опыт</li>
+          <li>Личная память встречается с коллективной</li>
+        </ul>
+      </section>
+
+      <!-- 7–8. ДЕСЯТИЛЕТИЯ 40–70 -->
+      <section class="slide" data-num="7">
+        <div class="label">Главы I–IV · 1940–1970-е</div>
+        <h2>Четыре эпохи,<br />четыре температуры.</h2>
+        <div class="accent-line"></div>
+        <div class="decade-grid">
+          <div class="decade-item">
+            <div class="decade-num">40-е</div>
+            <div class="decade-word">стойкость</div>
+          </div>
+          <div class="decade-item">
+            <div class="decade-num">50-е</div>
+            <div class="decade-word">оттепель</div>
+          </div>
+          <div class="decade-item">
+            <div class="decade-num">60-е</div>
+            <div class="decade-word">надежда</div>
+          </div>
+          <div class="decade-item">
+            <div class="decade-num">70-е</div>
+            <div class="decade-word">застой</div>
+          </div>
+        </div>
+        <p
+          class="body-text"
+          style="margin-top: 2rem; color: var(--muted); font-style: italic"
+        >
+          От молчания под бомбами — к первому глотку свободы — и снова к тишине
+          другого рода.
+        </p>
+      </section>
+
+      <!-- 9–10. ДЕСЯТИЛЕТИЯ 80–10 -->
+      <section class="slide" data-num="8">
+        <div class="label">Главы V–VIII · 1980–2010-е</div>
+        <h2>Четыре поворота.<br />К нам.</h2>
+        <div class="accent-line"></div>
+        <div class="decade-grid">
+          <div class="decade-item">
+            <div class="decade-num">80-е</div>
+            <div class="decade-word">перемены</div>
+          </div>
+          <div class="decade-item">
+            <div class="decade-num">90-е</div>
+            <div class="decade-word">свобода</div>
+          </div>
+          <div class="decade-item">
+            <div class="decade-num">00-е</div>
+            <div class="decade-word">стабильность</div>
+          </div>
+          <div class="decade-item">
+            <div class="decade-num">10-е</div>
+            <div class="decade-word">рефлексия</div>
+          </div>
+        </div>
+        <p
+          class="body-text"
+          style="margin-top: 2rem; color: var(--muted); font-style: italic"
+        >
+          И незакрытое настоящее — 20-е — которое мы ещё пишем.
+        </p>
+      </section>
+
+      <!-- 11. КАК ЭТО РАБОТАЕТ -->
+      <section class="slide" data-num="9">
+        <div class="label">Опыт зрителя</div>
+        <h2>Как войти<br />внутрь работы.</h2>
+        <div class="accent-line"></div>
+        <p class="body-text">
+          Подойдите к плакату. Считайте QR-код. Вы окажетесь на сайте проекта —
+          в интерактивной среде, построенной вокруг этого конкретного
+          десятилетия. Там нет правильного пути. Есть только ваш.
+        </p>
+        <a
+          class="url-chip"
+          href="https://annkomkova.github.io/svetlovka-85/"
+          target="_blank"
+          >annkomkova.github.io/svetlovka-85</a
+        >
+      </section>
+
+      <!-- 12. ПОЧЕМУ ВАЖНО -->
+      <section class="slide" data-num="10">
+        <div class="label">Актуальность</div>
+        <h2>Почему это важно<br /><em>именно сейчас.</em></h2>
+        <div class="accent-line"></div>
+        <p class="body-text">
+          Мы живём в эпоху, когда прошлое либо идеализируют, либо стирают. Этот
+          проект предлагает третье: смотреть на него честно, через детали, через
+          образы, которые не объясняют, а показывают.
+        </p>
+        <ul class="theses">
+          <li>Коллективная память как живая структура</li>
+          <li>Архив — не склад, а разговор</li>
+          <li>Библиотека как место, где прошлое и будущее встречаются</li>
+        </ul>
+      </section>
+
+      <!-- 13. ФИНАЛ -->
+      <section class="slide" data-num="11">
+        <div class="label">Финал · варианты</div>
+        <h2>Я рада, что вы<br />здесь сегодня.</h2>
+        <div class="accent-line"></div>
+        <div class="final-options">
+          <div class="final-option">
+            «Светловка существует 85 лет. Этот проект — не итог. Это ещё одна
+            глава. И она написана вместе с вами.»
+          </div>
+          <div class="final-option">
+            «Возможно, самое важное, что делает библиотека — это напоминает нам,
+            что мы не первые. И не последние.»
+          </div>
+          <div class="final-option">
+            «Спасибо за то, что вы здесь. Теперь — идите смотреть. И не
+            торопитесь.»
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <!-- NAV -->
+    <nav>
+      <button class="nav-btn" id="prev" aria-label="Назад">
+        <svg width="14" height="14" viewBox="0 0 14 14">
+          <polyline points="9,2 4,7 9,12" />
+        </svg>
+      </button>
+      <span class="progress" id="progress">01 / 11</span>
+      <button class="nav-btn" id="next" aria-label="Вперёд">
+        <svg width="14" height="14" viewBox="0 0 14 14">
+          <polyline points="5,2 10,7 5,12" />
+        </svg>
+      </button>
+    </nav>
+
+    <script>
+      const slides = Array.from(document.querySelectorAll('.slide'))
+      const total = slides.length
+      let current = 0
+
+      function pad(n) {
+        return String(n + 1).padStart(2, '0')
+      }
+
+      function update() {
+        const pct = ((current + 1) / total) * 100
+        document.getElementById('pbar').style.width = pct + '%'
+        document.getElementById('progress').textContent =
+          pad(current) + ' / ' + pad(total - 1)
+        document.getElementById('counter').textContent =
+          pad(current) + ' / ' + pad(total - 1)
+      }
+
+      function go(idx) {
+        if (idx < 0 || idx >= total) return
+        slides[current].classList.add('exit')
+        slides[current].classList.remove('active')
+        setTimeout(
+          () =>
+            slides[current === idx ? idx : current].classList.remove('exit'),
+          400
+        )
+        current = idx
+        slides[current].classList.add('active')
+        update()
+      }
+
+      document
+        .getElementById('next')
+        .addEventListener('click', () => go(current + 1))
+      document
+        .getElementById('prev')
+        .addEventListener('click', () => go(current - 1))
+
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'ArrowRight' || e.key === 'ArrowDown' || e.key === ' ')
+          go(current + 1)
+        if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') go(current - 1)
+      })
+
+      // Touch/swipe
+      let tx = 0
+      document.addEventListener(
+        'touchstart',
+        (e) => {
+          tx = e.touches[0].clientX
+        },
+        { passive: true }
+      )
+      document.addEventListener(
+        'touchend',
+        (e) => {
+          const dx = e.changedTouches[0].clientX - tx
+          if (Math.abs(dx) > 50) go(dx < 0 ? current + 1 : current - 1)
+        },
+        { passive: true }
+      )
+
+      update()
+    </script>
+  </body>
+</html>

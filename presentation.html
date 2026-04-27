@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Светловка: сквозь десятилетия</title>
     <style>
-      @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Martian+Mono:wght@300;400&display=swap');
+      @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=Martian+Mono:wght@200;300;400&display=swap');
 
       *,
       *::before,
@@ -16,11 +16,13 @@
       }
 
       :root {
-        --bg: #f5f2ed;
-        --ink: #1a1814;
-        --accent: #c8311a;
+        --bg: #f4f1ec;
+        --ink: #1c1a16;
+        --red: #bf2d18;
         --muted: #8a8278;
-        --rule: rgba(26, 24, 20, 0.15);
+        --rule: rgba(28, 26, 22, 0.12);
+        --w: 100vw;
+        --h: 100vh;
       }
 
       html,
@@ -33,250 +35,71 @@
         font-family: 'Cormorant Garamond', Georgia, serif;
       }
 
-      /* ── SLIDE ENGINE ── */
+      /* ── ENGINE ── */
       .deck {
         position: relative;
-        width: 100vw;
-        height: 100vh;
+        width: var(--w);
+        height: var(--h);
       }
 
       .slide {
         position: absolute;
         inset: 0;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        padding: clamp(3rem, 7vw, 7rem) clamp(3rem, 9vw, 10rem);
         opacity: 0;
         pointer-events: none;
         transition:
-          opacity 0.55s cubic-bezier(0.4, 0, 0.2, 1),
-          transform 0.55s cubic-bezier(0.4, 0, 0.2, 1);
-        transform: translateY(24px);
+          opacity 0.6s ease,
+          transform 0.6s ease;
+        transform: translateY(32px);
         overflow: hidden;
       }
-
       .slide.active {
         opacity: 1;
         pointer-events: auto;
         transform: translateY(0);
       }
-
       .slide.exit {
         opacity: 0;
-        transform: translateY(-24px);
+        transform: translateY(-20px);
         transition:
-          opacity 0.35s ease,
-          transform 0.35s ease;
+          opacity 0.3s ease,
+          transform 0.3s ease;
       }
 
-      /* ── DECORATIVE LAYER ── */
-      .slide::before {
-        content: attr(data-num);
-        position: absolute;
-        bottom: -0.15em;
-        right: clamp(2rem, 5vw, 5rem);
-        font-family: 'Martian Mono', monospace;
-        font-size: clamp(18vw, 26vw, 34vw);
-        font-weight: 300;
-        color: rgba(26, 24, 20, 0.045);
-        line-height: 1;
-        pointer-events: none;
-        user-select: none;
-        letter-spacing: -0.04em;
+      /* ── PROGRESS ── */
+      #pbar {
+        position: fixed;
+        top: 0;
+        left: 0;
+        height: 2px;
+        background: var(--red);
+        transition: width 0.4s ease;
+        z-index: 300;
       }
-
-      /* ── TYPOGRAPHY ── */
-      .label {
+      #counter {
+        position: fixed;
+        top: 2rem;
+        left: clamp(2rem, 5vw, 5rem);
         font-family: 'Martian Mono', monospace;
-        font-size: clamp(0.6rem, 1vw, 0.75rem);
-        font-weight: 300;
+        font-size: 0.6rem;
         letter-spacing: 0.2em;
-        text-transform: uppercase;
         color: var(--muted);
-        margin-bottom: 2rem;
-      }
-
-      h1 {
-        font-size: clamp(2.4rem, 6vw, 5.5rem);
-        font-weight: 300;
-        line-height: 1.1;
-        letter-spacing: -0.02em;
-        margin-bottom: 1.5rem;
-      }
-
-      h1 em {
-        font-style: italic;
-        color: var(--accent);
-      }
-
-      h2 {
-        font-size: clamp(1.8rem, 4vw, 3.6rem);
-        font-weight: 300;
-        line-height: 1.15;
-        letter-spacing: -0.02em;
-        margin-bottom: 1.5rem;
-      }
-
-      h2 em {
-        font-style: italic;
-      }
-
-      .body-text {
-        font-size: clamp(1.05rem, 1.8vw, 1.4rem);
-        font-weight: 300;
-        line-height: 1.7;
-        max-width: 58ch;
-        color: var(--ink);
-      }
-
-      .body-text + .body-text {
-        margin-top: 1rem;
-      }
-
-      .accent-line {
-        width: 3rem;
-        height: 1px;
-        background: var(--accent);
-        margin: 1.5rem 0;
-      }
-
-      /* ── TЕЗИСЫ ── */
-      .theses {
-        list-style: none;
-        margin-top: 1.5rem;
-      }
-
-      .theses li {
-        font-size: clamp(1rem, 1.6vw, 1.25rem);
-        font-weight: 300;
-        line-height: 1.5;
-        padding: 0.5rem 0;
-        border-bottom: 1px solid var(--rule);
-        display: flex;
-        gap: 1rem;
-        align-items: baseline;
-      }
-
-      .theses li::before {
-        content: '—';
-        color: var(--accent);
-        flex-shrink: 0;
-        font-family: 'Martian Mono', monospace;
-        font-size: 0.8em;
-      }
-
-      /* ── DECADE GRID ── */
-      .decade-grid {
-        display: grid;
-        grid-template-columns: repeat(4, 1fr);
-        gap: 1.5rem 2rem;
-        margin-top: 2rem;
-      }
-
-      .decade-item {
-        border-top: 1px solid var(--rule);
-        padding-top: 0.75rem;
-      }
-
-      .decade-num {
-        font-family: 'Martian Mono', monospace;
-        font-size: clamp(1.4rem, 2.5vw, 2rem);
-        font-weight: 300;
-        color: var(--accent);
-        line-height: 1;
-        margin-bottom: 0.3rem;
-      }
-
-      .decade-word {
-        font-size: clamp(0.9rem, 1.4vw, 1.1rem);
-        font-weight: 300;
-        font-style: italic;
-        color: var(--muted);
-      }
-
-      /* ── TWO-COLUMN ── */
-      .two-col {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 4rem;
-        align-items: start;
-        margin-top: 1.5rem;
-      }
-
-      .col-label {
-        font-family: 'Martian Mono', monospace;
-        font-size: 0.65rem;
-        letter-spacing: 0.2em;
-        text-transform: uppercase;
-        color: var(--muted);
-        margin-bottom: 0.75rem;
-      }
-
-      .col-body {
-        font-size: clamp(1rem, 1.5vw, 1.2rem);
-        font-weight: 300;
-        line-height: 1.65;
-      }
-
-      /* ── FINAL OPTIONS ── */
-      .final-options {
-        display: flex;
-        flex-direction: column;
-        gap: 1.5rem;
-        margin-top: 2rem;
-      }
-
-      .final-option {
-        border-left: 2px solid var(--rule);
-        padding-left: 1.5rem;
-        font-size: clamp(1.1rem, 1.8vw, 1.4rem);
-        font-weight: 300;
-        font-style: italic;
-        line-height: 1.5;
-        transition: border-color 0.3s;
-      }
-
-      .final-option:hover {
-        border-color: var(--accent);
-      }
-
-      /* ── TITLE SLIDE ── */
-      #slide-1 {
-        background: var(--ink);
-        color: var(--bg);
-      }
-      #slide-1 .label {
-        color: rgba(245, 242, 237, 0.45);
-      }
-      #slide-1 h1 {
-        color: var(--bg);
-      }
-      #slide-1 .body-text {
-        color: rgba(245, 242, 237, 0.7);
-      }
-      #slide-1 .accent-line {
-        background: var(--bg);
-        opacity: 0.3;
-      }
-      #slide-1::before {
-        color: rgba(245, 242, 237, 0.04);
+        z-index: 200;
       }
 
       /* ── NAV ── */
       nav {
         position: fixed;
-        bottom: 2.5rem;
+        bottom: 2rem;
         right: clamp(2rem, 5vw, 5rem);
         display: flex;
         align-items: center;
-        gap: 1rem;
-        z-index: 100;
+        gap: 0.75rem;
+        z-index: 200;
       }
-
-      .nav-btn {
-        width: 2.5rem;
-        height: 2.5rem;
+      .nb {
+        width: 2.25rem;
+        height: 2.25rem;
         border: 1px solid var(--rule);
         background: transparent;
         cursor: pointer;
@@ -286,310 +109,3692 @@
         transition:
           border-color 0.2s,
           background 0.2s;
-        border-radius: 0;
       }
-
-      .nav-btn:hover {
+      .nb:hover {
         border-color: var(--ink);
         background: var(--ink);
       }
-      .nav-btn:hover svg {
+      .nb:hover svg {
         stroke: var(--bg);
       }
-      .nav-btn svg {
+      .nb svg {
         stroke: var(--ink);
         fill: none;
         stroke-width: 1.5;
         transition: stroke 0.2s;
+        width: 13px;
+        height: 13px;
+      }
+      .npg {
+        font-family: 'Martian Mono', monospace;
+        font-size: 0.6rem;
+        letter-spacing: 0.1em;
+        color: var(--muted);
       }
 
-      #slide-1 ~ nav .nav-btn {
-        border-color: rgba(245, 242, 237, 0.3);
+      /* ── SHARED TEXT ── */
+      .label {
+        font-family: 'Martian Mono', monospace;
+        font-size: clamp(0.55rem, 0.85vw, 0.7rem);
+        letter-spacing: 0.2em;
+        text-transform: uppercase;
+        color: var(--muted);
       }
-      #slide-1 ~ nav .nav-btn svg {
+      .rule-h {
+        width: 2.5rem;
+        height: 1px;
+        background: var(--red);
+      }
+      h1 {
+        font-size: clamp(3rem, 8vw, 7rem);
+        font-weight: 300;
+        line-height: 1;
+        letter-spacing: -0.03em;
+      }
+      h2 {
+        font-size: clamp(2rem, 5vw, 4.5rem);
+        font-weight: 300;
+        line-height: 1.1;
+        letter-spacing: -0.02em;
+      }
+      h3 {
+        font-size: clamp(1.4rem, 3vw, 2.6rem);
+        font-weight: 300;
+        line-height: 1.2;
+        letter-spacing: -0.01em;
+      }
+      em {
+        font-style: italic;
+        color: var(--red);
+      }
+      .body {
+        font-size: clamp(1rem, 1.5vw, 1.25rem);
+        font-weight: 300;
+        line-height: 1.75;
+        max-width: 52ch;
+      }
+      .mono {
+        font-family: 'Martian Mono', monospace;
+        font-weight: 200;
+      }
+
+      /* ══════════════════════════════
+   SLIDE LAYOUTS
+══════════════════════════════ */
+
+      /* ── S1: TITLE — full dark with SVG grid ── */
+      #s1 {
+        background: var(--ink);
+      }
+      #s1 .label {
+        color: rgba(244, 241, 236, 0.4);
+      }
+      #s1 h1 {
+        color: var(--bg);
+      }
+      #s1 .body {
+        color: rgba(244, 241, 236, 0.55);
+      }
+      #s1 .rule-h {
+        background: rgba(244, 241, 236, 0.25);
+      }
+      #s1 nav .nb {
+        border-color: rgba(244, 241, 236, 0.25);
+      }
+      #s1 nav .nb svg {
         stroke: var(--bg);
       }
 
-      .progress {
+      .s1-inner {
+        position: absolute;
+        inset: 0;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
+        padding: clamp(3rem, 6vw, 6rem);
+      }
+      .s1-year {
+        position: absolute;
+        top: clamp(2rem, 4vw, 4rem);
+        right: clamp(2rem, 5vw, 5rem);
         font-family: 'Martian Mono', monospace;
-        font-size: 0.65rem;
-        letter-spacing: 0.12em;
+        font-weight: 200;
+        font-size: clamp(5rem, 18vw, 18rem);
+        color: rgba(244, 241, 236, 0.06);
+        line-height: 1;
+        pointer-events: none;
+        letter-spacing: -0.05em;
+      }
+      .s1-meta {
+        margin-top: 1rem;
+      }
+
+      /* ── S2: INTRO — big italic quote, ruled ── */
+      #s2 {
+        display: flex;
+        align-items: stretch;
+      }
+      .s2-left {
+        width: clamp(3px, 4px, 4px);
+        background: var(--red);
+        flex-shrink: 0;
+        margin: clamp(3rem, 5vw, 5rem) 0;
+      }
+      .s2-content {
+        padding: clamp(3rem, 6vw, 6rem) clamp(3rem, 6vw, 6rem);
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+      }
+      .s2-quote {
+        font-size: clamp(1.8rem, 4.5vw, 4rem);
+        font-weight: 300;
+        font-style: italic;
+        line-height: 1.25;
+        letter-spacing: -0.02em;
+        max-width: 20ch;
+        margin: 1.5rem 0;
+      }
+
+      /* ── S3: IDEA — large number field + text ── */
+      #s3 {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+      }
+      .s3-vis {
+        background: var(--ink);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+        overflow: hidden;
+      }
+      .s3-num {
+        font-family: 'Martian Mono', monospace;
+        font-weight: 200;
+        font-size: clamp(8rem, 22vw, 22rem);
+        color: rgba(244, 241, 236, 0.07);
+        line-height: 1;
+        pointer-events: none;
+        user-select: none;
+        position: absolute;
+        bottom: -0.1em;
+        right: -0.05em;
+      }
+      .s3-vis-text {
+        color: var(--bg);
+        font-size: clamp(1.2rem, 2.5vw, 2rem);
+        font-weight: 300;
+        font-style: italic;
+        line-height: 1.5;
+        padding: clamp(3rem, 5vw, 5rem);
+        position: relative;
+        z-index: 2;
+      }
+      .s3-content {
+        padding: clamp(3rem, 5vw, 5rem);
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        gap: 1.5rem;
+      }
+
+      /* ── S4: LIBRARY — full-bleed texture pattern + text over ── */
+      #s4 {
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
+        padding: clamp(3rem, 6vw, 6rem);
+      }
+      .s4-canvas {
+        position: absolute;
+        inset: 0;
+        z-index: 0;
+      }
+      .s4-text {
+        position: relative;
+        z-index: 2;
+        max-width: 55ch;
+      }
+      .s4-text h2 {
+        margin-bottom: 1rem;
+      }
+
+      /* ── S5: TWO STATES — halved slide ── */
+      #s5 {
+        /* display: grid;
+        grid-template-columns: 1fr 1fr; */
+        display: flex;
+      }
+      .half {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        padding: clamp(3rem, 5vw, 5rem);
+        width: 50%;
+      }
+      .half-dark {
+        background: var(--ink);
+      }
+      .half-dark .label {
+        color: rgba(244, 241, 236, 0.4);
+      }
+      .half-dark h3 {
+        color: var(--bg);
+      }
+      .half-dark .body {
+        color: rgba(244, 241, 236, 0.65);
+      }
+      .half-icon {
+        font-size: clamp(4rem, 10vw, 8rem);
+        line-height: 1;
+        margin-bottom: 1.5rem;
+      }
+      .half-divider {
+        width: 1px;
+        background: var(--rule);
+      }
+
+      /* ── S6: CO-AUTHOR — centered big text ── */
+      #s6 {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .s6-inner {
+        text-align: center;
+        padding: clamp(3rem, 5vw, 5rem);
+      }
+      .s6-big {
+        font-size: clamp(3.5rem, 10vw, 9rem);
+        font-weight: 300;
+        line-height: 1;
+        letter-spacing: -0.03em;
+        margin: 1.5rem 0;
+      }
+
+      /* ── S7/S8: DECADES ── */
+      #s7,
+      #s8 {
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
+        padding: clamp(3rem, 6vw, 6rem);
+      }
+      #s7 .s-canvas,
+      #s8 .s-canvas {
+        position: absolute;
+        inset: 0;
+        z-index: 0;
+      }
+      .dec-grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 0.75rem;
+        position: relative;
+        z-index: 2;
+        margin-top: auto;
+      }
+      .dec-card {
+        border-top: 1px solid rgba(244, 241, 236, 0.2);
+        padding-top: 0.75rem;
+      }
+      .dec-card.ink-mode {
+        border-top-color: var(--rule);
+      }
+      .dec-n {
+        font-family: 'Martian Mono', monospace;
+        font-weight: 200;
+        font-size: clamp(2rem, 4vw, 3.5rem);
+        line-height: 1;
+      }
+      .dec-w {
+        font-size: clamp(0.9rem, 1.4vw, 1.1rem);
+        font-style: italic;
+        font-weight: 300;
+        margin-top: 0.2rem;
+      }
+      .dec-card .dec-n {
+        color: rgba(244, 241, 236, 0.9);
+      }
+      .dec-card .dec-w {
+        color: rgba(244, 241, 236, 0.5);
+      }
+      .dec-card.ink-mode .dec-n {
+        color: var(--red);
+      }
+      .dec-card.ink-mode .dec-w {
         color: var(--muted);
       }
-
-      /* ── PROGRESS BAR ── */
-      .progress-bar {
-        position: fixed;
-        top: 0;
-        left: 0;
-        height: 2px;
-        background: var(--accent);
-        transition: width 0.4s ease;
-        z-index: 200;
+      .s7-header,
+      .s8-header {
+        position: relative;
+        z-index: 2;
+        margin-bottom: 2rem;
       }
-
-      /* ── SLIDE COUNTER (top left) ── */
-      .counter {
-        position: fixed;
-        top: 2.5rem;
-        left: clamp(2rem, 5vw, 5rem);
-        font-family: 'Martian Mono', monospace;
-        font-size: 0.65rem;
-        letter-spacing: 0.2em;
+      .s7-header .label,
+      .s8-header .label {
+        color: rgba(244, 241, 236, 0.4);
+      }
+      .s7-header h2,
+      .s8-header h2 {
+        color: var(--bg);
+      }
+      .s8-header .label {
         color: var(--muted);
-        z-index: 100;
+      }
+      .s8-header h2 {
+        color: var(--ink);
       }
 
-      /* ── URL CHIP ── */
-      .url-chip {
-        display: inline-block;
+      /* For s8 light background */
+      #s8 {
+        background: var(--bg);
+      }
+      #s8 .dec-card .dec-n {
+        color: var(--red);
+      }
+      #s8 .dec-card .dec-w {
+        color: var(--muted);
+      }
+      #s8 .dec-card {
+        border-top-color: var(--rule);
+      }
+
+      /* ── S9: QR / EXPERIENCE ── */
+      #s9 {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        align-items: center;
+      }
+      .s9-left {
+        padding: clamp(3rem, 6vw, 6rem);
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        gap: 1.5rem;
+      }
+      .s9-right {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: var(--ink);
+        height: 100%;
+        position: relative;
+        overflow: hidden;
+      }
+      .qr-frame {
+        border: 1px solid rgba(244, 241, 236, 0.2);
+        padding: 1.5rem;
+        position: relative;
+        z-index: 2;
+      }
+      .qr-url {
         font-family: 'Martian Mono', monospace;
-        font-size: clamp(0.7rem, 1vw, 0.85rem);
-        color: var(--accent);
-        border-bottom: 1px solid var(--accent);
-        margin-top: 1.5rem;
-        padding-bottom: 0.1rem;
+        font-weight: 200;
+        font-size: clamp(0.6rem, 0.9vw, 0.75rem);
+        letter-spacing: 0.08em;
+        color: rgba(244, 241, 236, 0.5);
+        margin-top: 1rem;
+        text-align: center;
+      }
+      .s9-bg-num {
+        position: absolute;
+        font-family: 'Martian Mono', monospace;
+        font-weight: 200;
+        font-size: 16rem;
+        color: rgba(244, 241, 236, 0.04);
+        line-height: 1;
+        bottom: -0.1em;
+        right: -0.05em;
+        pointer-events: none;
+      }
+
+      /* ── S10: WHY ── */
+      #s10 {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+      }
+      .s10-left {
+        background: var(--red);
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        padding: clamp(3rem, 6vw, 6rem);
+      }
+      .s10-left h2 {
+        color: var(--bg);
+        font-style: italic;
+      }
+      .s10-left .label {
+        color: rgba(244, 241, 236, 0.55);
+        margin-bottom: 1.5rem;
+      }
+      .s10-right {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        padding: clamp(3rem, 6vw, 6rem);
+        gap: 2rem;
+      }
+      .why-item {
+        border-top: 1px solid var(--rule);
+        padding-top: 1rem;
+      }
+      .why-item .why-n {
+        font-family: 'Martian Mono', monospace;
+        font-size: 0.6rem;
+        letter-spacing: 0.15em;
+        color: var(--muted);
+        margin-bottom: 0.4rem;
+      }
+      .why-item p {
+        font-size: clamp(1rem, 1.5vw, 1.2rem);
+        font-weight: 300;
+        line-height: 1.55;
+      }
+
+      /* ── S11: FINAL ── */
+      #s11 {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .s11-inner {
+        padding: clamp(3rem, 5vw, 5rem);
+        max-width: 72rem;
+        width: 100%;
+      }
+      .final-opts {
+        margin-top: 2rem;
+        display: flex;
+        flex-direction: column;
+        gap: 1.25rem;
+      }
+      .fopt {
+        border-left: 2px solid var(--rule);
+        padding: 0.75rem 1.5rem;
+        font-size: clamp(1rem, 1.6vw, 1.25rem);
+        font-weight: 300;
+        font-style: italic;
+        line-height: 1.6;
+        color: var(--ink);
+        transition: border-color 0.3s;
+        cursor: default;
+      }
+      .fopt:hover {
+        border-color: var(--red);
+      }
+      .fopt-num {
+        font-family: 'Martian Mono', monospace;
+        font-size: 0.6rem;
+        letter-spacing: 0.15em;
+        color: var(--muted);
+        display: block;
+        margin-bottom: 0.3rem;
+        font-style: normal;
       }
     </style>
   </head>
   <body>
-    <div class="progress-bar" id="pbar"></div>
-    <div class="counter" id="counter">01 / 13</div>
+    <div id="pbar"></div>
+    <div id="counter"></div>
 
-    <div class="deck" id="deck">
-      <!-- 1. TITLE -->
-      <section class="slide active" id="slide-1" data-num="1">
-        <div class="label">
-          Центральная городская молодёжная библиотека им. М.А. Светлова · 85 лет
+    <div class="deck">
+      <!-- ═══ S1: TITLE ═══ -->
+      <section class="slide active" id="s1">
+        <svg
+          class="s4-canvas"
+          viewBox="0 0 100 100"
+          preserveAspectRatio="xMidYMid slice"
+          xmlns="http://www.w3.org/2000/svg"
+          style="
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            opacity: 0.35;
+          "
+        >
+          <!-- grid of lines as archival texture -->
+          <defs>
+            <pattern
+              id="grid1"
+              width="12"
+              height="12"
+              patternUnits="userSpaceOnUse"
+            >
+              <path
+                d="M12 0L0 0 0 12"
+                fill="none"
+                stroke="rgba(244,241,236,0.15)"
+                stroke-width=".5"
+              />
+            </pattern>
+          </defs>
+          <rect width="100" height="100" fill="url(#grid1)" />
+          <!-- diagonal rule -->
+          <line
+            x1="0"
+            y1="100"
+            x2="100"
+            y2="0"
+            stroke="rgba(191,45,24,0.18)"
+            stroke-width=".4"
+          />
+        </svg>
+        <div class="s1-year">85</div>
+        <div class="s1-inner">
+          <div class="label" style="margin-bottom: 1.5rem">
+            Центральная городская молодёжная библиотека им. М.А. Светлова
+          </div>
+          <h1>
+            Светловка:
+            <em style="color: rgba(244, 241, 236, 0.4); font-style: italic"
+              >сквозь<br />десятилетия</em
+            >
+          </h1>
+          <div class="rule-h" style="margin: 2rem 0"></div>
+          <p class="body s1-meta">
+            Открытие выставки · 2026 <br />Автор · Анна Комкова
+          </p>
         </div>
-        <h1>
-          Светловка:<br /><em>сквозь<br />десятилетия</em>
-        </h1>
-        <div class="accent-line"></div>
-        <p class="body-text">
-          Выставочный проект · 2026<br />Автор: Анна Комкова
-        </p>
       </section>
 
-      <!-- 2. ВСТУПЛЕНИЕ -->
-      <section class="slide" data-num="2">
-        <div class="label">Вступление</div>
-        <h2>Я хочу начать<br />не с концепции.</h2>
-        <div class="accent-line"></div>
-        <p class="body-text">
-          Я хочу начать с момента, когда я впервые зашла сюда и поняла, что
-          библиотека — это не хранилище книг. Это хранилище времён. Каждый зал
-          здесь пахнет чуть иначе. И я подумала: а что если это можно увидеть?
-        </p>
-        <p class="body-text" style="margin-top: 1rem; color: var(--muted)">
-          Так начался этот проект.
-        </p>
+      <!-- ═══ S2: INTRO ═══ -->
+      <section class="slide" id="s2">
+        <svg
+          style="
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            opacity: 0.5;
+          "
+          viewBox="0 0 100 100"
+          preserveAspectRatio="xMidYMid slice"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <defs>
+            <pattern
+              id="dots"
+              width="8"
+              height="8"
+              patternUnits="userSpaceOnUse"
+            >
+              <circle cx="1" cy="1" r=".6" fill="rgba(28,26,22,0.12)" />
+            </pattern>
+          </defs>
+          <rect width="100" height="100" fill="url(#dots)" />
+        </svg>
+        <div class="s2-left"></div>
+        <div class="s2-content" style="position: relative; z-index: 1">
+          <div class="label">Вступление</div>
+          <blockquote class="s2-quote">
+            «У этого места<br />есть <em>запах.</em>»
+          </blockquote>
+          <div class="rule-h" style="margin-bottom: 1.5rem"></div>
+          <p class="body">
+            Немного книжный, немного пыльный, немного живой. Именно здесь
+            родился этот проект.
+          </p>
+        </div>
       </section>
 
-      <!-- 3. ИДЕЯ -->
-      <section class="slide" data-num="3">
-        <div class="label">Идея проекта</div>
-        <h2>Девять эпох.<br />Одно место.</h2>
-        <div class="accent-line"></div>
-        <p class="body-text">
-          Светловка существует с 1941 года. Она пережила войну, оттепель,
-          застой, перестройку, девяностые — всё. И каждое десятилетие оставило
-          здесь что-то своё: в фондах, в людях, в атмосфере.
-        </p>
-        <ul class="theses">
-          <li>История через образы, а не через даты</li>
-          <li>Книги, фильмы, события как язык эпохи</li>
-          <li>Библиотека как зеркало времени</li>
-        </ul>
+      <!-- ═══ S3: IDEA ═══ -->
+      <section class="slide" id="s3">
+        <div class="s3-vis">
+          <div class="s3-num">9</div>
+          <div class="s3-vis-text">
+            <span
+              style="
+                font-family: 'Martian Mono', monospace;
+                font-weight: 200;
+                font-size: 0.65rem;
+                letter-spacing: 0.2em;
+                color: rgba(244, 241, 236, 0.4);
+                text-transform: uppercase;
+                display: block;
+                margin-bottom: 1rem;
+              "
+              >Структура</span
+            >
+            Девять<br />визуальных<br />глав
+          </div>
+        </div>
+        <div class="s3-content">
+          <div class="label">Идея</div>
+          <h2 style="margin-top: 0.75rem">1941<br />→ <em>сегодня</em></h2>
+          <div class="rule-h"></div>
+          <p class="body">
+            Светловка пережила всё — войну, оттепель, девяностые. Каждое
+            десятилетие оставило здесь след, который мы можем наблюдать в
+            искусстве каждой эпохи.
+          </p>
+        </div>
       </section>
 
-      <!-- 4. БИБЛИОТЕКА КАК ПРОСТРАНСТВО -->
-      <section class="slide" data-num="4">
-        <div class="label">Пространство времени</div>
-        <h2>Библиотека не<br />стоит на месте.</h2>
-        <div class="accent-line"></div>
-        <p class="body-text">
-          Мы привыкли думать о библиотеках как о тихих, статичных местах. Но
-          Светловка всегда была живой — она реагировала на то, что происходило
-          снаружи. Запрещала и разрешала. Открывала и закрывала. Именно это
-          сделало её документом эпохи.
-        </p>
-        <p class="body-text" style="margin-top: 1rem">
-          Этот проект — попытка прочитать библиотеку как текст.
-        </p>
+      <!-- ═══ S4: LIBRARY AS TIME ═══ -->
+      <section class="slide" id="s4">
+        <h2
+          style="
+            color: var(--bg);
+            position: absolute;
+            z-index: 2;
+            top: 20px;
+            right: 20px;
+          "
+        >
+          Библиотека<br />не стоит<br />на <em>месте.</em>
+        </h2>
+        <svg
+          class="s4-canvas"
+          viewBox="0 0 100 100"
+          preserveAspectRatio="xMidYMid slice"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <!-- stacked horizontal timeline bands -->
+          <rect width="100" height="12.5" y="0" fill="#1c1a16" opacity=".92" />
+          <rect
+            width="100"
+            height="12.5"
+            y="12.5"
+            fill="#2a2420"
+            opacity=".82"
+          />
+          <rect width="100" height="12.5" y="25" fill="#322e28" opacity=".75" />
+          <rect
+            width="100"
+            height="12.5"
+            y="37.5"
+            fill="#3c3830"
+            opacity=".68"
+          />
+          <rect width="100" height="12.5" y="50" fill="#463f36" opacity=".6" />
+          <rect
+            width="100"
+            height="12.5"
+            y="62.5"
+            fill="#524840"
+            opacity=".5"
+          />
+          <rect width="100" height="12.5" y="75" fill="#5e5248" opacity=".4" />
+          <rect
+            width="100"
+            height="12.5"
+            y="87.5"
+            fill="#6a5c52"
+            opacity=".28"
+          />
+          <!-- decade labels inside bands -->
+          <text
+            x="4"
+            y="9"
+            fill="rgba(244,241,236,.5)"
+            font-family="'Martian Mono',monospace"
+            font-size="3.5"
+            font-weight="300"
+          >
+            40-е · стойкость
+          </text>
+          <text
+            x="4"
+            y="21.5"
+            fill="rgba(244,241,236,.5)"
+            font-family="'Martian Mono',monospace"
+            font-size="3.5"
+            font-weight="300"
+          >
+            50-е · оттепель
+          </text>
+          <text
+            x="4"
+            y="34"
+            fill="rgba(244,241,236,.5)"
+            font-family="'Martian Mono',monospace"
+            font-size="3.5"
+            font-weight="300"
+          >
+            60-е · надежда
+          </text>
+          <text
+            x="4"
+            y="46.5"
+            fill="rgba(244,241,236,.5)"
+            font-family="'Martian Mono',monospace"
+            font-size="3.5"
+            font-weight="300"
+          >
+            70-е · застой
+          </text>
+          <text
+            x="4"
+            y="59"
+            fill="rgba(244,241,236,.5)"
+            font-family="'Martian Mono',monospace"
+            font-size="3.5"
+            font-weight="300"
+          >
+            80-е · перемены
+          </text>
+          <text
+            x="4"
+            y="71.5"
+            fill="rgba(244,241,236,.5)"
+            font-family="'Martian Mono',monospace"
+            font-size="3.5"
+            font-weight="300"
+          >
+            90-е · свобода
+          </text>
+          <text
+            x="4"
+            y="84"
+            fill="rgba(244,241,236,.5)"
+            font-family="'Martian Mono',monospace"
+            font-size="3.5"
+            font-weight="300"
+          >
+            00-е · стабильность
+          </text>
+          <text
+            x="4"
+            y="96.5"
+            fill="rgba(244,241,236,.5)"
+            font-family="'Martian Mono',monospace"
+            font-size="3.5"
+            font-weight="300"
+          >
+            10-е · рефлексия
+          </text>
+          <!-- vertical red accent line -->
+          <line
+            x1="2"
+            y1="0"
+            x2="2"
+            y2="100"
+            stroke="#bf2d18"
+            stroke-width=".6"
+          />
+        </svg>
+        <div class="s4-text" style="position: relative; z-index: 2">
+          <div
+            class="label"
+            style="color: rgba(244, 241, 236, 0.45); margin-bottom: 1.5rem"
+          >
+            Пространство времени
+          </div>
+        </div>
       </section>
 
-      <!-- 5. ДВА СОСТОЯНИЯ -->
-      <section class="slide" data-num="5">
-        <div class="label">Концепция</div>
-        <h2>Каждая работа<br />существует <em>дважды.</em></h2>
-        <div class="accent-line"></div>
-        <div class="two-col">
-          <div>
-            <div class="col-label">Физическое</div>
-            <p class="col-body">
-              Печатный плакат на стене. Осязаемый, молчаливый, присутствующий.
-              Он принадлежит эпохе, которую изображает.
+      <!-- ═══ S5: TWO STATES ═══ -->
+      <section class="slide" id="s5">
+        <div class="half half-dark">
+          <div class="half-icon">
+            <svg
+              width="clamp(3rem,8vw,6rem)"
+              height="clamp(3rem,8vw,6rem)"
+              viewBox="0 0 64 64"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+              style="width: clamp(3rem, 8vw, 5rem); height: auto"
+            >
+              <rect
+                x="8"
+                y="6"
+                width="36"
+                height="48"
+                rx="1"
+                stroke="rgba(244,241,236,0.4)"
+                stroke-width="1"
+              />
+              <line
+                x1="14"
+                y1="16"
+                x2="38"
+                y2="16"
+                stroke="rgba(244,241,236,0.3)"
+                stroke-width="1"
+              />
+              <line
+                x1="14"
+                y1="22"
+                x2="38"
+                y2="22"
+                stroke="rgba(244,241,236,0.3)"
+                stroke-width="1"
+              />
+              <line
+                x1="14"
+                y1="28"
+                x2="30"
+                y2="28"
+                stroke="rgba(244,241,236,0.3)"
+                stroke-width="1"
+              />
+              <rect
+                x="26"
+                y="38"
+                width="30"
+                height="20"
+                rx="1"
+                fill="none"
+                stroke="rgba(191,45,24,0.7)"
+                stroke-width="1"
+              />
+              <line
+                x1="26"
+                y1="44"
+                x2="56"
+                y2="44"
+                stroke="rgba(191,45,24,0.4)"
+                stroke-width=".8"
+              />
+              <line
+                x1="26"
+                y1="49"
+                x2="48"
+                y2="49"
+                stroke="rgba(191,45,24,0.4)"
+                stroke-width=".8"
+              />
+            </svg>
+          </div>
+          <div class="label" style="margin-bottom: 0.75rem">Физическое</div>
+          <h3>Печатный<br />плакат</h3>
+          <div class="rule-h" style="margin: 1rem 0"></div>
+          <p class="body">Осязаемое присутствие эпохи.</p>
+        </div>
+        <div class="half-divider"></div>
+        <div class="half">
+          <div class="half-icon">
+            <svg
+              width="clamp(3rem,8vw,5rem)"
+              height="auto"
+              viewBox="0 0 64 64"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+              style="width: clamp(3rem, 8vw, 5rem); height: auto"
+            >
+              <!-- phone outline -->
+              <rect
+                x="18"
+                y="4"
+                width="28"
+                height="48"
+                rx="3"
+                stroke="rgba(28,26,22,0.35)"
+                stroke-width="1"
+              />
+              <line
+                x1="26"
+                y1="7"
+                x2="38"
+                y2="7"
+                stroke="rgba(28,26,22,0.2)"
+                stroke-width="1"
+              />
+              <!-- QR simplified -->
+              <rect
+                x="24"
+                y="14"
+                width="8"
+                height="8"
+                rx=".5"
+                stroke="var(--red)"
+                stroke-width=".8"
+                fill="none"
+              />
+              <rect
+                x="32"
+                y="14"
+                width="8"
+                height="8"
+                rx=".5"
+                stroke="var(--red)"
+                stroke-width=".8"
+                fill="none"
+              />
+              <rect
+                x="24"
+                y="22"
+                width="8"
+                height="8"
+                rx=".5"
+                stroke="var(--red)"
+                stroke-width=".8"
+                fill="none"
+              />
+              <rect
+                x="35"
+                y="22"
+                width="2"
+                height="2"
+                fill="var(--red)"
+                rx=".3"
+              />
+              <rect
+                x="38"
+                y="22"
+                width="2"
+                height="2"
+                fill="var(--red)"
+                rx=".3"
+              />
+              <rect
+                x="35"
+                y="25"
+                width="2"
+                height="5"
+                fill="var(--red)"
+                rx=".3"
+              />
+              <!-- waves -->
+              <path
+                d="M22 36 Q32 30 42 36"
+                stroke="rgba(191,45,24,0.6)"
+                stroke-width=".8"
+                fill="none"
+              />
+              <path
+                d="M19 40 Q32 32 45 40"
+                stroke="rgba(191,45,24,0.35)"
+                stroke-width=".8"
+                fill="none"
+              />
+            </svg>
+          </div>
+          <div class="label" style="margin-bottom: 0.75rem">Цифровое</div>
+          <h3>QR → <em>интерактив</em></h3>
+          <div class="rule-h" style="margin: 1rem 0"></div>
+          <p class="body">
+            Интерактивная среда, где текст и изображение оживают.
+          </p>
+        </div>
+      </section>
+
+      <!-- ═══ S6: CO-AUTHOR ═══ -->
+      <section class="slide" id="s6">
+        <svg
+          style="
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+          "
+          viewBox="0 0 100 100"
+          preserveAspectRatio="xMidYMid slice"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <!-- concentric circles as viewer/author motif -->
+          <circle
+            cx="50"
+            cy="50"
+            r="5"
+            fill="none"
+            stroke="rgba(191,45,24,0.5)"
+            stroke-width=".5"
+          />
+          <circle
+            cx="50"
+            cy="50"
+            r="15"
+            fill="none"
+            stroke="rgba(191,45,24,0.3)"
+            stroke-width=".5"
+          />
+          <circle
+            cx="50"
+            cy="50"
+            r="28"
+            fill="none"
+            stroke="rgba(191,45,24,0.18)"
+            stroke-width=".5"
+          />
+          <circle
+            cx="50"
+            cy="50"
+            r="44"
+            fill="none"
+            stroke="rgba(191,45,24,0.1)"
+            stroke-width=".5"
+          />
+          <circle
+            cx="50"
+            cy="50"
+            r="62"
+            fill="none"
+            stroke="rgba(191,45,24,0.06)"
+            stroke-width=".5"
+          />
+        </svg>
+        <div class="s6-inner" style="position: relative; z-index: 1">
+          <div class="label">Роль зрителя</div>
+          <div class="s6-big">Вы —<br /><em>соавтор</em></div>
+          <div class="rule-h" style="margin: 1.5rem auto"></div>
+          <p class="body" style="margin: 0 auto; text-align: center">
+            Зритель не просто изучает экспозицию,<br />
+            а самостоятельно влияет на структуру повествования
+          </p>
+        </div>
+      </section>
+
+      <!-- ═══ S7: DECADES 40–70 (dark) ═══ -->
+      <section class="slide" id="s7">
+        <svg
+          class="s-canvas"
+          viewBox="0 0 100 100"
+          preserveAspectRatio="xMidYMid slice"
+          xmlns="http://www.w3.org/2000/svg"
+          style="
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+          "
+        >
+          <rect width="100" height="100" fill="#1c1a16" />
+          <!-- vertical rhythm lines -->
+          <line
+            x1="25"
+            y1="0"
+            x2="25"
+            y2="100"
+            stroke="rgba(244,241,236,.04)"
+            stroke-width=".5"
+          />
+          <line
+            x1="50"
+            y1="0"
+            x2="50"
+            y2="100"
+            stroke="rgba(244,241,236,.04)"
+            stroke-width=".5"
+          />
+          <line
+            x1="75"
+            y1="0"
+            x2="75"
+            y2="100"
+            stroke="rgba(244,241,236,.04)"
+            stroke-width=".5"
+          />
+          <!-- big ghost text -->
+          <text
+            x="50"
+            y="72"
+            text-anchor="middle"
+            font-family="'Martian Mono',monospace"
+            font-weight="200"
+            font-size="52"
+            fill="rgba(244,241,236,.04)"
+            letter-spacing="-2"
+          >
+            I–IV
+          </text>
+        </svg>
+        <div class="s7-header">
+          <div class="label">Главы I–IV</div>
+          <h2 style="color: var(--bg); margin-top: 0.5rem">
+            Ранние <br /><em>эпохи</em>
+          </h2>
+        </div>
+        <div class="dec-grid" style="margin-top: auto">
+          <div class="dec-card">
+            <div class="dec-n">40-е</div>
+            <div class="dec-w">стойкость</div>
+          </div>
+          <div class="dec-card">
+            <div class="dec-n">50-е</div>
+            <div class="dec-w">оттепель</div>
+          </div>
+          <div class="dec-card">
+            <div class="dec-n">60-е</div>
+            <div class="dec-w">надежда</div>
+          </div>
+          <div class="dec-card">
+            <div class="dec-n">70-е</div>
+            <div class="dec-w">застой</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ═══ S8: DECADES 80–10 (light) ═══ -->
+      <section class="slide" id="s8">
+        <svg
+          class="s-canvas"
+          viewBox="0 0 100 100"
+          preserveAspectRatio="xMidYMid slice"
+          xmlns="http://www.w3.org/2000/svg"
+          style="
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+          "
+        >
+          <rect width="100" height="100" fill="#f4f1ec" />
+          <line
+            x1="25"
+            y1="0"
+            x2="25"
+            y2="100"
+            stroke="rgba(28,26,22,.05)"
+            stroke-width=".5"
+          />
+          <line
+            x1="50"
+            y1="0"
+            x2="50"
+            y2="100"
+            stroke="rgba(28,26,22,.05)"
+            stroke-width=".5"
+          />
+          <line
+            x1="75"
+            y1="0"
+            x2="75"
+            y2="100"
+            stroke="rgba(28,26,22,.05)"
+            stroke-width=".5"
+          />
+          <text
+            x="50"
+            y="72"
+            text-anchor="middle"
+            font-family="'Martian Mono',monospace"
+            font-weight="200"
+            font-size="52"
+            fill="rgba(28,26,22,.04)"
+            letter-spacing="-2"
+          >
+            V–IX
+          </text>
+        </svg>
+        <div class="s8-header">
+          <div class="label">Главы V–IX</div>
+          <h2 style="margin-top: 0.5rem">
+            Поздние<br /><em>эпохи</em><br />
+            и наше время
+          </h2>
+        </div>
+        <div
+          class="dec-grid"
+          style="margin-top: auto; position: relative; z-index: 2"
+        >
+          <div class="dec-card">
+            <div class="dec-n">80-е</div>
+            <div class="dec-w">перемены</div>
+          </div>
+          <div class="dec-card">
+            <div class="dec-n">90-е</div>
+            <div class="dec-w">свобода</div>
+          </div>
+          <div class="dec-card">
+            <div class="dec-n">00-е</div>
+            <div class="dec-w">стабильность</div>
+          </div>
+          <div class="dec-card">
+            <div class="dec-n">10-е +</div>
+            <div class="dec-w">
+              рефлексия<br /><span style="font-size: 0.75em; opacity: 0.6"
+                >→ 20-е открыты</span
+              >
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ═══ S9: QR / EXPERIENCE ═══ -->
+      <section class="slide" id="s9">
+        <div class="s9-left">
+          <div class="label">Опыт зрителя</div>
+          <h2 style="margin-top: 0.75rem">Три<br />шага.</h2>
+          <div class="rule-h"></div>
+          <ol
+            style="
+              list-style: none;
+              display: flex;
+              flex-direction: column;
+              gap: 1rem;
+              margin-top: 0.5rem;
+            "
+          >
+            <li style="display: flex; gap: 1rem; align-items: baseline">
+              <span class="mono" style="color: var(--red); font-size: 1.5rem"
+                >01</span
+              ><span class="body">Подойдите к плакату</span>
+            </li>
+            <li style="display: flex; gap: 1rem; align-items: baseline">
+              <span class="mono" style="color: var(--red); font-size: 1.5rem"
+                >02</span
+              ><span class="body">Считайте QR-код</span>
+            </li>
+            <li style="display: flex; gap: 1rem; align-items: baseline">
+              <span class="mono" style="color: var(--red); font-size: 1.5rem"
+                >03</span
+              ><span class="body">Войдите внутрь</span>
+            </li>
+          </ol>
+        </div>
+        <div class="s9-right">
+          <div class="s9-bg-num">QR</div>
+          <div class="qr-frame" style="position: relative; z-index: 2">
+            <!-- SVG QR code pattern (decorative) -->
+
+            <svg
+              version="1.1"
+              viewBox="0 0 2871 2871"
+              width="256px"
+              height="256px"
+              xml:space="preserve"
+              xmlns="http://www.w3.org/2000/svg"
+              xmlns:xlink="http://www.w3.org/1999/xlink"
+            >
+              <defs>
+                <rect id="rect-0" width="100" height="100" fill="#000000" />
+                <path
+                  id="empty-0"
+                  d="M0,28.6v42.9C0,87.3,12.8,100,28.6,100h42.9c15.9,0,28.6-12.8,28.6-28.6V28.6C100,12.7,87.2,0,71.4,0H28.6 C12.8,0,0,12.8,0,28.6z"
+                  fill="#000000"
+                />
+                <path
+                  id="b-0"
+                  d="M0,0 L66,0 C84.7776815,-3.44940413e-15 100,15.2223185 100,34 L100,66 C100,84.7776815 84.7776815,100 66,100 L0,100 L0,0 Z"
+                  transform="rotate(-90 50 50)"
+                  fill="#000000"
+                />
+                <path
+                  id="r-0"
+                  d="M0,0 L66,0 C84.7776815,-3.44940413e-15 100,15.2223185 100,34 L100,66 C100,84.7776815 84.7776815,100 66,100 L0,100 L0,0 Z"
+                  transform="rotate(-180 50 50)"
+                  fill="#000000"
+                />
+                <path
+                  id="l-0"
+                  d="M0,0 L66,0 C84.7776815,-3.44940413e-15 100,15.2223185 100,34 L100,66 C100,84.7776815 84.7776815,100 66,100 L0,100 L0,0 Z"
+                  fill="#000000"
+                />
+                <path
+                  id="t-0"
+                  d="M0,0 L66,0 C84.7776815,-3.44940413e-15 100,15.2223185 100,34 L100,66 C100,84.7776815 84.7776815,100 66,100 L0,100 L0,0 Z"
+                  transform="rotate(90 50 50)"
+                  fill="#000000"
+                />
+                <path
+                  id="l-0"
+                  d="M0,0 L100,0 L100,66 C100,84.7776815 84.7776815,100 66,100 L0,100 L0,0 Z"
+                  transform="rotate(-90 50 50)"
+                  fill="#000000"
+                />
+                <path
+                  id="lt-0"
+                  d="M0,0 L100,0 L100,66 C100,84.7776815 84.7776815,100 66,100 L0,100 L0,0 Z"
+                  fill="#000000"
+                />
+                <path
+                  id="lb-0"
+                  d="M0,0 L100,0 L100,66 C100,84.7776815 84.7776815,100 66,100 L0,100 L0,0 Z"
+                  transform="rotate(-90 50 50)"
+                  fill="#000000"
+                />
+                <path
+                  id="rb-0"
+                  d="M0,0 L100,0 L100,66 C100,84.7776815 84.7776815,100 66,100 L0,100 L0,0 Z"
+                  transform="rotate(-180 50 50)"
+                  fill="#000000"
+                />
+                <path
+                  id="rt-0"
+                  d="M0,0 L100,0 L100,66 C100,84.7776815 84.7776815,100 66,100 L0,100 L0,0 Z"
+                  transform="rotate(90 50 50)"
+                  fill="#000000"
+                />
+                <path
+                  id="n_lt-0"
+                  d="M30.5,2V0H0v30.5h2C2,14.7,14.8,2,30.5,2z"
+                  fill="#000000"
+                />
+                <path
+                  id="n_lb-0"
+                  d="M2,69.5H0V100h30.5v-2C14.7,98,2,85.2,2,69.5z"
+                  fill="#000000"
+                />
+                <path
+                  id="n_rt-0"
+                  d="M98,30.5h2V0H69.5v2C85.3,2,98,14.8,98,30.5z"
+                  fill="#000000"
+                />
+                <path
+                  id="n_rb-0"
+                  d="M69.5,98v2H100V69.5h-2C98,85.3,85.2,98,69.5,98z"
+                  fill="#000000"
+                />
+                <path
+                  id="point-0"
+                  fill="#000000"
+                  d="M600.001786,457.329333 L600.001786,242.658167 C600.001786,147.372368 587.039517,124.122784 581.464617,118.535383 C575.877216,112.960483 552.627632,99.9982143 457.329333,99.9982143 L242.670667,99.9982143 C147.372368,99.9982143 124.122784,112.960483 118.547883,118.535383 C112.972983,124.122784 99.9982143,147.372368 99.9982143,242.658167 L99.9982143,457.329333 C99.9982143,552.627632 112.972983,575.877216 118.547883,581.464617 C124.122784,587.027017 147.372368,600.001786 242.670667,600.001786 L457.329333,600.001786 C552.627632,600.001786 575.877216,587.027017 581.464617,581.464617 C587.039517,575.877216 600.001786,552.627632 600.001786,457.329333 Z M457.329333,0 C653.338333,0 700,46.6616668 700,242.658167 C700,438.667167 700,261.332833 700,457.329333 C700,653.338333 653.338333,700 457.329333,700 C261.332833,700 438.667167,700 242.670667,700 C46.6616668,700 0,653.338333 0,457.329333 C0,261.332833 0,352.118712 0,242.658167 C0,46.6616668 46.6616668,0 242.670667,0 C438.667167,0 261.332833,0 457.329333,0 Z M395.996667,200 C480.004166,200 500,220.008332 500,303.990835 C500,387.998334 500,312.001666 500,395.996667 C500,479.991668 480.004166,500 395.996667,500 C312.001666,500 387.998334,500 304.003333,500 C220.008332,500 200,479.991668 200,395.996667 C200,312.001666 200,350.906061 200,303.990835 C200,220.008332 220.008332,200 304.003333,200 C387.998334,200 312.001666,200 395.996667,200 Z"
+                />
+                <g id="vk_logo-0">
+                  <path
+                    fill="#07f"
+                    d="M83.3334 363.333C83.3334 231.34 83.3334 165.343 124.338 124.338C165.343 83.3333 231.34              83.3333 363.333 83.3333H386.667C518.66 83.3333 584.657 83.3333 625.662 124.338C666.667 165.343              666.667 231.34 666.667 363.333V386.667C666.667 518.66 666.667 584.657 625.662 625.662C584.657              666.667 518.66 666.667 386.667 666.667H363.333C231.34 666.667 165.343 666.667 124.338 625.662C83.3334              584.657 83.3334 518.66 83.3334 386.667V363.333Z"
+                  />
+                  <path
+                    fill="#FFF"
+                    d="M394.907 508.681C263.293 508.681 183.442 417.365 180.313 265.625H246.972C249.05 377.09              299.763 424.323 338.638 434.036V265.625H402.519V361.82C440.016 357.664 479.264 313.909              492.456 265.625H555.333C545.27 325 502.543 368.754 472.353 386.803C502.566 401.395 551.177              439.593 569.926 508.681H500.815C486.222 462.498 450.476 426.728 402.542 421.872V508.681H394.907Z"
+                  />
+                </g>
+                <clipPath id="logo-mask-0">
+                  <rect x="0" y="0" width="750" height="750" />
+                </clipPath>
+              </defs>
+
+              <rect x="0" width="2871" height="2871" rx="404" fill="#ffffff" />
+
+              <g
+                transform="translate(235.51171875, 235.51171875) scale(0.84375)"
+              >
+                <g transform="translate(776,0)"><use xlink:href="#b-0" /></g>
+                <g transform="translate(970,0)">
+                  <use xlink:href="#empty-0" />
+                </g>
+                <g transform="translate(1261,0)"><use xlink:href="#r-0" /></g>
+                <g transform="translate(1358,0)">
+                  <use xlink:href="#rect-0" />
+                </g>
+                <g transform="translate(1455,0)">
+                  <use xlink:href="#rect-0" />
+                </g>
+                <g transform="translate(1552,0)"><use xlink:href="#l-0" /></g>
+                <g transform="translate(1649,0)">
+                  <use xlink:href="#n_rb-0" />
+                </g>
+                <g transform="translate(1746,0)"><use xlink:href="#b-0" /></g>
+                <g transform="translate(1940,0)">
+                  <use xlink:href="#empty-0" />
+                </g>
+                <g transform="translate(776,97)">
+                  <use xlink:href="#rect-0" />
+                </g>
+                <g transform="translate(873,97)"><use xlink:href="#l-0" /></g>
+                <g transform="translate(1164,97)">
+                  <use xlink:href="#empty-0" />
+                </g>
+                <g transform="translate(1358,97)">
+                  <use xlink:href="#rect-0" />
+                </g>
+                <g transform="translate(1649,97)"><use xlink:href="#r-0" /></g>
+                <g transform="translate(1746,97)">
+                  <use xlink:href="#rect-0" />
+                </g>
+                <g transform="translate(1843,97)"><use xlink:href="#lb-0" /></g>
+                <g transform="translate(776,194)"><use xlink:href="#t-0" /></g>
+                <g transform="translate(873,194)">
+                  <use xlink:href="#n_rb-0" />
+                </g>
+                <g transform="translate(970,194)"><use xlink:href="#rb-0" /></g>
+                <g transform="translate(1067,194)"><use xlink:href="#l-0" /></g>
+                <g transform="translate(1164,194)">
+                  <use xlink:href="#n_rb-0" />
+                </g>
+                <g transform="translate(1261,194)">
+                  <use xlink:href="#rb-0" />
+                </g>
+                <g transform="translate(1358,194)">
+                  <use xlink:href="#rect-0" />
+                </g>
+                <g transform="translate(1552,194)">
+                  <use xlink:href="#empty-0" />
+                </g>
+                <g transform="translate(1843,194)">
+                  <use xlink:href="#rect-0" />
+                </g>
+                <g transform="translate(1940,194)"><use xlink:href="#l-0" /></g>
+                <g transform="translate(873,291)"><use xlink:href="#r-0" /></g>
+                <g transform="translate(970,291)"><use xlink:href="#lt-0" /></g>
+                <g transform="translate(1067,291)">
+                  <use xlink:href="#n_rb-0" />
+                </g>
+                <g transform="translate(1164,291)">
+                  <use xlink:href="#rb-0" />
+                </g>
+                <g transform="translate(1261,291)">
+                  <use xlink:href="#rect-0" />
+                </g>
+                <g transform="translate(1358,291)">
+                  <use xlink:href="#rect-0" />
+                </g>
+                <g transform="translate(1649,291)">
+                  <use xlink:href="#empty-0" />
+                </g>
+                <g transform="translate(1746,291)">
+                  <use xlink:href="#n_rb-0" />
+                </g>
+                <g transform="translate(1843,291)">
+                  <use xlink:href="#rect-0" />
+                </g>
+                <g transform="translate(1067,388)"><use xlink:href="#r-0" /></g>
+                <g transform="translate(1164,388)">
+                  <use xlink:href="#rect-0" />
+                </g>
+                <g transform="translate(1261,388)">
+                  <use xlink:href="#rect-0" />
+                </g>
+                <g transform="translate(1358,388)">
+                  <use xlink:href="#rect-0" />
+                </g>
+                <g transform="translate(1455,388)">
+                  <use xlink:href="#n_rb-0" />
+                </g>
+                <g transform="translate(1552,388)"><use xlink:href="#b-0" /></g>
+                <g transform="translate(1746,388)">
+                  <use xlink:href="#rb-0" />
+                </g>
+                <g transform="translate(1843,388)">
+                  <use xlink:href="#rect-0" />
+                </g>
+                <g transform="translate(1940,388)"><use xlink:href="#l-0" /></g>
+                <g transform="translate(776,485)"><use xlink:href="#b-0" /></g>
+                <g transform="translate(970,485)"><use xlink:href="#b-0" /></g>
+                <g transform="translate(1164,485)">
+                  <use xlink:href="#rect-0" />
+                </g>
+                <g transform="translate(1358,485)">
+                  <use xlink:href="#rect-0" />
+                </g>
+                <g transform="translate(1455,485)">
+                  <use xlink:href="#rect-0" />
+                </g>
+                <g transform="translate(1552,485)">
+                  <use xlink:href="#rect-0" />
+                </g>
+                <g transform="translate(1746,485)">
+                  <use xlink:href="#rect-0" />
+                </g>
+                <g transform="translate(776,582)">
+                  <use xlink:href="#rect-0" />
+                </g>
+                <g transform="translate(970,582)"><use xlink:href="#t-0" /></g>
+                <g transform="translate(1164,582)"><use xlink:href="#t-0" /></g>
+                <g transform="translate(1358,582)">
+                  <use xlink:href="#rect-0" />
+                </g>
+                <g transform="translate(1552,582)"><use xlink:href="#t-0" /></g>
+                <g transform="translate(1746,582)"><use xlink:href="#t-0" /></g>
+                <g transform="translate(1940,582)"><use xlink:href="#b-0" /></g>
+                <g transform="translate(776,679)">
+                  <use xlink:href="#rect-0" />
+                </g>
+                <g transform="translate(1358,679)">
+                  <use xlink:href="#rect-0" />
+                </g>
+                <g transform="translate(1455,679)"><use xlink:href="#l-0" /></g>
+                <g transform="translate(1940,679)"><use xlink:href="#t-0" /></g>
+                <g transform="translate(194,776)"><use xlink:href="#rb-0" /></g>
+                <g transform="translate(291,776)">
+                  <use xlink:href="#rect-0" />
+                </g>
+                <g transform="translate(388,776)"><use xlink:href="#lb-0" /></g>
+                <g transform="translate(582,776)">
+                  <use xlink:href="#empty-0" />
+                </g>
+                <g transform="translate(776,776)">
+                  <use xlink:href="#rect-0" />
+                </g>
+                <g transform="translate(1067,776)"><use xlink:href="#r-0" /></g>
+                <g transform="translate(1164,776)"><use xlink:href="#l-0" /></g>
+                <g transform="translate(1358,776)"><use xlink:href="#t-0" /></g>
+                <g transform="translate(1552,776)">
+                  <use xlink:href="#empty-0" />
+                </g>
+                <g transform="translate(1746,776)"><use xlink:href="#r-0" /></g>
+                <g transform="translate(1843,776)"><use xlink:href="#l-0" /></g>
+                <g transform="translate(2037,776)">
+                  <use xlink:href="#rb-0" />
+                </g>
+                <g transform="translate(2134,776)">
+                  <use xlink:href="#rect-0" />
+                </g>
+                <g transform="translate(2231,776)">
+                  <use xlink:href="#lb-0" />
+                </g>
+                <g transform="translate(2522,776)"><use xlink:href="#r-0" /></g>
+                <g transform="translate(2619,776)">
+                  <use xlink:href="#rect-0" />
+                </g>
+                <g transform="translate(2716,776)">
+                  <use xlink:href="#lb-0" />
+                </g>
+                <g transform="translate(97,873)">
+                  <use xlink:href="#n_rb-0" />
+                </g>
+                <g transform="translate(194,873)">
+                  <use xlink:href="#rect-0" />
+                </g>
+                <g transform="translate(388,873)"><use xlink:href="#t-0" /></g>
+                <g transform="translate(776,873)"><use xlink:href="#t-0" /></g>
+                <g transform="translate(873,873)">
+                  <use xlink:href="#n_rb-0" />
+                </g>
+                <g transform="translate(970,873)"><use xlink:href="#b-0" /></g>
+                <g transform="translate(1455,873)">
+                  <use xlink:href="#empty-0" />
+                </g>
+                <g transform="translate(2037,873)">
+                  <use xlink:href="#rect-0" />
+                </g>
+                <g transform="translate(2231,873)">
+                  <use xlink:href="#rt-0" />
+                </g>
+                <g transform="translate(2328,873)">
+                  <use xlink:href="#lb-0" />
+                </g>
+                <g transform="translate(2716,873)"><use xlink:href="#t-0" /></g>
+                <g transform="translate(0,970)"><use xlink:href="#rb-0" /></g>
+                <g transform="translate(97,970)">
+                  <use xlink:href="#rect-0" />
+                </g>
+                <g transform="translate(194,970)">
+                  <use xlink:href="#rect-0" />
+                </g>
+                <g transform="translate(291,970)"><use xlink:href="#l-0" /></g>
+                <g transform="translate(485,970)"><use xlink:href="#rb-0" /></g>
+                <g transform="translate(582,970)">
+                  <use xlink:href="#rect-0" />
+                </g>
+                <g transform="translate(679,970)"><use xlink:href="#l-0" /></g>
+                <g transform="translate(776,970)">
+                  <use xlink:href="#n_rb-0" />
+                </g>
+                <g transform="translate(873,970)"><use xlink:href="#rb-0" /></g>
+                <g transform="translate(970,970)"><use xlink:href="#lt-0" /></g>
+                <g transform="translate(1164,970)"><use xlink:href="#b-0" /></g>
+                <g transform="translate(1552,970)">
+                  <use xlink:href="#n_rb-0" />
+                </g>
+                <g transform="translate(1649,970)"><use xlink:href="#b-0" /></g>
+                <g transform="translate(1940,970)">
+                  <use xlink:href="#n_rb-0" />
+                </g>
+                <g transform="translate(2037,970)">
+                  <use xlink:href="#rect-0" />
+                </g>
+                <g transform="translate(2134,970)">
+                  <use xlink:href="#lb-0" />
+                </g>
+                <g transform="translate(2231,970)">
+                  <use xlink:href="#n_rb-0" />
+                </g>
+                <g transform="translate(2328,970)">
+                  <use xlink:href="#rect-0" />
+                </g>
+                <g transform="translate(2522,970)">
+                  <use xlink:href="#empty-0" />
+                </g>
+                <g transform="translate(0,1067)">
+                  <use xlink:href="#rect-0" />
+                </g>
+                <g transform="translate(194,1067)">
+                  <use xlink:href="#rect-0" />
+                </g>
+                <g transform="translate(485,1067)"><use xlink:href="#t-0" /></g>
+                <g transform="translate(776,1067)"><use xlink:href="#r-0" /></g>
+                <g transform="translate(873,1067)">
+                  <use xlink:href="#lt-0" />
+                </g>
+                <g transform="translate(1164,1067)">
+                  <use xlink:href="#rect-0" />
+                </g>
+                <g transform="translate(1552,1067)">
+                  <use xlink:href="#rb-0" />
+                </g>
+                <g transform="translate(1649,1067)">
+                  <use xlink:href="#lt-0" />
+                </g>
+                <g transform="translate(1940,1067)">
+                  <use xlink:href="#r-0" />
+                </g>
+                <g transform="translate(2037,1067)">
+                  <use xlink:href="#rect-0" />
+                </g>
+                <g transform="translate(2134,1067)">
+                  <use xlink:href="#rect-0" />
+                </g>
+                <g transform="translate(2231,1067)">
+                  <use xlink:href="#rect-0" />
+                </g>
+                <g transform="translate(2328,1067)">
+                  <use xlink:href="#rect-0" />
+                </g>
+                <g transform="translate(2425,1067)">
+                  <use xlink:href="#lb-0" />
+                </g>
+                <g transform="translate(2522,1067)">
+                  <use xlink:href="#n_rb-0" />
+                </g>
+                <g transform="translate(2619,1067)">
+                  <use xlink:href="#b-0" />
+                </g>
+                <g transform="translate(0,1164)"><use xlink:href="#rt-0" /></g>
+                <g transform="translate(97,1164)">
+                  <use xlink:href="#rect-0" />
+                </g>
+                <g transform="translate(194,1164)">
+                  <use xlink:href="#rect-0" />
+                </g>
+                <g transform="translate(291,1164)">
+                  <use xlink:href="#rect-0" />
+                </g>
+                <g transform="translate(388,1164)">
+                  <use xlink:href="#lb-0" />
+                </g>
+                <g transform="translate(582,1164)"><use xlink:href="#r-0" /></g>
+                <g transform="translate(679,1164)"><use xlink:href="#l-0" /></g>
+                <g transform="translate(970,1164)">
+                  <use xlink:href="#empty-0" />
+                </g>
+                <g transform="translate(1164,1164)">
+                  <use xlink:href="#rect-0" />
+                </g>
+                <g transform="translate(1261,1164)">
+                  <use xlink:href="#lb-0" />
+                </g>
+                <g transform="translate(1552,1164)">
+                  <use xlink:href="#t-0" />
+                </g>
+                <g transform="translate(1649,1164)">
+                  <use xlink:href="#n_rb-0" />
+                </g>
+                <g transform="translate(1746,1164)">
+                  <use xlink:href="#b-0" />
+                </g>
+                <g transform="translate(2037,1164)">
+                  <use xlink:href="#rect-0" />
+                </g>
+                <g transform="translate(2231,1164)">
+                  <use xlink:href="#t-0" />
+                </g>
+                <g transform="translate(2425,1164)">
+                  <use xlink:href="#rect-0" />
+                </g>
+                <g transform="translate(2522,1164)">
+                  <use xlink:href="#rect-0" />
+                </g>
+                <g transform="translate(2619,1164)">
+                  <use xlink:href="#rect-0" />
+                </g>
+                <g transform="translate(2716,1164)">
+                  <use xlink:href="#lb-0" />
+                </g>
+                <g transform="translate(97,1261)">
+                  <use xlink:href="#rect-0" />
+                </g>
+                <g transform="translate(291,1261)">
+                  <use xlink:href="#rt-0" />
+                </g>
+                <g transform="translate(388,1261)">
+                  <use xlink:href="#rect-0" />
+                </g>
+                <g transform="translate(1164,1261)">
+                  <use xlink:href="#rt-0" />
+                </g>
+                <g transform="translate(1261,1261)">
+                  <use xlink:href="#rect-0" />
+                </g>
+                <g transform="translate(1358,1261)">
+                  <use xlink:href="#rect-0" />
+                </g>
+                <g transform="translate(1455,1261)">
+                  <use xlink:href="#l-0" />
+                </g>
+                <g transform="translate(1649,1261)">
+                  <use xlink:href="#r-0" />
+                </g>
+                <g transform="translate(1746,1261)">
+                  <use xlink:href="#rect-0" />
+                </g>
+                <g transform="translate(1843,1261)">
+                  <use xlink:href="#rect-0" />
+                </g>
+                <g transform="translate(1940,1261)">
+                  <use xlink:href="#rect-0" />
+                </g>
+                <g transform="translate(2037,1261)">
+                  <use xlink:href="#rect-0" />
+                </g>
+                <g transform="translate(2134,1261)">
+                  <use xlink:href="#lb-0" />
+                </g>
+                <g transform="translate(2328,1261)">
+                  <use xlink:href="#r-0" />
+                </g>
+                <g transform="translate(2425,1261)">
+                  <use xlink:href="#lt-0" />
+                </g>
+                <g transform="translate(2716,1261)">
+                  <use xlink:href="#t-0" />
+                </g>
+                <g transform="translate(0,1358)">
+                  <use xlink:href="#n_rb-0" />
+                </g>
+                <g transform="translate(97,1358)">
+                  <use xlink:href="#rect-0" />
+                </g>
+                <g transform="translate(388,1358)"><use xlink:href="#t-0" /></g>
+                <g transform="translate(582,1358)"><use xlink:href="#r-0" /></g>
+                <g transform="translate(679,1358)">
+                  <use xlink:href="#rect-0" />
+                </g>
+                <g transform="translate(776,1358)">
+                  <use xlink:href="#rect-0" />
+                </g>
+                <g transform="translate(873,1358)">
+                  <use xlink:href="#lb-0" />
+                </g>
+                <g transform="translate(1067,1358)">
+                  <use xlink:href="#empty-0" />
+                </g>
+                <g transform="translate(1746,1358)">
+                  <use xlink:href="#rect-0" />
+                </g>
+                <g transform="translate(1940,1358)">
+                  <use xlink:href="#rt-0" />
+                </g>
+                <g transform="translate(2037,1358)">
+                  <use xlink:href="#rect-0" />
+                </g>
+                <g transform="translate(2134,1358)">
+                  <use xlink:href="#rect-0" />
+                </g>
+                <g transform="translate(2231,1358)">
+                  <use xlink:href="#l-0" />
+                </g>
+                <g transform="translate(0,1455)"><use xlink:href="#rb-0" /></g>
+                <g transform="translate(97,1455)">
+                  <use xlink:href="#rect-0" />
+                </g>
+                <g transform="translate(291,1455)">
+                  <use xlink:href="#empty-0" />
+                </g>
+                <g transform="translate(679,1455)">
+                  <use xlink:href="#rect-0" />
+                </g>
+                <g transform="translate(873,1455)"><use xlink:href="#t-0" /></g>
+                <g transform="translate(1164,1455)">
+                  <use xlink:href="#empty-0" />
+                </g>
+                <g transform="translate(1455,1455)">
+                  <use xlink:href="#rb-0" />
+                </g>
+                <g transform="translate(1552,1455)">
+                  <use xlink:href="#rect-0" />
+                </g>
+                <g transform="translate(1649,1455)">
+                  <use xlink:href="#rect-0" />
+                </g>
+                <g transform="translate(1746,1455)">
+                  <use xlink:href="#rect-0" />
+                </g>
+                <g transform="translate(1843,1455)">
+                  <use xlink:href="#l-0" />
+                </g>
+                <g transform="translate(2037,1455)">
+                  <use xlink:href="#rt-0" />
+                </g>
+                <g transform="translate(2134,1455)">
+                  <use xlink:href="#lt-0" />
+                </g>
+                <g transform="translate(2231,1455)">
+                  <use xlink:href="#n_rb-0" />
+                </g>
+                <g transform="translate(2328,1455)">
+                  <use xlink:href="#rb-0" />
+                </g>
+                <g transform="translate(2425,1455)">
+                  <use xlink:href="#lb-0" />
+                </g>
+                <g transform="translate(2619,1455)">
+                  <use xlink:href="#r-0" />
+                </g>
+                <g transform="translate(2716,1455)">
+                  <use xlink:href="#lb-0" />
+                </g>
+                <g transform="translate(0,1552)">
+                  <use xlink:href="#rect-0" />
+                </g>
+                <g transform="translate(97,1552)"><use xlink:href="#lt-0" /></g>
+                <g transform="translate(485,1552)"><use xlink:href="#r-0" /></g>
+                <g transform="translate(582,1552)">
+                  <use xlink:href="#rect-0" />
+                </g>
+                <g transform="translate(679,1552)">
+                  <use xlink:href="#rect-0" />
+                </g>
+                <g transform="translate(776,1552)"><use xlink:href="#l-0" /></g>
+                <g transform="translate(970,1552)">
+                  <use xlink:href="#n_rb-0" />
+                </g>
+                <g transform="translate(1067,1552)">
+                  <use xlink:href="#b-0" />
+                </g>
+                <g transform="translate(1261,1552)">
+                  <use xlink:href="#empty-0" />
+                </g>
+                <g transform="translate(1455,1552)">
+                  <use xlink:href="#t-0" />
+                </g>
+                <g transform="translate(1746,1552)">
+                  <use xlink:href="#rect-0" />
+                </g>
+                <g transform="translate(1940,1552)">
+                  <use xlink:href="#b-0" />
+                </g>
+                <g transform="translate(2231,1552)">
+                  <use xlink:href="#rb-0" />
+                </g>
+                <g transform="translate(2328,1552)">
+                  <use xlink:href="#rect-0" />
+                </g>
+                <g transform="translate(2425,1552)">
+                  <use xlink:href="#rect-0" />
+                </g>
+                <g transform="translate(2522,1552)">
+                  <use xlink:href="#l-0" />
+                </g>
+                <g transform="translate(2716,1552)">
+                  <use xlink:href="#rect-0" />
+                </g>
+                <g transform="translate(0,1649)">
+                  <use xlink:href="#rect-0" />
+                </g>
+                <g transform="translate(194,1649)">
+                  <use xlink:href="#n_rb-0" />
+                </g>
+                <g transform="translate(291,1649)"><use xlink:href="#b-0" /></g>
+                <g transform="translate(970,1649)">
+                  <use xlink:href="#rb-0" />
+                </g>
+                <g transform="translate(1067,1649)">
+                  <use xlink:href="#rect-0" />
+                </g>
+                <g transform="translate(1649,1649)">
+                  <use xlink:href="#r-0" />
+                </g>
+                <g transform="translate(1746,1649)">
+                  <use xlink:href="#rect-0" />
+                </g>
+                <g transform="translate(1940,1649)">
+                  <use xlink:href="#rect-0" />
+                </g>
+                <g transform="translate(2134,1649)">
+                  <use xlink:href="#n_rb-0" />
+                </g>
+                <g transform="translate(2231,1649)">
+                  <use xlink:href="#rect-0" />
+                </g>
+                <g transform="translate(2328,1649)">
+                  <use xlink:href="#rect-0" />
+                </g>
+                <g transform="translate(2425,1649)">
+                  <use xlink:href="#rect-0" />
+                </g>
+                <g transform="translate(2619,1649)">
+                  <use xlink:href="#r-0" />
+                </g>
+                <g transform="translate(2716,1649)">
+                  <use xlink:href="#lt-0" />
+                </g>
+                <g transform="translate(0,1746)">
+                  <use xlink:href="#rect-0" />
+                </g>
+                <g transform="translate(194,1746)"><use xlink:href="#r-0" /></g>
+                <g transform="translate(291,1746)">
+                  <use xlink:href="#rect-0" />
+                </g>
+                <g transform="translate(388,1746)">
+                  <use xlink:href="#rect-0" />
+                </g>
+                <g transform="translate(485,1746)">
+                  <use xlink:href="#rect-0" />
+                </g>
+                <g transform="translate(582,1746)">
+                  <use xlink:href="#rect-0" />
+                </g>
+                <g transform="translate(679,1746)"><use xlink:href="#l-0" /></g>
+                <g transform="translate(970,1746)">
+                  <use xlink:href="#rect-0" />
+                </g>
+                <g transform="translate(1067,1746)">
+                  <use xlink:href="#rect-0" />
+                </g>
+                <g transform="translate(1164,1746)">
+                  <use xlink:href="#rect-0" />
+                </g>
+                <g transform="translate(1261,1746)">
+                  <use xlink:href="#lb-0" />
+                </g>
+                <g transform="translate(1552,1746)">
+                  <use xlink:href="#b-0" />
+                </g>
+                <g transform="translate(1746,1746)">
+                  <use xlink:href="#t-0" />
+                </g>
+                <g transform="translate(1940,1746)">
+                  <use xlink:href="#t-0" />
+                </g>
+                <g transform="translate(2134,1746)">
+                  <use xlink:href="#rb-0" />
+                </g>
+                <g transform="translate(2231,1746)">
+                  <use xlink:href="#lt-0" />
+                </g>
+                <g transform="translate(2425,1746)">
+                  <use xlink:href="#t-0" />
+                </g>
+                <g transform="translate(0,1843)">
+                  <use xlink:href="#rect-0" />
+                </g>
+                <g transform="translate(970,1843)"><use xlink:href="#t-0" /></g>
+                <g transform="translate(1261,1843)">
+                  <use xlink:href="#t-0" />
+                </g>
+                <g transform="translate(1552,1843)">
+                  <use xlink:href="#rt-0" />
+                </g>
+                <g transform="translate(1649,1843)">
+                  <use xlink:href="#l-0" />
+                </g>
+                <g transform="translate(2037,1843)">
+                  <use xlink:href="#n_rb-0" />
+                </g>
+                <g transform="translate(2134,1843)">
+                  <use xlink:href="#rect-0" />
+                </g>
+                <g transform="translate(2231,1843)">
+                  <use xlink:href="#n_rb-0" />
+                </g>
+                <g transform="translate(2328,1843)">
+                  <use xlink:href="#b-0" />
+                </g>
+                <g transform="translate(2619,1843)">
+                  <use xlink:href="#r-0" />
+                </g>
+                <g transform="translate(2716,1843)">
+                  <use xlink:href="#l-0" />
+                </g>
+                <g transform="translate(0,1940)"><use xlink:href="#t-0" /></g>
+                <g transform="translate(291,1940)"><use xlink:href="#r-0" /></g>
+                <g transform="translate(388,1940)">
+                  <use xlink:href="#rect-0" />
+                </g>
+                <g transform="translate(485,1940)">
+                  <use xlink:href="#rect-0" />
+                </g>
+                <g transform="translate(582,1940)">
+                  <use xlink:href="#rect-0" />
+                </g>
+                <g transform="translate(679,1940)"><use xlink:href="#l-0" /></g>
+                <g transform="translate(873,1940)">
+                  <use xlink:href="#empty-0" />
+                </g>
+                <g transform="translate(1067,1940)">
+                  <use xlink:href="#empty-0" />
+                </g>
+                <g transform="translate(1358,1940)">
+                  <use xlink:href="#b-0" />
+                </g>
+                <g transform="translate(1746,1940)">
+                  <use xlink:href="#r-0" />
+                </g>
+                <g transform="translate(1843,1940)">
+                  <use xlink:href="#rect-0" />
+                </g>
+                <g transform="translate(1940,1940)">
+                  <use xlink:href="#rect-0" />
+                </g>
+                <g transform="translate(2037,1940)">
+                  <use xlink:href="#rect-0" />
+                </g>
+                <g transform="translate(2134,1940)">
+                  <use xlink:href="#rect-0" />
+                </g>
+                <g transform="translate(2231,1940)">
+                  <use xlink:href="#rect-0" />
+                </g>
+                <g transform="translate(2328,1940)">
+                  <use xlink:href="#rect-0" />
+                </g>
+                <g transform="translate(2522,1940)">
+                  <use xlink:href="#empty-0" />
+                </g>
+                <g transform="translate(776,2037)">
+                  <use xlink:href="#empty-0" />
+                </g>
+                <g transform="translate(970,2037)">
+                  <use xlink:href="#empty-0" />
+                </g>
+                <g transform="translate(1164,2037)">
+                  <use xlink:href="#empty-0" />
+                </g>
+                <g transform="translate(1261,2037)">
+                  <use xlink:href="#n_rb-0" />
+                </g>
+                <g transform="translate(1358,2037)">
+                  <use xlink:href="#rect-0" />
+                </g>
+                <g transform="translate(1649,2037)">
+                  <use xlink:href="#b-0" />
+                </g>
+                <g transform="translate(1940,2037)">
+                  <use xlink:href="#rect-0" />
+                </g>
+                <g transform="translate(2328,2037)">
+                  <use xlink:href="#rect-0" />
+                </g>
+                <g transform="translate(2425,2037)">
+                  <use xlink:href="#l-0" />
+                </g>
+                <g transform="translate(2619,2037)">
+                  <use xlink:href="#rb-0" />
+                </g>
+                <g transform="translate(2716,2037)">
+                  <use xlink:href="#l-0" />
+                </g>
+                <g transform="translate(873,2134)"><use xlink:href="#b-0" /></g>
+                <g transform="translate(1067,2134)">
+                  <use xlink:href="#b-0" />
+                </g>
+                <g transform="translate(1164,2134)">
+                  <use xlink:href="#n_rb-0" />
+                </g>
+                <g transform="translate(1261,2134)">
+                  <use xlink:href="#rb-0" />
+                </g>
+                <g transform="translate(1358,2134)">
+                  <use xlink:href="#lt-0" />
+                </g>
+                <g transform="translate(1649,2134)">
+                  <use xlink:href="#rect-0" />
+                </g>
+                <g transform="translate(1843,2134)">
+                  <use xlink:href="#rb-0" />
+                </g>
+                <g transform="translate(1940,2134)">
+                  <use xlink:href="#rect-0" />
+                </g>
+                <g transform="translate(2134,2134)">
+                  <use xlink:href="#empty-0" />
+                </g>
+                <g transform="translate(2328,2134)">
+                  <use xlink:href="#rect-0" />
+                </g>
+                <g transform="translate(2619,2134)">
+                  <use xlink:href="#t-0" />
+                </g>
+                <g transform="translate(873,2231)"><use xlink:href="#t-0" /></g>
+                <g transform="translate(1067,2231)">
+                  <use xlink:href="#rt-0" />
+                </g>
+                <g transform="translate(1164,2231)">
+                  <use xlink:href="#rect-0" />
+                </g>
+                <g transform="translate(1261,2231)">
+                  <use xlink:href="#rect-0" />
+                </g>
+                <g transform="translate(1649,2231)">
+                  <use xlink:href="#t-0" />
+                </g>
+                <g transform="translate(1843,2231)">
+                  <use xlink:href="#rt-0" />
+                </g>
+                <g transform="translate(1940,2231)">
+                  <use xlink:href="#rect-0" />
+                </g>
+                <g transform="translate(2231,2231)">
+                  <use xlink:href="#n_rb-0" />
+                </g>
+                <g transform="translate(2328,2231)">
+                  <use xlink:href="#rect-0" />
+                </g>
+                <g transform="translate(2425,2231)">
+                  <use xlink:href="#lb-0" />
+                </g>
+                <g transform="translate(2619,2231)">
+                  <use xlink:href="#n_rb-0" />
+                </g>
+                <g transform="translate(2716,2231)">
+                  <use xlink:href="#b-0" />
+                </g>
+                <g transform="translate(776,2328)"><use xlink:href="#b-0" /></g>
+                <g transform="translate(970,2328)"><use xlink:href="#b-0" /></g>
+                <g transform="translate(1261,2328)">
+                  <use xlink:href="#t-0" />
+                </g>
+                <g transform="translate(1455,2328)">
+                  <use xlink:href="#b-0" />
+                </g>
+                <g transform="translate(1940,2328)">
+                  <use xlink:href="#rect-0" />
+                </g>
+                <g transform="translate(2037,2328)">
+                  <use xlink:href="#rect-0" />
+                </g>
+                <g transform="translate(2134,2328)">
+                  <use xlink:href="#rect-0" />
+                </g>
+                <g transform="translate(2231,2328)">
+                  <use xlink:href="#rect-0" />
+                </g>
+                <g transform="translate(2328,2328)">
+                  <use xlink:href="#rect-0" />
+                </g>
+                <g transform="translate(2425,2328)">
+                  <use xlink:href="#rect-0" />
+                </g>
+                <g transform="translate(2522,2328)">
+                  <use xlink:href="#rect-0" />
+                </g>
+                <g transform="translate(2619,2328)">
+                  <use xlink:href="#rect-0" />
+                </g>
+                <g transform="translate(2716,2328)">
+                  <use xlink:href="#lt-0" />
+                </g>
+                <g transform="translate(776,2425)">
+                  <use xlink:href="#rect-0" />
+                </g>
+                <g transform="translate(970,2425)"><use xlink:href="#t-0" /></g>
+                <g transform="translate(1455,2425)">
+                  <use xlink:href="#t-0" />
+                </g>
+                <g transform="translate(1649,2425)">
+                  <use xlink:href="#b-0" />
+                </g>
+                <g transform="translate(1843,2425)">
+                  <use xlink:href="#rb-0" />
+                </g>
+                <g transform="translate(1940,2425)">
+                  <use xlink:href="#rect-0" />
+                </g>
+                <g transform="translate(2037,2425)">
+                  <use xlink:href="#rect-0" />
+                </g>
+                <g transform="translate(2231,2425)">
+                  <use xlink:href="#rect-0" />
+                </g>
+                <g transform="translate(2425,2425)">
+                  <use xlink:href="#rect-0" />
+                </g>
+                <g transform="translate(2522,2425)">
+                  <use xlink:href="#rect-0" />
+                </g>
+                <g transform="translate(776,2522)"><use xlink:href="#t-0" /></g>
+                <g transform="translate(1164,2522)">
+                  <use xlink:href="#empty-0" />
+                </g>
+                <g transform="translate(1358,2522)">
+                  <use xlink:href="#empty-0" />
+                </g>
+                <g transform="translate(1649,2522)">
+                  <use xlink:href="#rect-0" />
+                </g>
+                <g transform="translate(1843,2522)">
+                  <use xlink:href="#rt-0" />
+                </g>
+                <g transform="translate(1940,2522)">
+                  <use xlink:href="#rect-0" />
+                </g>
+                <g transform="translate(2037,2522)">
+                  <use xlink:href="#rect-0" />
+                </g>
+                <g transform="translate(2134,2522)">
+                  <use xlink:href="#rect-0" />
+                </g>
+                <g transform="translate(2231,2522)">
+                  <use xlink:href="#rect-0" />
+                </g>
+                <g transform="translate(2328,2522)">
+                  <use xlink:href="#rect-0" />
+                </g>
+                <g transform="translate(2425,2522)">
+                  <use xlink:href="#rect-0" />
+                </g>
+                <g transform="translate(2522,2522)">
+                  <use xlink:href="#rect-0" />
+                </g>
+                <g transform="translate(2619,2522)">
+                  <use xlink:href="#lb-0" />
+                </g>
+                <g transform="translate(970,2619)"><use xlink:href="#r-0" /></g>
+                <g transform="translate(1067,2619)">
+                  <use xlink:href="#lb-0" />
+                </g>
+                <g transform="translate(1164,2619)">
+                  <use xlink:href="#n_rb-0" />
+                </g>
+                <g transform="translate(1261,2619)">
+                  <use xlink:href="#b-0" />
+                </g>
+                <g transform="translate(1649,2619)">
+                  <use xlink:href="#t-0" />
+                </g>
+                <g transform="translate(1940,2619)">
+                  <use xlink:href="#rt-0" />
+                </g>
+                <g transform="translate(2037,2619)">
+                  <use xlink:href="#rect-0" />
+                </g>
+                <g transform="translate(2134,2619)">
+                  <use xlink:href="#rect-0" />
+                </g>
+                <g transform="translate(2328,2619)">
+                  <use xlink:href="#rect-0" />
+                </g>
+                <g transform="translate(2619,2619)">
+                  <use xlink:href="#t-0" />
+                </g>
+                <g transform="translate(1067,2716)">
+                  <use xlink:href="#rt-0" />
+                </g>
+                <g transform="translate(1164,2716)">
+                  <use xlink:href="#rect-0" />
+                </g>
+                <g transform="translate(1261,2716)">
+                  <use xlink:href="#rect-0" />
+                </g>
+                <g transform="translate(1358,2716)">
+                  <use xlink:href="#rect-0" />
+                </g>
+                <g transform="translate(1455,2716)">
+                  <use xlink:href="#l-0" />
+                </g>
+                <g transform="translate(1843,2716)">
+                  <use xlink:href="#empty-0" />
+                </g>
+                <g transform="translate(2037,2716)">
+                  <use xlink:href="#rt-0" />
+                </g>
+                <g transform="translate(2134,2716)">
+                  <use xlink:href="#lt-0" />
+                </g>
+                <g transform="translate(2328,2716)">
+                  <use xlink:href="#rt-0" />
+                </g>
+                <g transform="translate(2425,2716)">
+                  <use xlink:href="#rect-0" />
+                </g>
+                <g transform="translate(2522,2716)">
+                  <use xlink:href="#l-0" />
+                </g>
+                <use
+                  fill-rule="evenodd"
+                  transform="translate(0,0)"
+                  xlink:href="#point-0"
+                />
+                <use
+                  fill-rule="evenodd"
+                  transform="translate(2112,0)"
+                  xlink:href="#point-0"
+                />
+                <use
+                  fill-rule="evenodd"
+                  transform="translate(0,2112)"
+                  xlink:href="#point-0"
+                />
+              </g>
+            </svg>
+            <div class="qr-url">annkomkova.github.io/svetlovka-85</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ═══ S10: WHY ═══ -->
+      <section class="slide" id="s10">
+        <div class="s10-left">
+          <div class="label">Сегодня</div>
+          <h2 style="margin-top: 0.75rem">
+            Почему<br />это важно<br />именно<br /><em
+              style="color: rgba(244, 241, 236, 0.75)"
+              >сейчас.</em
+            >
+          </h2>
+        </div>
+        <div class="s10-right">
+          <div class="why-item">
+            <div class="why-n">01</div>
+            <p>
+              Рассматриваем место Светловки в контексте культурных и
+              исторических событий.
             </p>
           </div>
-          <div>
-            <div class="col-label">Цифровое</div>
-            <p class="col-body">
-              QR-код ведёт в интерактивную среду, где изображение оживает. Время
-              становится нелинейным. Вы можете войти в него.
+          <div class="why-item">
+            <div class="why-n">02</div>
+            <p>
+              Изучаем коллективную память как живую структуру, а не статичный
+              архив.
+            </p>
+          </div>
+          <div class="why-item">
+            <div class="why-n">03</div>
+            <p>
+              Библиотека — место, где прошлое и будущее встречаются лучше всего.
             </p>
           </div>
         </div>
       </section>
 
-      <!-- 6. ЗРИТЕЛЬ КАК СОАВТОР -->
-      <section class="slide" data-num="6">
-        <div class="label">Роль зрителя</div>
-        <h2>Вы — не зритель.<br />Вы — <em>соавтор.</em></h2>
-        <div class="accent-line"></div>
-        <p class="body-text">
-          В цифровой части проекта повествование не задано заранее. Вы влияете
-          на то, как разворачивается история. Это не выставка, которую смотрят.
-          Это выставка, в которой участвуют.
-        </p>
-        <ul class="theses">
-          <li>Ваш выбор меняет структуру нарратива</li>
-          <li>Каждый проход — уникальный опыт</li>
-          <li>Личная память встречается с коллективной</li>
-        </ul>
-      </section>
-
-      <!-- 7–8. ДЕСЯТИЛЕТИЯ 40–70 -->
-      <section class="slide" data-num="7">
-        <div class="label">Главы I–IV · 1940–1970-е</div>
-        <h2>Четыре эпохи,<br />четыре температуры.</h2>
-        <div class="accent-line"></div>
-        <div class="decade-grid">
-          <div class="decade-item">
-            <div class="decade-num">40-е</div>
-            <div class="decade-word">стойкость</div>
-          </div>
-          <div class="decade-item">
-            <div class="decade-num">50-е</div>
-            <div class="decade-word">оттепель</div>
-          </div>
-          <div class="decade-item">
-            <div class="decade-num">60-е</div>
-            <div class="decade-word">надежда</div>
-          </div>
-          <div class="decade-item">
-            <div class="decade-num">70-е</div>
-            <div class="decade-word">застой</div>
-          </div>
-        </div>
-        <p
-          class="body-text"
-          style="margin-top: 2rem; color: var(--muted); font-style: italic"
+      <!-- ═══ S11: FINAL ═══ -->
+      <section class="slide" id="s11">
+        <svg
+          style="
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+          "
+          viewBox="0 0 100 100"
+          preserveAspectRatio="xMidYMid slice"
+          xmlns="http://www.w3.org/2000/svg"
         >
-          От молчания под бомбами — к первому глотку свободы — и снова к тишине
-          другого рода.
-        </p>
-      </section>
+          <defs>
+            <pattern
+              id="hatch"
+              width="6"
+              height="6"
+              patternUnits="userSpaceOnUse"
+              patternTransform="rotate(45)"
+            >
+              <line
+                x1="0"
+                y1="0"
+                x2="0"
+                y2="6"
+                stroke="rgba(28,26,22,0.07)"
+                stroke-width=".8"
+              />
+            </pattern>
+          </defs>
+          <rect width="100" height="100" fill="url(#hatch)" />
+        </svg>
+        <div class="s11-inner" style="position: relative; z-index: 1">
+          <div class="s9-right">
+            <div class="s9-bg-num">QR</div>
+            <div class="qr-frame" style="position: relative; z-index: 2">
+              <!-- SVG QR code pattern (decorative) -->
 
-      <!-- 9–10. ДЕСЯТИЛЕТИЯ 80–10 -->
-      <section class="slide" data-num="8">
-        <div class="label">Главы V–VIII · 1980–2010-е</div>
-        <h2>Четыре поворота.<br />К нам.</h2>
-        <div class="accent-line"></div>
-        <div class="decade-grid">
-          <div class="decade-item">
-            <div class="decade-num">80-е</div>
-            <div class="decade-word">перемены</div>
-          </div>
-          <div class="decade-item">
-            <div class="decade-num">90-е</div>
-            <div class="decade-word">свобода</div>
-          </div>
-          <div class="decade-item">
-            <div class="decade-num">00-е</div>
-            <div class="decade-word">стабильность</div>
-          </div>
-          <div class="decade-item">
-            <div class="decade-num">10-е</div>
-            <div class="decade-word">рефлексия</div>
-          </div>
-        </div>
-        <p
-          class="body-text"
-          style="margin-top: 2rem; color: var(--muted); font-style: italic"
-        >
-          И незакрытое настоящее — 20-е — которое мы ещё пишем.
-        </p>
-      </section>
+              <svg
+                version="1.1"
+                viewBox="0 0 2871 2871"
+                width="256px"
+                height="256px"
+                xml:space="preserve"
+                xmlns="http://www.w3.org/2000/svg"
+                xmlns:xlink="http://www.w3.org/1999/xlink"
+              >
+                <defs>
+                  <rect id="rect-0" width="100" height="100" fill="#000000" />
+                  <path
+                    id="empty-0"
+                    d="M0,28.6v42.9C0,87.3,12.8,100,28.6,100h42.9c15.9,0,28.6-12.8,28.6-28.6V28.6C100,12.7,87.2,0,71.4,0H28.6 C12.8,0,0,12.8,0,28.6z"
+                    fill="#000000"
+                  />
+                  <path
+                    id="b-0"
+                    d="M0,0 L66,0 C84.7776815,-3.44940413e-15 100,15.2223185 100,34 L100,66 C100,84.7776815 84.7776815,100 66,100 L0,100 L0,0 Z"
+                    transform="rotate(-90 50 50)"
+                    fill="#000000"
+                  />
+                  <path
+                    id="r-0"
+                    d="M0,0 L66,0 C84.7776815,-3.44940413e-15 100,15.2223185 100,34 L100,66 C100,84.7776815 84.7776815,100 66,100 L0,100 L0,0 Z"
+                    transform="rotate(-180 50 50)"
+                    fill="#000000"
+                  />
+                  <path
+                    id="l-0"
+                    d="M0,0 L66,0 C84.7776815,-3.44940413e-15 100,15.2223185 100,34 L100,66 C100,84.7776815 84.7776815,100 66,100 L0,100 L0,0 Z"
+                    fill="#000000"
+                  />
+                  <path
+                    id="t-0"
+                    d="M0,0 L66,0 C84.7776815,-3.44940413e-15 100,15.2223185 100,34 L100,66 C100,84.7776815 84.7776815,100 66,100 L0,100 L0,0 Z"
+                    transform="rotate(90 50 50)"
+                    fill="#000000"
+                  />
+                  <path
+                    id="l-0"
+                    d="M0,0 L100,0 L100,66 C100,84.7776815 84.7776815,100 66,100 L0,100 L0,0 Z"
+                    transform="rotate(-90 50 50)"
+                    fill="#000000"
+                  />
+                  <path
+                    id="lt-0"
+                    d="M0,0 L100,0 L100,66 C100,84.7776815 84.7776815,100 66,100 L0,100 L0,0 Z"
+                    fill="#000000"
+                  />
+                  <path
+                    id="lb-0"
+                    d="M0,0 L100,0 L100,66 C100,84.7776815 84.7776815,100 66,100 L0,100 L0,0 Z"
+                    transform="rotate(-90 50 50)"
+                    fill="#000000"
+                  />
+                  <path
+                    id="rb-0"
+                    d="M0,0 L100,0 L100,66 C100,84.7776815 84.7776815,100 66,100 L0,100 L0,0 Z"
+                    transform="rotate(-180 50 50)"
+                    fill="#000000"
+                  />
+                  <path
+                    id="rt-0"
+                    d="M0,0 L100,0 L100,66 C100,84.7776815 84.7776815,100 66,100 L0,100 L0,0 Z"
+                    transform="rotate(90 50 50)"
+                    fill="#000000"
+                  />
+                  <path
+                    id="n_lt-0"
+                    d="M30.5,2V0H0v30.5h2C2,14.7,14.8,2,30.5,2z"
+                    fill="#000000"
+                  />
+                  <path
+                    id="n_lb-0"
+                    d="M2,69.5H0V100h30.5v-2C14.7,98,2,85.2,2,69.5z"
+                    fill="#000000"
+                  />
+                  <path
+                    id="n_rt-0"
+                    d="M98,30.5h2V0H69.5v2C85.3,2,98,14.8,98,30.5z"
+                    fill="#000000"
+                  />
+                  <path
+                    id="n_rb-0"
+                    d="M69.5,98v2H100V69.5h-2C98,85.3,85.2,98,69.5,98z"
+                    fill="#000000"
+                  />
+                  <path
+                    id="point-0"
+                    fill="#000000"
+                    d="M600.001786,457.329333 L600.001786,242.658167 C600.001786,147.372368 587.039517,124.122784 581.464617,118.535383 C575.877216,112.960483 552.627632,99.9982143 457.329333,99.9982143 L242.670667,99.9982143 C147.372368,99.9982143 124.122784,112.960483 118.547883,118.535383 C112.972983,124.122784 99.9982143,147.372368 99.9982143,242.658167 L99.9982143,457.329333 C99.9982143,552.627632 112.972983,575.877216 118.547883,581.464617 C124.122784,587.027017 147.372368,600.001786 242.670667,600.001786 L457.329333,600.001786 C552.627632,600.001786 575.877216,587.027017 581.464617,581.464617 C587.039517,575.877216 600.001786,552.627632 600.001786,457.329333 Z M457.329333,0 C653.338333,0 700,46.6616668 700,242.658167 C700,438.667167 700,261.332833 700,457.329333 C700,653.338333 653.338333,700 457.329333,700 C261.332833,700 438.667167,700 242.670667,700 C46.6616668,700 0,653.338333 0,457.329333 C0,261.332833 0,352.118712 0,242.658167 C0,46.6616668 46.6616668,0 242.670667,0 C438.667167,0 261.332833,0 457.329333,0 Z M395.996667,200 C480.004166,200 500,220.008332 500,303.990835 C500,387.998334 500,312.001666 500,395.996667 C500,479.991668 480.004166,500 395.996667,500 C312.001666,500 387.998334,500 304.003333,500 C220.008332,500 200,479.991668 200,395.996667 C200,312.001666 200,350.906061 200,303.990835 C200,220.008332 220.008332,200 304.003333,200 C387.998334,200 312.001666,200 395.996667,200 Z"
+                  />
+                  <g id="vk_logo-0">
+                    <path
+                      fill="#07f"
+                      d="M83.3334 363.333C83.3334 231.34 83.3334 165.343 124.338 124.338C165.343 83.3333 231.34              83.3333 363.333 83.3333H386.667C518.66 83.3333 584.657 83.3333 625.662 124.338C666.667 165.343              666.667 231.34 666.667 363.333V386.667C666.667 518.66 666.667 584.657 625.662 625.662C584.657              666.667 518.66 666.667 386.667 666.667H363.333C231.34 666.667 165.343 666.667 124.338 625.662C83.3334              584.657 83.3334 518.66 83.3334 386.667V363.333Z"
+                    />
+                    <path
+                      fill="#FFF"
+                      d="M394.907 508.681C263.293 508.681 183.442 417.365 180.313 265.625H246.972C249.05 377.09              299.763 424.323 338.638 434.036V265.625H402.519V361.82C440.016 357.664 479.264 313.909              492.456 265.625H555.333C545.27 325 502.543 368.754 472.353 386.803C502.566 401.395 551.177              439.593 569.926 508.681H500.815C486.222 462.498 450.476 426.728 402.542 421.872V508.681H394.907Z"
+                    />
+                  </g>
+                  <clipPath id="logo-mask-0">
+                    <rect x="0" y="0" width="750" height="750" />
+                  </clipPath>
+                </defs>
 
-      <!-- 11. КАК ЭТО РАБОТАЕТ -->
-      <section class="slide" data-num="9">
-        <div class="label">Опыт зрителя</div>
-        <h2>Как войти<br />внутрь работы.</h2>
-        <div class="accent-line"></div>
-        <p class="body-text">
-          Подойдите к плакату. Считайте QR-код. Вы окажетесь на сайте проекта —
-          в интерактивной среде, построенной вокруг этого конкретного
-          десятилетия. Там нет правильного пути. Есть только ваш.
-        </p>
-        <a
-          class="url-chip"
-          href="https://annkomkova.github.io/svetlovka-85/"
-          target="_blank"
-          >annkomkova.github.io/svetlovka-85</a
-        >
-      </section>
+                <rect
+                  x="0"
+                  width="2871"
+                  height="2871"
+                  rx="404"
+                  fill="#ffffff"
+                />
 
-      <!-- 12. ПОЧЕМУ ВАЖНО -->
-      <section class="slide" data-num="10">
-        <div class="label">Актуальность</div>
-        <h2>Почему это важно<br /><em>именно сейчас.</em></h2>
-        <div class="accent-line"></div>
-        <p class="body-text">
-          Мы живём в эпоху, когда прошлое либо идеализируют, либо стирают. Этот
-          проект предлагает третье: смотреть на него честно, через детали, через
-          образы, которые не объясняют, а показывают.
-        </p>
-        <ul class="theses">
-          <li>Коллективная память как живая структура</li>
-          <li>Архив — не склад, а разговор</li>
-          <li>Библиотека как место, где прошлое и будущее встречаются</li>
-        </ul>
-      </section>
-
-      <!-- 13. ФИНАЛ -->
-      <section class="slide" data-num="11">
-        <div class="label">Финал · варианты</div>
-        <h2>Я рада, что вы<br />здесь сегодня.</h2>
-        <div class="accent-line"></div>
-        <div class="final-options">
-          <div class="final-option">
-            «Светловка существует 85 лет. Этот проект — не итог. Это ещё одна
-            глава. И она написана вместе с вами.»
+                <g
+                  transform="translate(235.51171875, 235.51171875) scale(0.84375)"
+                >
+                  <g transform="translate(776,0)"><use xlink:href="#b-0" /></g>
+                  <g transform="translate(1261,0)"><use xlink:href="#r-0" /></g>
+                  <g transform="translate(1358,0)">
+                    <use xlink:href="#rect-0" />
+                  </g>
+                  <g transform="translate(1455,0)"><use xlink:href="#l-0" /></g>
+                  <g transform="translate(1649,0)">
+                    <use xlink:href="#n_rb-0" />
+                  </g>
+                  <g transform="translate(1746,0)"><use xlink:href="#b-0" /></g>
+                  <g transform="translate(1940,0)">
+                    <use xlink:href="#empty-0" />
+                  </g>
+                  <g transform="translate(776,97)">
+                    <use xlink:href="#rect-0" />
+                  </g>
+                  <g transform="translate(873,97)"><use xlink:href="#l-0" /></g>
+                  <g transform="translate(1164,97)">
+                    <use xlink:href="#empty-0" />
+                  </g>
+                  <g transform="translate(1358,97)">
+                    <use xlink:href="#rect-0" />
+                  </g>
+                  <g transform="translate(1649,97)">
+                    <use xlink:href="#r-0" />
+                  </g>
+                  <g transform="translate(1746,97)">
+                    <use xlink:href="#rect-0" />
+                  </g>
+                  <g transform="translate(1843,97)">
+                    <use xlink:href="#lb-0" />
+                  </g>
+                  <g transform="translate(776,194)">
+                    <use xlink:href="#t-0" />
+                  </g>
+                  <g transform="translate(873,194)">
+                    <use xlink:href="#n_rb-0" />
+                  </g>
+                  <g transform="translate(970,194)">
+                    <use xlink:href="#rb-0" />
+                  </g>
+                  <g transform="translate(1067,194)">
+                    <use xlink:href="#lb-0" />
+                  </g>
+                  <g transform="translate(1164,194)">
+                    <use xlink:href="#n_rb-0" />
+                  </g>
+                  <g transform="translate(1261,194)">
+                    <use xlink:href="#rb-0" />
+                  </g>
+                  <g transform="translate(1358,194)">
+                    <use xlink:href="#rect-0" />
+                  </g>
+                  <g transform="translate(1455,194)">
+                    <use xlink:href="#rect-0" />
+                  </g>
+                  <g transform="translate(1552,194)">
+                    <use xlink:href="#l-0" />
+                  </g>
+                  <g transform="translate(1843,194)">
+                    <use xlink:href="#rect-0" />
+                  </g>
+                  <g transform="translate(1940,194)">
+                    <use xlink:href="#l-0" />
+                  </g>
+                  <g transform="translate(873,291)">
+                    <use xlink:href="#r-0" />
+                  </g>
+                  <g transform="translate(970,291)">
+                    <use xlink:href="#rect-0" />
+                  </g>
+                  <g transform="translate(1067,291)">
+                    <use xlink:href="#rect-0" />
+                  </g>
+                  <g transform="translate(1164,291)">
+                    <use xlink:href="#rect-0" />
+                  </g>
+                  <g transform="translate(1261,291)">
+                    <use xlink:href="#rect-0" />
+                  </g>
+                  <g transform="translate(1358,291)">
+                    <use xlink:href="#rect-0" />
+                  </g>
+                  <g transform="translate(1455,291)">
+                    <use xlink:href="#lt-0" />
+                  </g>
+                  <g transform="translate(1649,291)">
+                    <use xlink:href="#empty-0" />
+                  </g>
+                  <g transform="translate(1746,291)">
+                    <use xlink:href="#n_rb-0" />
+                  </g>
+                  <g transform="translate(1843,291)">
+                    <use xlink:href="#rect-0" />
+                  </g>
+                  <g transform="translate(1067,388)">
+                    <use xlink:href="#rt-0" />
+                  </g>
+                  <g transform="translate(1164,388)">
+                    <use xlink:href="#rect-0" />
+                  </g>
+                  <g transform="translate(1261,388)">
+                    <use xlink:href="#rect-0" />
+                  </g>
+                  <g transform="translate(1358,388)">
+                    <use xlink:href="#lt-0" />
+                  </g>
+                  <g transform="translate(1455,388)">
+                    <use xlink:href="#n_rb-0" />
+                  </g>
+                  <g transform="translate(1552,388)">
+                    <use xlink:href="#b-0" />
+                  </g>
+                  <g transform="translate(1746,388)">
+                    <use xlink:href="#rb-0" />
+                  </g>
+                  <g transform="translate(1843,388)">
+                    <use xlink:href="#rect-0" />
+                  </g>
+                  <g transform="translate(1940,388)">
+                    <use xlink:href="#l-0" />
+                  </g>
+                  <g transform="translate(776,485)">
+                    <use xlink:href="#b-0" />
+                  </g>
+                  <g transform="translate(970,485)">
+                    <use xlink:href="#b-0" />
+                  </g>
+                  <g transform="translate(1164,485)">
+                    <use xlink:href="#rect-0" />
+                  </g>
+                  <g transform="translate(1455,485)">
+                    <use xlink:href="#r-0" />
+                  </g>
+                  <g transform="translate(1552,485)">
+                    <use xlink:href="#rect-0" />
+                  </g>
+                  <g transform="translate(1746,485)">
+                    <use xlink:href="#rect-0" />
+                  </g>
+                  <g transform="translate(776,582)">
+                    <use xlink:href="#rect-0" />
+                  </g>
+                  <g transform="translate(873,582)">
+                    <use xlink:href="#n_rb-0" />
+                  </g>
+                  <g transform="translate(970,582)">
+                    <use xlink:href="#rect-0" />
+                  </g>
+                  <g transform="translate(1164,582)">
+                    <use xlink:href="#t-0" />
+                  </g>
+                  <g transform="translate(1358,582)">
+                    <use xlink:href="#empty-0" />
+                  </g>
+                  <g transform="translate(1552,582)">
+                    <use xlink:href="#t-0" />
+                  </g>
+                  <g transform="translate(1746,582)">
+                    <use xlink:href="#t-0" />
+                  </g>
+                  <g transform="translate(1940,582)">
+                    <use xlink:href="#b-0" />
+                  </g>
+                  <g transform="translate(776,679)">
+                    <use xlink:href="#rect-0" />
+                  </g>
+                  <g transform="translate(873,679)">
+                    <use xlink:href="#rect-0" />
+                  </g>
+                  <g transform="translate(970,679)">
+                    <use xlink:href="#lt-0" />
+                  </g>
+                  <g transform="translate(1455,679)">
+                    <use xlink:href="#empty-0" />
+                  </g>
+                  <g transform="translate(1940,679)">
+                    <use xlink:href="#t-0" />
+                  </g>
+                  <g transform="translate(97,776)">
+                    <use xlink:href="#n_rb-0" />
+                  </g>
+                  <g transform="translate(194,776)">
+                    <use xlink:href="#rb-0" />
+                  </g>
+                  <g transform="translate(291,776)">
+                    <use xlink:href="#rect-0" />
+                  </g>
+                  <g transform="translate(388,776)">
+                    <use xlink:href="#lb-0" />
+                  </g>
+                  <g transform="translate(582,776)">
+                    <use xlink:href="#empty-0" />
+                  </g>
+                  <g transform="translate(776,776)">
+                    <use xlink:href="#rt-0" />
+                  </g>
+                  <g transform="translate(873,776)">
+                    <use xlink:href="#lt-0" />
+                  </g>
+                  <g transform="translate(1067,776)">
+                    <use xlink:href="#b-0" />
+                  </g>
+                  <g transform="translate(1261,776)">
+                    <use xlink:href="#r-0" />
+                  </g>
+                  <g transform="translate(1358,776)">
+                    <use xlink:href="#lb-0" />
+                  </g>
+                  <g transform="translate(1552,776)">
+                    <use xlink:href="#b-0" />
+                  </g>
+                  <g transform="translate(1746,776)">
+                    <use xlink:href="#r-0" />
+                  </g>
+                  <g transform="translate(1843,776)">
+                    <use xlink:href="#l-0" />
+                  </g>
+                  <g transform="translate(2037,776)">
+                    <use xlink:href="#rb-0" />
+                  </g>
+                  <g transform="translate(2134,776)">
+                    <use xlink:href="#rect-0" />
+                  </g>
+                  <g transform="translate(2231,776)">
+                    <use xlink:href="#lb-0" />
+                  </g>
+                  <g transform="translate(2522,776)">
+                    <use xlink:href="#r-0" />
+                  </g>
+                  <g transform="translate(2619,776)">
+                    <use xlink:href="#rect-0" />
+                  </g>
+                  <g transform="translate(2716,776)">
+                    <use xlink:href="#lb-0" />
+                  </g>
+                  <g transform="translate(0,873)">
+                    <use xlink:href="#n_rb-0" />
+                  </g>
+                  <g transform="translate(97,873)">
+                    <use xlink:href="#rb-0" />
+                  </g>
+                  <g transform="translate(194,873)">
+                    <use xlink:href="#rect-0" />
+                  </g>
+                  <g transform="translate(388,873)">
+                    <use xlink:href="#rt-0" />
+                  </g>
+                  <g transform="translate(485,873)">
+                    <use xlink:href="#lb-0" />
+                  </g>
+                  <g transform="translate(970,873)">
+                    <use xlink:href="#n_rb-0" />
+                  </g>
+                  <g transform="translate(1067,873)">
+                    <use xlink:href="#rect-0" />
+                  </g>
+                  <g transform="translate(1164,873)">
+                    <use xlink:href="#l-0" />
+                  </g>
+                  <g transform="translate(1358,873)">
+                    <use xlink:href="#t-0" />
+                  </g>
+                  <g transform="translate(1455,873)">
+                    <use xlink:href="#n_rb-0" />
+                  </g>
+                  <g transform="translate(1552,873)">
+                    <use xlink:href="#rect-0" />
+                  </g>
+                  <g transform="translate(1940,873)">
+                    <use xlink:href="#n_rb-0" />
+                  </g>
+                  <g transform="translate(2037,873)">
+                    <use xlink:href="#rect-0" />
+                  </g>
+                  <g transform="translate(2231,873)">
+                    <use xlink:href="#rt-0" />
+                  </g>
+                  <g transform="translate(2328,873)">
+                    <use xlink:href="#lb-0" />
+                  </g>
+                  <g transform="translate(2716,873)">
+                    <use xlink:href="#t-0" />
+                  </g>
+                  <g transform="translate(0,970)"><use xlink:href="#rb-0" /></g>
+                  <g transform="translate(97,970)">
+                    <use xlink:href="#rect-0" />
+                  </g>
+                  <g transform="translate(194,970)">
+                    <use xlink:href="#rect-0" />
+                  </g>
+                  <g transform="translate(291,970)">
+                    <use xlink:href="#l-0" />
+                  </g>
+                  <g transform="translate(485,970)">
+                    <use xlink:href="#rect-0" />
+                  </g>
+                  <g transform="translate(582,970)">
+                    <use xlink:href="#rect-0" />
+                  </g>
+                  <g transform="translate(679,970)">
+                    <use xlink:href="#l-0" />
+                  </g>
+                  <g transform="translate(873,970)">
+                    <use xlink:href="#rb-0" />
+                  </g>
+                  <g transform="translate(970,970)">
+                    <use xlink:href="#rect-0" />
+                  </g>
+                  <g transform="translate(1067,970)">
+                    <use xlink:href="#rect-0" />
+                  </g>
+                  <g transform="translate(1455,970)">
+                    <use xlink:href="#r-0" />
+                  </g>
+                  <g transform="translate(1552,970)">
+                    <use xlink:href="#rect-0" />
+                  </g>
+                  <g transform="translate(1649,970)">
+                    <use xlink:href="#lb-0" />
+                  </g>
+                  <g transform="translate(1940,970)">
+                    <use xlink:href="#r-0" />
+                  </g>
+                  <g transform="translate(2037,970)">
+                    <use xlink:href="#rect-0" />
+                  </g>
+                  <g transform="translate(2134,970)">
+                    <use xlink:href="#lb-0" />
+                  </g>
+                  <g transform="translate(2231,970)">
+                    <use xlink:href="#n_rb-0" />
+                  </g>
+                  <g transform="translate(2328,970)">
+                    <use xlink:href="#rect-0" />
+                  </g>
+                  <g transform="translate(2522,970)">
+                    <use xlink:href="#empty-0" />
+                  </g>
+                  <g transform="translate(0,1067)">
+                    <use xlink:href="#rect-0" />
+                  </g>
+                  <g transform="translate(485,1067)">
+                    <use xlink:href="#t-0" />
+                  </g>
+                  <g transform="translate(873,1067)">
+                    <use xlink:href="#t-0" />
+                  </g>
+                  <g transform="translate(1067,1067)">
+                    <use xlink:href="#rect-0" />
+                  </g>
+                  <g transform="translate(1552,1067)">
+                    <use xlink:href="#rect-0" />
+                  </g>
+                  <g transform="translate(1649,1067)">
+                    <use xlink:href="#lt-0" />
+                  </g>
+                  <g transform="translate(1843,1067)">
+                    <use xlink:href="#empty-0" />
+                  </g>
+                  <g transform="translate(2037,1067)">
+                    <use xlink:href="#rect-0" />
+                  </g>
+                  <g transform="translate(2134,1067)">
+                    <use xlink:href="#rect-0" />
+                  </g>
+                  <g transform="translate(2231,1067)">
+                    <use xlink:href="#rect-0" />
+                  </g>
+                  <g transform="translate(2328,1067)">
+                    <use xlink:href="#rect-0" />
+                  </g>
+                  <g transform="translate(2425,1067)">
+                    <use xlink:href="#lb-0" />
+                  </g>
+                  <g transform="translate(2522,1067)">
+                    <use xlink:href="#n_rb-0" />
+                  </g>
+                  <g transform="translate(2619,1067)">
+                    <use xlink:href="#b-0" />
+                  </g>
+                  <g transform="translate(0,1164)">
+                    <use xlink:href="#rt-0" />
+                  </g>
+                  <g transform="translate(97,1164)">
+                    <use xlink:href="#lb-0" />
+                  </g>
+                  <g transform="translate(291,1164)">
+                    <use xlink:href="#rb-0" />
+                  </g>
+                  <g transform="translate(388,1164)">
+                    <use xlink:href="#l-0" />
+                  </g>
+                  <g transform="translate(582,1164)">
+                    <use xlink:href="#empty-0" />
+                  </g>
+                  <g transform="translate(970,1164)">
+                    <use xlink:href="#r-0" />
+                  </g>
+                  <g transform="translate(1067,1164)">
+                    <use xlink:href="#rect-0" />
+                  </g>
+                  <g transform="translate(1164,1164)">
+                    <use xlink:href="#rect-0" />
+                  </g>
+                  <g transform="translate(1261,1164)">
+                    <use xlink:href="#lb-0" />
+                  </g>
+                  <g transform="translate(1552,1164)">
+                    <use xlink:href="#t-0" />
+                  </g>
+                  <g transform="translate(1649,1164)">
+                    <use xlink:href="#n_rb-0" />
+                  </g>
+                  <g transform="translate(1746,1164)">
+                    <use xlink:href="#b-0" />
+                  </g>
+                  <g transform="translate(1940,1164)">
+                    <use xlink:href="#n_rb-0" />
+                  </g>
+                  <g transform="translate(2037,1164)">
+                    <use xlink:href="#rect-0" />
+                  </g>
+                  <g transform="translate(2231,1164)">
+                    <use xlink:href="#t-0" />
+                  </g>
+                  <g transform="translate(2425,1164)">
+                    <use xlink:href="#rect-0" />
+                  </g>
+                  <g transform="translate(2522,1164)">
+                    <use xlink:href="#rect-0" />
+                  </g>
+                  <g transform="translate(2619,1164)">
+                    <use xlink:href="#rect-0" />
+                  </g>
+                  <g transform="translate(2716,1164)">
+                    <use xlink:href="#lb-0" />
+                  </g>
+                  <g transform="translate(97,1261)">
+                    <use xlink:href="#rect-0" />
+                  </g>
+                  <g transform="translate(291,1261)">
+                    <use xlink:href="#t-0" />
+                  </g>
+                  <g transform="translate(1164,1261)">
+                    <use xlink:href="#rt-0" />
+                  </g>
+                  <g transform="translate(1261,1261)">
+                    <use xlink:href="#rect-0" />
+                  </g>
+                  <g transform="translate(1358,1261)">
+                    <use xlink:href="#rect-0" />
+                  </g>
+                  <g transform="translate(1455,1261)">
+                    <use xlink:href="#l-0" />
+                  </g>
+                  <g transform="translate(1649,1261)">
+                    <use xlink:href="#r-0" />
+                  </g>
+                  <g transform="translate(1746,1261)">
+                    <use xlink:href="#rect-0" />
+                  </g>
+                  <g transform="translate(1843,1261)">
+                    <use xlink:href="#rect-0" />
+                  </g>
+                  <g transform="translate(1940,1261)">
+                    <use xlink:href="#rect-0" />
+                  </g>
+                  <g transform="translate(2037,1261)">
+                    <use xlink:href="#rect-0" />
+                  </g>
+                  <g transform="translate(2134,1261)">
+                    <use xlink:href="#lb-0" />
+                  </g>
+                  <g transform="translate(2328,1261)">
+                    <use xlink:href="#r-0" />
+                  </g>
+                  <g transform="translate(2425,1261)">
+                    <use xlink:href="#lt-0" />
+                  </g>
+                  <g transform="translate(2716,1261)">
+                    <use xlink:href="#t-0" />
+                  </g>
+                  <g transform="translate(0,1358)"><use xlink:href="#r-0" /></g>
+                  <g transform="translate(97,1358)">
+                    <use xlink:href="#rect-0" />
+                  </g>
+                  <g transform="translate(388,1358)">
+                    <use xlink:href="#r-0" />
+                  </g>
+                  <g transform="translate(485,1358)">
+                    <use xlink:href="#rect-0" />
+                  </g>
+                  <g transform="translate(582,1358)">
+                    <use xlink:href="#rect-0" />
+                  </g>
+                  <g transform="translate(679,1358)">
+                    <use xlink:href="#rect-0" />
+                  </g>
+                  <g transform="translate(776,1358)">
+                    <use xlink:href="#rect-0" />
+                  </g>
+                  <g transform="translate(873,1358)">
+                    <use xlink:href="#rect-0" />
+                  </g>
+                  <g transform="translate(970,1358)">
+                    <use xlink:href="#rect-0" />
+                  </g>
+                  <g transform="translate(1067,1358)">
+                    <use xlink:href="#l-0" />
+                  </g>
+                  <g transform="translate(1358,1358)">
+                    <use xlink:href="#t-0" />
+                  </g>
+                  <g transform="translate(1940,1358)">
+                    <use xlink:href="#rt-0" />
+                  </g>
+                  <g transform="translate(2037,1358)">
+                    <use xlink:href="#rect-0" />
+                  </g>
+                  <g transform="translate(2134,1358)">
+                    <use xlink:href="#rect-0" />
+                  </g>
+                  <g transform="translate(2231,1358)">
+                    <use xlink:href="#l-0" />
+                  </g>
+                  <g transform="translate(97,1455)">
+                    <use xlink:href="#t-0" />
+                  </g>
+                  <g transform="translate(291,1455)">
+                    <use xlink:href="#empty-0" />
+                  </g>
+                  <g transform="translate(679,1455)">
+                    <use xlink:href="#rect-0" />
+                  </g>
+                  <g transform="translate(873,1455)">
+                    <use xlink:href="#rect-0" />
+                  </g>
+                  <g transform="translate(970,1455)">
+                    <use xlink:href="#lt-0" />
+                  </g>
+                  <g transform="translate(1067,1455)">
+                    <use xlink:href="#n_rb-0" />
+                  </g>
+                  <g transform="translate(1164,1455)">
+                    <use xlink:href="#rb-0" />
+                  </g>
+                  <g transform="translate(1261,1455)">
+                    <use xlink:href="#lb-0" />
+                  </g>
+                  <g transform="translate(1358,1455)">
+                    <use xlink:href="#n_rb-0" />
+                  </g>
+                  <g transform="translate(1455,1455)">
+                    <use xlink:href="#rb-0" />
+                  </g>
+                  <g transform="translate(1552,1455)">
+                    <use xlink:href="#l-0" />
+                  </g>
+                  <g transform="translate(1649,1455)">
+                    <use xlink:href="#n_rb-0" />
+                  </g>
+                  <g transform="translate(1746,1455)">
+                    <use xlink:href="#rb-0" />
+                  </g>
+                  <g transform="translate(1843,1455)">
+                    <use xlink:href="#l-0" />
+                  </g>
+                  <g transform="translate(2037,1455)">
+                    <use xlink:href="#rt-0" />
+                  </g>
+                  <g transform="translate(2134,1455)">
+                    <use xlink:href="#lt-0" />
+                  </g>
+                  <g transform="translate(2231,1455)">
+                    <use xlink:href="#n_rb-0" />
+                  </g>
+                  <g transform="translate(2328,1455)">
+                    <use xlink:href="#rb-0" />
+                  </g>
+                  <g transform="translate(2425,1455)">
+                    <use xlink:href="#lb-0" />
+                  </g>
+                  <g transform="translate(2619,1455)">
+                    <use xlink:href="#r-0" />
+                  </g>
+                  <g transform="translate(2716,1455)">
+                    <use xlink:href="#lb-0" />
+                  </g>
+                  <g transform="translate(582,1552)">
+                    <use xlink:href="#r-0" />
+                  </g>
+                  <g transform="translate(679,1552)">
+                    <use xlink:href="#lt-0" />
+                  </g>
+                  <g transform="translate(873,1552)">
+                    <use xlink:href="#t-0" />
+                  </g>
+                  <g transform="translate(1067,1552)">
+                    <use xlink:href="#r-0" />
+                  </g>
+                  <g transform="translate(1164,1552)">
+                    <use xlink:href="#rect-0" />
+                  </g>
+                  <g transform="translate(1261,1552)">
+                    <use xlink:href="#rect-0" />
+                  </g>
+                  <g transform="translate(1358,1552)">
+                    <use xlink:href="#rect-0" />
+                  </g>
+                  <g transform="translate(1455,1552)">
+                    <use xlink:href="#rect-0" />
+                  </g>
+                  <g transform="translate(1552,1552)">
+                    <use xlink:href="#n_rb-0" />
+                  </g>
+                  <g transform="translate(1649,1552)">
+                    <use xlink:href="#rb-0" />
+                  </g>
+                  <g transform="translate(1746,1552)">
+                    <use xlink:href="#lt-0" />
+                  </g>
+                  <g transform="translate(1940,1552)">
+                    <use xlink:href="#empty-0" />
+                  </g>
+                  <g transform="translate(2134,1552)">
+                    <use xlink:href="#n_rb-0" />
+                  </g>
+                  <g transform="translate(2231,1552)">
+                    <use xlink:href="#rb-0" />
+                  </g>
+                  <g transform="translate(2328,1552)">
+                    <use xlink:href="#rect-0" />
+                  </g>
+                  <g transform="translate(2425,1552)">
+                    <use xlink:href="#rect-0" />
+                  </g>
+                  <g transform="translate(2522,1552)">
+                    <use xlink:href="#l-0" />
+                  </g>
+                  <g transform="translate(2716,1552)">
+                    <use xlink:href="#rect-0" />
+                  </g>
+                  <g transform="translate(0,1649)"><use xlink:href="#b-0" /></g>
+                  <g transform="translate(194,1649)">
+                    <use xlink:href="#b-0" />
+                  </g>
+                  <g transform="translate(388,1649)">
+                    <use xlink:href="#n_rb-0" />
+                  </g>
+                  <g transform="translate(485,1649)">
+                    <use xlink:href="#b-0" />
+                  </g>
+                  <g transform="translate(970,1649)">
+                    <use xlink:href="#b-0" />
+                  </g>
+                  <g transform="translate(1358,1649)">
+                    <use xlink:href="#rt-0" />
+                  </g>
+                  <g transform="translate(1455,1649)">
+                    <use xlink:href="#rect-0" />
+                  </g>
+                  <g transform="translate(1552,1649)">
+                    <use xlink:href="#rect-0" />
+                  </g>
+                  <g transform="translate(1649,1649)">
+                    <use xlink:href="#lt-0" />
+                  </g>
+                  <g transform="translate(1843,1649)">
+                    <use xlink:href="#empty-0" />
+                  </g>
+                  <g transform="translate(2037,1649)">
+                    <use xlink:href="#r-0" />
+                  </g>
+                  <g transform="translate(2134,1649)">
+                    <use xlink:href="#rect-0" />
+                  </g>
+                  <g transform="translate(2231,1649)">
+                    <use xlink:href="#rect-0" />
+                  </g>
+                  <g transform="translate(2328,1649)">
+                    <use xlink:href="#rect-0" />
+                  </g>
+                  <g transform="translate(2425,1649)">
+                    <use xlink:href="#rect-0" />
+                  </g>
+                  <g transform="translate(2619,1649)">
+                    <use xlink:href="#r-0" />
+                  </g>
+                  <g transform="translate(2716,1649)">
+                    <use xlink:href="#lt-0" />
+                  </g>
+                  <g transform="translate(0,1746)">
+                    <use xlink:href="#rect-0" />
+                  </g>
+                  <g transform="translate(194,1746)">
+                    <use xlink:href="#t-0" />
+                  </g>
+                  <g transform="translate(388,1746)">
+                    <use xlink:href="#r-0" />
+                  </g>
+                  <g transform="translate(485,1746)">
+                    <use xlink:href="#rect-0" />
+                  </g>
+                  <g transform="translate(582,1746)">
+                    <use xlink:href="#l-0" />
+                  </g>
+                  <g transform="translate(970,1746)">
+                    <use xlink:href="#rect-0" />
+                  </g>
+                  <g transform="translate(1067,1746)">
+                    <use xlink:href="#rect-0" />
+                  </g>
+                  <g transform="translate(1164,1746)">
+                    <use xlink:href="#rect-0" />
+                  </g>
+                  <g transform="translate(1261,1746)">
+                    <use xlink:href="#lb-0" />
+                  </g>
+                  <g transform="translate(1552,1746)">
+                    <use xlink:href="#rect-0" />
+                  </g>
+                  <g transform="translate(1746,1746)">
+                    <use xlink:href="#empty-0" />
+                  </g>
+                  <g transform="translate(1940,1746)">
+                    <use xlink:href="#empty-0" />
+                  </g>
+                  <g transform="translate(2134,1746)">
+                    <use xlink:href="#rect-0" />
+                  </g>
+                  <g transform="translate(2231,1746)">
+                    <use xlink:href="#lt-0" />
+                  </g>
+                  <g transform="translate(2425,1746)">
+                    <use xlink:href="#t-0" />
+                  </g>
+                  <g transform="translate(0,1843)">
+                    <use xlink:href="#rect-0" />
+                  </g>
+                  <g transform="translate(194,1843)">
+                    <use xlink:href="#n_rb-0" />
+                  </g>
+                  <g transform="translate(291,1843)">
+                    <use xlink:href="#b-0" />
+                  </g>
+                  <g transform="translate(679,1843)">
+                    <use xlink:href="#r-0" />
+                  </g>
+                  <g transform="translate(776,1843)">
+                    <use xlink:href="#l-0" />
+                  </g>
+                  <g transform="translate(970,1843)">
+                    <use xlink:href="#t-0" />
+                  </g>
+                  <g transform="translate(1261,1843)">
+                    <use xlink:href="#t-0" />
+                  </g>
+                  <g transform="translate(1455,1843)">
+                    <use xlink:href="#r-0" />
+                  </g>
+                  <g transform="translate(1552,1843)">
+                    <use xlink:href="#rect-0" />
+                  </g>
+                  <g transform="translate(1649,1843)">
+                    <use xlink:href="#l-0" />
+                  </g>
+                  <g transform="translate(2037,1843)">
+                    <use xlink:href="#n_rb-0" />
+                  </g>
+                  <g transform="translate(2134,1843)">
+                    <use xlink:href="#rect-0" />
+                  </g>
+                  <g transform="translate(2231,1843)">
+                    <use xlink:href="#n_rb-0" />
+                  </g>
+                  <g transform="translate(2328,1843)">
+                    <use xlink:href="#b-0" />
+                  </g>
+                  <g transform="translate(2619,1843)">
+                    <use xlink:href="#r-0" />
+                  </g>
+                  <g transform="translate(2716,1843)">
+                    <use xlink:href="#l-0" />
+                  </g>
+                  <g transform="translate(0,1940)"><use xlink:href="#t-0" /></g>
+                  <g transform="translate(194,1940)">
+                    <use xlink:href="#r-0" />
+                  </g>
+                  <g transform="translate(291,1940)">
+                    <use xlink:href="#rect-0" />
+                  </g>
+                  <g transform="translate(388,1940)">
+                    <use xlink:href="#rect-0" />
+                  </g>
+                  <g transform="translate(485,1940)">
+                    <use xlink:href="#rect-0" />
+                  </g>
+                  <g transform="translate(582,1940)">
+                    <use xlink:href="#l-0" />
+                  </g>
+                  <g transform="translate(776,1940)">
+                    <use xlink:href="#n_rb-0" />
+                  </g>
+                  <g transform="translate(873,1940)">
+                    <use xlink:href="#b-0" />
+                  </g>
+                  <g transform="translate(1067,1940)">
+                    <use xlink:href="#empty-0" />
+                  </g>
+                  <g transform="translate(1358,1940)">
+                    <use xlink:href="#b-0" />
+                  </g>
+                  <g transform="translate(1746,1940)">
+                    <use xlink:href="#r-0" />
+                  </g>
+                  <g transform="translate(1843,1940)">
+                    <use xlink:href="#rect-0" />
+                  </g>
+                  <g transform="translate(1940,1940)">
+                    <use xlink:href="#rect-0" />
+                  </g>
+                  <g transform="translate(2037,1940)">
+                    <use xlink:href="#rect-0" />
+                  </g>
+                  <g transform="translate(2134,1940)">
+                    <use xlink:href="#rect-0" />
+                  </g>
+                  <g transform="translate(2231,1940)">
+                    <use xlink:href="#rect-0" />
+                  </g>
+                  <g transform="translate(2328,1940)">
+                    <use xlink:href="#rect-0" />
+                  </g>
+                  <g transform="translate(2522,1940)">
+                    <use xlink:href="#empty-0" />
+                  </g>
+                  <g transform="translate(776,2037)">
+                    <use xlink:href="#r-0" />
+                  </g>
+                  <g transform="translate(873,2037)">
+                    <use xlink:href="#rect-0" />
+                  </g>
+                  <g transform="translate(970,2037)">
+                    <use xlink:href="#l-0" />
+                  </g>
+                  <g transform="translate(1164,2037)">
+                    <use xlink:href="#empty-0" />
+                  </g>
+                  <g transform="translate(1358,2037)">
+                    <use xlink:href="#t-0" />
+                  </g>
+                  <g transform="translate(1649,2037)">
+                    <use xlink:href="#empty-0" />
+                  </g>
+                  <g transform="translate(1940,2037)">
+                    <use xlink:href="#rect-0" />
+                  </g>
+                  <g transform="translate(2328,2037)">
+                    <use xlink:href="#rect-0" />
+                  </g>
+                  <g transform="translate(2425,2037)">
+                    <use xlink:href="#l-0" />
+                  </g>
+                  <g transform="translate(2619,2037)">
+                    <use xlink:href="#rb-0" />
+                  </g>
+                  <g transform="translate(2716,2037)">
+                    <use xlink:href="#l-0" />
+                  </g>
+                  <g transform="translate(873,2134)">
+                    <use xlink:href="#t-0" />
+                  </g>
+                  <g transform="translate(970,2134)">
+                    <use xlink:href="#n_rb-0" />
+                  </g>
+                  <g transform="translate(1067,2134)">
+                    <use xlink:href="#b-0" />
+                  </g>
+                  <g transform="translate(1261,2134)">
+                    <use xlink:href="#empty-0" />
+                  </g>
+                  <g transform="translate(1746,2134)">
+                    <use xlink:href="#r-0" />
+                  </g>
+                  <g transform="translate(1843,2134)">
+                    <use xlink:href="#rect-0" />
+                  </g>
+                  <g transform="translate(1940,2134)">
+                    <use xlink:href="#rect-0" />
+                  </g>
+                  <g transform="translate(2134,2134)">
+                    <use xlink:href="#empty-0" />
+                  </g>
+                  <g transform="translate(2328,2134)">
+                    <use xlink:href="#rect-0" />
+                  </g>
+                  <g transform="translate(2619,2134)">
+                    <use xlink:href="#t-0" />
+                  </g>
+                  <g transform="translate(873,2231)">
+                    <use xlink:href="#n_rb-0" />
+                  </g>
+                  <g transform="translate(970,2231)">
+                    <use xlink:href="#rb-0" />
+                  </g>
+                  <g transform="translate(1067,2231)">
+                    <use xlink:href="#rect-0" />
+                  </g>
+                  <g transform="translate(1164,2231)">
+                    <use xlink:href="#l-0" />
+                  </g>
+                  <g transform="translate(1649,2231)">
+                    <use xlink:href="#empty-0" />
+                  </g>
+                  <g transform="translate(1843,2231)">
+                    <use xlink:href="#rt-0" />
+                  </g>
+                  <g transform="translate(1940,2231)">
+                    <use xlink:href="#rect-0" />
+                  </g>
+                  <g transform="translate(2231,2231)">
+                    <use xlink:href="#n_rb-0" />
+                  </g>
+                  <g transform="translate(2328,2231)">
+                    <use xlink:href="#rect-0" />
+                  </g>
+                  <g transform="translate(2425,2231)">
+                    <use xlink:href="#lb-0" />
+                  </g>
+                  <g transform="translate(2619,2231)">
+                    <use xlink:href="#n_rb-0" />
+                  </g>
+                  <g transform="translate(2716,2231)">
+                    <use xlink:href="#b-0" />
+                  </g>
+                  <g transform="translate(776,2328)">
+                    <use xlink:href="#rb-0" />
+                  </g>
+                  <g transform="translate(873,2328)">
+                    <use xlink:href="#rect-0" />
+                  </g>
+                  <g transform="translate(970,2328)">
+                    <use xlink:href="#lt-0" />
+                  </g>
+                  <g transform="translate(1261,2328)">
+                    <use xlink:href="#r-0" />
+                  </g>
+                  <g transform="translate(1358,2328)">
+                    <use xlink:href="#rect-0" />
+                  </g>
+                  <g transform="translate(1455,2328)">
+                    <use xlink:href="#rect-0" />
+                  </g>
+                  <g transform="translate(1552,2328)">
+                    <use xlink:href="#l-0" />
+                  </g>
+                  <g transform="translate(1649,2328)">
+                    <use xlink:href="#n_rb-0" />
+                  </g>
+                  <g transform="translate(1746,2328)">
+                    <use xlink:href="#b-0" />
+                  </g>
+                  <g transform="translate(1843,2328)">
+                    <use xlink:href="#n_rb-0" />
+                  </g>
+                  <g transform="translate(1940,2328)">
+                    <use xlink:href="#rect-0" />
+                  </g>
+                  <g transform="translate(2037,2328)">
+                    <use xlink:href="#rect-0" />
+                  </g>
+                  <g transform="translate(2134,2328)">
+                    <use xlink:href="#rect-0" />
+                  </g>
+                  <g transform="translate(2231,2328)">
+                    <use xlink:href="#rect-0" />
+                  </g>
+                  <g transform="translate(2328,2328)">
+                    <use xlink:href="#rect-0" />
+                  </g>
+                  <g transform="translate(2425,2328)">
+                    <use xlink:href="#rect-0" />
+                  </g>
+                  <g transform="translate(2522,2328)">
+                    <use xlink:href="#rect-0" />
+                  </g>
+                  <g transform="translate(2619,2328)">
+                    <use xlink:href="#rect-0" />
+                  </g>
+                  <g transform="translate(2716,2328)">
+                    <use xlink:href="#lt-0" />
+                  </g>
+                  <g transform="translate(776,2425)">
+                    <use xlink:href="#rect-0" />
+                  </g>
+                  <g transform="translate(1067,2425)">
+                    <use xlink:href="#r-0" />
+                  </g>
+                  <g transform="translate(1164,2425)">
+                    <use xlink:href="#lb-0" />
+                  </g>
+                  <g transform="translate(1455,2425)">
+                    <use xlink:href="#rect-0" />
+                  </g>
+                  <g transform="translate(1552,2425)">
+                    <use xlink:href="#n_rb-0" />
+                  </g>
+                  <g transform="translate(1649,2425)">
+                    <use xlink:href="#rb-0" />
+                  </g>
+                  <g transform="translate(1746,2425)">
+                    <use xlink:href="#rect-0" />
+                  </g>
+                  <g transform="translate(1843,2425)">
+                    <use xlink:href="#rect-0" />
+                  </g>
+                  <g transform="translate(1940,2425)">
+                    <use xlink:href="#rect-0" />
+                  </g>
+                  <g transform="translate(2037,2425)">
+                    <use xlink:href="#rect-0" />
+                  </g>
+                  <g transform="translate(2231,2425)">
+                    <use xlink:href="#rect-0" />
+                  </g>
+                  <g transform="translate(2425,2425)">
+                    <use xlink:href="#rect-0" />
+                  </g>
+                  <g transform="translate(2522,2425)">
+                    <use xlink:href="#rect-0" />
+                  </g>
+                  <g transform="translate(776,2522)">
+                    <use xlink:href="#t-0" />
+                  </g>
+                  <g transform="translate(1164,2522)">
+                    <use xlink:href="#rect-0" />
+                  </g>
+                  <g transform="translate(1358,2522)">
+                    <use xlink:href="#r-0" />
+                  </g>
+                  <g transform="translate(1455,2522)">
+                    <use xlink:href="#rect-0" />
+                  </g>
+                  <g transform="translate(1552,2522)">
+                    <use xlink:href="#rect-0" />
+                  </g>
+                  <g transform="translate(1649,2522)">
+                    <use xlink:href="#rect-0" />
+                  </g>
+                  <g transform="translate(1843,2522)">
+                    <use xlink:href="#rect-0" />
+                  </g>
+                  <g transform="translate(1940,2522)">
+                    <use xlink:href="#rect-0" />
+                  </g>
+                  <g transform="translate(2037,2522)">
+                    <use xlink:href="#rect-0" />
+                  </g>
+                  <g transform="translate(2134,2522)">
+                    <use xlink:href="#rect-0" />
+                  </g>
+                  <g transform="translate(2231,2522)">
+                    <use xlink:href="#rect-0" />
+                  </g>
+                  <g transform="translate(2328,2522)">
+                    <use xlink:href="#rect-0" />
+                  </g>
+                  <g transform="translate(2425,2522)">
+                    <use xlink:href="#rect-0" />
+                  </g>
+                  <g transform="translate(2522,2522)">
+                    <use xlink:href="#rect-0" />
+                  </g>
+                  <g transform="translate(2619,2522)">
+                    <use xlink:href="#lb-0" />
+                  </g>
+                  <g transform="translate(970,2619)">
+                    <use xlink:href="#empty-0" />
+                  </g>
+                  <g transform="translate(1067,2619)">
+                    <use xlink:href="#n_rb-0" />
+                  </g>
+                  <g transform="translate(1164,2619)">
+                    <use xlink:href="#rect-0" />
+                  </g>
+                  <g transform="translate(1261,2619)">
+                    <use xlink:href="#lb-0" />
+                  </g>
+                  <g transform="translate(1552,2619)">
+                    <use xlink:href="#rt-0" />
+                  </g>
+                  <g transform="translate(1649,2619)">
+                    <use xlink:href="#lt-0" />
+                  </g>
+                  <g transform="translate(1843,2619)">
+                    <use xlink:href="#rt-0" />
+                  </g>
+                  <g transform="translate(1940,2619)">
+                    <use xlink:href="#rect-0" />
+                  </g>
+                  <g transform="translate(2037,2619)">
+                    <use xlink:href="#lt-0" />
+                  </g>
+                  <g transform="translate(2328,2619)">
+                    <use xlink:href="#rect-0" />
+                  </g>
+                  <g transform="translate(2619,2619)">
+                    <use xlink:href="#t-0" />
+                  </g>
+                  <g transform="translate(1067,2716)">
+                    <use xlink:href="#r-0" />
+                  </g>
+                  <g transform="translate(1164,2716)">
+                    <use xlink:href="#rect-0" />
+                  </g>
+                  <g transform="translate(1261,2716)">
+                    <use xlink:href="#rect-0" />
+                  </g>
+                  <g transform="translate(1358,2716)">
+                    <use xlink:href="#rect-0" />
+                  </g>
+                  <g transform="translate(1455,2716)">
+                    <use xlink:href="#l-0" />
+                  </g>
+                  <g transform="translate(2328,2716)">
+                    <use xlink:href="#rt-0" />
+                  </g>
+                  <g transform="translate(2425,2716)">
+                    <use xlink:href="#rect-0" />
+                  </g>
+                  <g transform="translate(2522,2716)">
+                    <use xlink:href="#l-0" />
+                  </g>
+                  <use
+                    fill-rule="evenodd"
+                    transform="translate(0,0)"
+                    xlink:href="#point-0"
+                  />
+                  <use
+                    fill-rule="evenodd"
+                    transform="translate(2112,0)"
+                    xlink:href="#point-0"
+                  />
+                  <use
+                    fill-rule="evenodd"
+                    transform="translate(0,2112)"
+                    xlink:href="#point-0"
+                  />
+                </g>
+              </svg>
+              <div class="qr-url">@anna_i_dobro</div>
+            </div>
           </div>
-          <div class="final-option">
-            «Возможно, самое важное, что делает библиотека — это напоминает нам,
-            что мы не первые. И не последние.»
-          </div>
-          <div class="final-option">
-            «Спасибо за то, что вы здесь. Теперь — идите смотреть. И не
-            торопитесь.»
-          </div>
+          <!-- <div class="label">Финал · варианты финальной фразы</div>
+          <div class="final-opts">
+            <div class="fopt">
+              <span class="fopt-num">вариант 01</span>«Светловка существует 85
+              лет. Этот проект — не итог. Это ещё одна глава. И она написана
+              вместе с вами.»
+            </div>
+            <div class="fopt">
+              <span class="fopt-num">вариант 02</span>«Возможно, самое важное,
+              что делает библиотека — это напоминает: мы не первые. И не
+              последние.»
+            </div>
+            <div class="fopt">
+              <span class="fopt-num">вариант 03</span>«Спасибо, что вы здесь.
+              Теперь — идите смотреть. И не торопитесь.»
+            </div>
+          </div> -->
         </div>
       </section>
     </div>
+    <!-- .deck -->
 
     <!-- NAV -->
     <nav>
-      <button class="nav-btn" id="prev" aria-label="Назад">
-        <svg width="14" height="14" viewBox="0 0 14 14">
-          <polyline points="9,2 4,7 9,12" />
+      <button class="nb" id="prev">
+        <svg viewBox="0 0 13 13">
+          <polyline points="8,1.5 3.5,6.5 8,11.5" />
         </svg>
       </button>
-      <span class="progress" id="progress">01 / 11</span>
-      <button class="nav-btn" id="next" aria-label="Вперёд">
-        <svg width="14" height="14" viewBox="0 0 14 14">
-          <polyline points="5,2 10,7 5,12" />
+      <span class="npg" id="npg">01 / 11</span>
+      <button class="nb" id="next">
+        <svg viewBox="0 0 13 13">
+          <polyline points="5,1.5 9.5,6.5 5,11.5" />
         </svg>
       </button>
     </nav>
@@ -597,49 +3802,54 @@
     <script>
       const slides = Array.from(document.querySelectorAll('.slide'))
       const total = slides.length
-      let current = 0
-
-      function pad(n) {
-        return String(n + 1).padStart(2, '0')
-      }
-
-      function update() {
-        const pct = ((current + 1) / total) * 100
-        document.getElementById('pbar').style.width = pct + '%'
-        document.getElementById('progress').textContent =
-          pad(current) + ' / ' + pad(total - 1)
-        document.getElementById('counter').textContent =
-          pad(current) + ' / ' + pad(total - 1)
-      }
+      let cur = 0
+      const pad = (n) => String(n + 1).padStart(2, '0')
 
       function go(idx) {
         if (idx < 0 || idx >= total) return
-        slides[current].classList.add('exit')
-        slides[current].classList.remove('active')
-        setTimeout(
-          () =>
-            slides[current === idx ? idx : current].classList.remove('exit'),
-          400
-        )
-        current = idx
-        slides[current].classList.add('active')
-        update()
+        slides[cur].classList.add('exit')
+        slides[cur].classList.remove('active')
+        const old = cur
+        cur = idx
+        slides[cur].classList.add('active')
+        setTimeout(() => slides[old].classList.remove('exit'), 350)
+        render()
+      }
+
+      function render() {
+        document.getElementById('pbar').style.width =
+          ((cur + 1) / total) * 100 + '%'
+        const t = pad(cur) + ' / ' + pad(total - 1)
+        document.getElementById('npg').textContent = t
+        document.getElementById('counter').textContent = t
+
+        // swap nav colours on dark slides
+        const dark = ['s1', 's3', 's4', 's7', 's9'].includes(slides[cur].id)
+        const nav = document.querySelector('nav')
+        nav.querySelectorAll('.nb').forEach((b) => {
+          b.style.borderColor = dark ? 'rgba(244,241,236,.25)' : ''
+          b.querySelector('svg').style.stroke = dark
+            ? 'rgba(244,241,236,.7)'
+            : ''
+        })
+        document.getElementById('npg').style.color = dark
+          ? 'rgba(244,241,236,.4)'
+          : ''
+        document.getElementById('counter').style.color = dark
+          ? 'rgba(244,241,236,.35)'
+          : ''
       }
 
       document
         .getElementById('next')
-        .addEventListener('click', () => go(current + 1))
+        .addEventListener('click', () => go(cur + 1))
       document
         .getElementById('prev')
-        .addEventListener('click', () => go(current - 1))
-
+        .addEventListener('click', () => go(cur - 1))
       document.addEventListener('keydown', (e) => {
-        if (e.key === 'ArrowRight' || e.key === 'ArrowDown' || e.key === ' ')
-          go(current + 1)
-        if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') go(current - 1)
+        if (['ArrowRight', 'ArrowDown', ' '].includes(e.key)) go(cur + 1)
+        if (['ArrowLeft', 'ArrowUp'].includes(e.key)) go(cur - 1)
       })
-
-      // Touch/swipe
       let tx = 0
       document.addEventListener(
         'touchstart',
@@ -651,13 +3861,13 @@
       document.addEventListener(
         'touchend',
         (e) => {
-          const dx = e.changedTouches[0].clientX - tx
-          if (Math.abs(dx) > 50) go(dx < 0 ? current + 1 : current - 1)
+          const d = e.changedTouches[0].clientX - tx
+          if (Math.abs(d) > 50) go(d < 0 ? cur + 1 : cur - 1)
         },
         { passive: true }
       )
 
-      update()
+      render()
     </script>
   </body>
 </html>
