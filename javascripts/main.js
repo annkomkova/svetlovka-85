@@ -327,7 +327,7 @@ const pages = [
     films: [
       {
         frame: 'images/90s/film-1.png',
-        info: 'Кадр из к/ф «Окно в Париж» (1993), реж. Ю.Мамин, кинокомпании: «Films du Bouloi» «Фонтан», «La Sept Cinema», «Троицкий мост»'
+        info: 'Кадр из к/ф «Вор» (1997), реж. П. Чухрай, кинокомпании: «НТВ-Профит», «Roissy Films», «Productions Le Pont»'
       },
       {
         frame: 'images/90s/film-2.png',
